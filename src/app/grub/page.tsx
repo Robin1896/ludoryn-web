@@ -1402,15 +1402,14 @@ function GrubContent() {
     const newTurn = { ...gs.turn, rolled };
     const bust = isBust(newTurn);
     const next = { ...gs, turn: newTurn, phase: 'rolled' } as GameState;
-    // Signal opponents to start their rolling animation
+    // Signal opponents to start animation BEFORE state arrives
     if (roomId) getSocket().emit("roll-start");
     setGs(next);
+    emitState(next);
     if (!roomId) try { localStorage.setItem(LOCAL_KEY, JSON.stringify(next)); } catch { /* ignore */ }
     setRolling(true);
     setTimeout(() => {
       setRolling(false);
-      // Emit state after animation so opponent sees result at same time
-      emitState(next);
       if (bust) {
         const busted = { ...next, phase: 'bust' as const };
         setGs(busted);
