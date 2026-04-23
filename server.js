@@ -660,6 +660,10 @@ app.prepare().then(async () => {
       socket.to(myRoom).emit("roll-start");
     });
 
+    socket.on("dice-staging", ({ indices }) => {
+      socket.to(myRoom).emit("dice-staging", { indices });
+    });
+
     // ── Game over ────────────────────────────────────────────────────────────
     socket.on("game-over", async ({ winnerName }) => {
       // Cancel turn timer als het spel gewoon klaar is

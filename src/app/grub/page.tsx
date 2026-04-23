@@ -53,6 +53,15 @@ function TileCard({ tile, highlight = false, compact = false }: {
   const ref = useRef<HTMLDivElement>(null);
   const wasAvailable = useRef(tile.available);
 
+  // Mount animation for available tiles — must be before any early return
+  useLayoutEffect(() => {
+    if (!ref.current || compact || !tile.available) return;
+    gsap.fromTo(ref.current,
+      { scale: 0.7, opacity: 0, y: 6 },
+      { scale: 1, opacity: 1, y: 0, duration: 0.32, ease: 'back.out(1.8)' }
+    );
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Animate when a tile gets claimed (available → false)
   useEffect(() => {
     if (!tile.available && wasAvailable.current && ref.current) {
@@ -84,15 +93,6 @@ function TileCard({ tile, highlight = false, compact = false }: {
   }
 
   const c = tileColors(tile.worms);
-
-  // Mount animation for available tiles
-  useLayoutEffect(() => {
-    if (!ref.current || compact) return;
-    gsap.fromTo(ref.current,
-      { scale: 0.7, opacity: 0, y: 6 },
-      { scale: 1, opacity: 1, y: 0, duration: 0.32, ease: 'back.out(1.8)' }
-    );
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div ref={ref} style={{
@@ -210,10 +210,12 @@ interface GameBoardProps {
   gameMode?: 'fast' | 'slow';
   onShowRules: () => void;
   onShowLevelSwitch: () => void;
-  activeLevelId: LevelId; // kept for future use
+  activeLevelId: LevelId;
+  onStage?: (indices: number[]) => void;
+  opponentStagedIndices?: number[];
 }
 
-function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust, onRestart, waitingFor, timeLeft, gameMode }: GameBoardProps) {
+function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust, onRestart, waitingFor, timeLeft, gameMode, onStage, opponentStagedIndices = [] }: GameBoardProps) {
   const { t, lang } = useLang();
   const { turn, tiles, players, currentPlayer, phase } = gs;
   const cp = players[currentPlayer];
@@ -259,28 +261,24 @@ function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust
   function handleDieClick(face: DiceFace, index: number) {
     if (!onPick) return;
 
-    // Toggle staged state — always allow undo
+    let next: Set<number>;
     if (stagingIndices.has(index)) {
-      const next = new Set(stagingIndices);
+      next = new Set(stagingIndices);
       next.delete(index);
-      setStagingIndices(next);
-      return;
+    } else if (stagingFace !== null && stagingFace !== face) {
+      next = new Set([index]);
+    } else {
+      next = new Set(stagingIndices);
+      next.add(index);
     }
-
-    // Clicking a different face while staging → clear and start fresh
-    if (stagingFace !== null && stagingFace !== face) {
-      setStagingIndices(new Set([index]));
-      return;
-    }
-
-    const next = new Set(stagingIndices);
-    next.add(index);
     setStagingIndices(next);
+    onStage?.(Array.from(next));
   }
 
   function confirmPick() {
     if (!onPick || !stagingFace) return;
     setStagingIndices(new Set());
+    onStage?.([]);
     onPick(stagingFace);
   }
 
@@ -341,28 +339,38 @@ function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust
               {rolling ? t.rolling : stagingFace ? t.clickAll(String(stagingFace)) : displayRolled.length > 0 ? t.pickDie : t.rollDice}
             </div>
             <div style={{ display: 'flex', gap: 5, justifyContent: 'center' }}>
-              {displayRolled.map((face, i) => {
-                const isPickable = !rolling && phase === 'rolled' && pickableFaces.has(face) && isMyTurn && !!onPick;
-                const isStaged = stagingIndices.has(i);
-                const isPending = !!stagingFace && stagingFace === face && !isStaged && isPickable;
-                const isDimmed = !!stagingFace && stagingFace !== face && isPickable;
-                return (
-                  <div key={i} style={{ position: 'relative', opacity: isDimmed ? 0.4 : 1, transition: 'opacity 0.15s' }}>
-                    <DieFace
-                      face={face} size={35}
-                      picked={isStaged}
-                      pickable={isPickable && !isStaged}
-                      onClick={isPickable || isStaged ? () => handleDieClick(face, i) : undefined}
-                      animIndex={i}
-                      rolling={rolling}
-                    />
-                    {isPending && (
-                      <div style={{ position: 'absolute', inset: -3, borderRadius: 0, border: '2px solid rgba(251,191,36,0.8)', boxShadow: '0 0 10px rgba(251,191,36,0.4)', pointerEvents: 'none' }} />
-                    )}
-                  </div>
-                );
-              })}
-              {Array.from({ length: Math.max(0, 8 - displayRolled.length) }).map((_, i) => (
+              {/* When rolling with no dice yet (opponent view), show placeholder animated dice */}
+              {rolling && displayRolled.length === 0
+                ? Array.from({ length: turn.diceLeft }, (_, i) => (
+                    <DieFace key={`spin-${i}`} face={1} size={35} rolling animIndex={i} />
+                  ))
+                : displayRolled.map((face, i) => {
+                    const isPickable = !rolling && phase === 'rolled' && pickableFaces.has(face) && isMyTurn && !!onPick;
+                    const isStaged = stagingIndices.has(i);
+                    const isOpponentStaged = !isMyTurn && opponentStagedIndices.includes(i);
+                    const isPending = !!stagingFace && stagingFace === face && !isStaged && isPickable;
+                    const isDimmed = !!stagingFace && stagingFace !== face && isPickable;
+                    return (
+                      <div key={i} style={{ position: 'relative', opacity: isDimmed ? 0.4 : 1, transition: 'opacity 0.15s' }}>
+                        <DieFace
+                          face={face} size={35}
+                          picked={isStaged}
+                          pickable={isPickable && !isStaged}
+                          onClick={isPickable || isStaged ? () => handleDieClick(face, i) : undefined}
+                          animIndex={i}
+                          rolling={rolling}
+                        />
+                        {isPending && (
+                          <div style={{ position: 'absolute', inset: -3, borderRadius: 0, border: '2px solid rgba(251,191,36,0.8)', pointerEvents: 'none' }} />
+                        )}
+                        {isOpponentStaged && (
+                          <div style={{ position: 'absolute', inset: -3, borderRadius: 0, border: '2px solid rgba(0,200,117,0.8)', pointerEvents: 'none' }} />
+                        )}
+                      </div>
+                    );
+                  })
+              }
+              {!rolling && Array.from({ length: Math.max(0, 8 - displayRolled.length) }).map((_, i) => (
                 <div key={`rp-${i}`} style={{ width: 35, height: 35, borderRadius: 0, background: 'var(--card2)', border: '1px dashed var(--border)', flexShrink: 0 }} />
               ))}
             </div>
@@ -1078,6 +1086,7 @@ function GrubContent() {
   const hasGameRef = useRef(false); // true wanneer een gameState geladen is (hervatten)
   const [gs, setGs] = useState<GameState | null>(null);
   const [rolling, setRolling] = useState(false);
+  const [opponentStagedIndices, setOpponentStagedIndices] = useState<number[]>([]);
   const [vsAI, setVsAI] = useState(false);
   const [myPlayerIndex, setMyPlayerIndex] = useState(0);
   const [myName, setMyName] = useState("");
@@ -1275,8 +1284,13 @@ function GrubContent() {
     const rollStartTimer = { current: null as ReturnType<typeof setTimeout> | null };
     socket.on("roll-start", () => {
       setRolling(true);
+      setOpponentStagedIndices([]);
       if (rollStartTimer.current) clearTimeout(rollStartTimer.current);
       rollStartTimer.current = setTimeout(() => setRolling(false), 1600);
+    });
+
+    socket.on("dice-staging", ({ indices }: { indices: number[] }) => {
+      setOpponentStagedIndices(indices);
     });
 
     return () => {
@@ -1288,6 +1302,7 @@ function GrubContent() {
       socket.off("all-ready");
       socket.off("react");
       socket.off("roll-start");
+      socket.off("dice-staging");
       if (rollStartTimer.current) clearTimeout(rollStartTimer.current);
       socket.off("connect", rejoin);
       socket.io.off("reconnect", rejoin);
@@ -1627,6 +1642,8 @@ function GrubContent() {
           onShowRules={() => setShowRules(true)}
           onShowLevelSwitch={() => setShowLevelSwitch(true)}
           activeLevelId={activeLevelId}
+          onStage={roomId ? (indices) => getSocket().emit("dice-staging", { indices }) : undefined}
+          opponentStagedIndices={opponentStagedIndices}
         />
       )}
 
