@@ -1443,8 +1443,8 @@ function GrubContent() {
     return (
       <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 28, padding: 24 }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontFamily: "var(--font-body)", fontSize: 28, fontWeight: 700, color: 'var(--text)' }}>Wormenjacht</div>
-          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: 'var(--text-faint)', letterSpacing: '0.15em', marginTop: 4 }}>ROOM {roomId} · {lobbyPlayers.length}/7 spelers</div>
+          <div style={{ fontFamily: "var(--font-display)", fontStyle: 'italic', fontSize: 32, fontWeight: 400, color: 'var(--text)' }}>Wormenjacht</div>
+          <div style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 500, color: 'var(--text-faint)', letterSpacing: '0.12em', textTransform: 'uppercase', marginTop: 6 }}>ROOM {roomId} · {lobbyPlayers.length}/7 spelers</div>
         </div>
 
         {/* Spelerlijst */}
@@ -1485,7 +1485,7 @@ function GrubContent() {
         <button
           onClick={handleReady}
           disabled={iAmReady}
-          style={{ padding: '14px 48px', borderRadius: 0, border: 'none', background: iAmReady ? 'rgba(0,200,117,0.15)' : '#00C875', color: iAmReady ? '#00C875' : '#052e16', fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 18, cursor: iAmReady ? 'default' : 'pointer', boxShadow: iAmReady ? 'none' : '0 4px 0 #0A7A54', transition: 'all 0.2s' }}
+          style={{ padding: '12px 40px', borderRadius: 0, border: iAmReady ? '1px solid rgba(0,200,117,0.3)' : 'none', background: iAmReady ? 'transparent' : '#00C875', color: iAmReady ? '#00C875' : '#fff', fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: iAmReady ? 'default' : 'pointer', transition: 'all 0.2s' }}
         >
           {iAmReady ? t.readyDone : t.readyBtn}
         </button>

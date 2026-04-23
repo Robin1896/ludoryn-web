@@ -209,7 +209,9 @@ function LobbyContent() {
 
   function handleLeave(roomId: string) {
     const name = playerName || sessionStorage.getItem("ludoryn-name") || "";
-    getSocket().emit("leave-room", { roomId, playerName: name }, () => {});
+    getSocket().emit("leave-room", { roomId, playerName: name }, () => {
+      setSessions(prev => prev.filter(s => s.room_id !== roomId));
+    });
   }
 
   function doJoin(roomId: string, name: string) {
