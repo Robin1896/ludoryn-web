@@ -33,6 +33,7 @@ export interface GameState {
   turn: Turn;
   phase: Phase;
   log: string[];
+  staging?: number[]; // active player's staged die indices (for opponent UI only)
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

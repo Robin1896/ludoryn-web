@@ -1085,8 +1085,11 @@ function GrubContent() {
   const countdownRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const hasGameRef = useRef(false); // true wanneer een gameState geladen is (hervatten)
   const [gs, setGs] = useState<GameState | null>(null);
+  const gsRef = useRef<GameState | null>(null);
+  gsRef.current = gs;
   const [rolling, setRolling] = useState(false);
-  const [opponentStagedIndices, setOpponentStagedIndices] = useState<number[]>([]);
+  const rollEndTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prevPhaseRef = useRef<string>('idle');
   const [vsAI, setVsAI] = useState(false);
   const [myPlayerIndex, setMyPlayerIndex] = useState(0);
   const [myName, setMyName] = useState("");
@@ -1281,18 +1284,6 @@ function GrubContent() {
       setIncomingEmoji({ emoji, ts: Date.now() });
     });
 
-    const rollStartTimer = { current: null as ReturnType<typeof setTimeout> | null };
-    socket.on("roll-start", () => {
-      setRolling(true);
-      setOpponentStagedIndices([]);
-      if (rollStartTimer.current) clearTimeout(rollStartTimer.current);
-      rollStartTimer.current = setTimeout(() => setRolling(false), 1600);
-    });
-
-    socket.on("dice-staging", ({ indices }: { indices: number[] }) => {
-      setOpponentStagedIndices(indices);
-    });
-
     return () => {
       socket.off("room-update", onRoomUpdate);
       socket.off("state-sync", onStateSync);
@@ -1301,9 +1292,6 @@ function GrubContent() {
       socket.off("turn-timeout");
       socket.off("all-ready");
       socket.off("react");
-      socket.off("roll-start");
-      socket.off("dice-staging");
-      if (rollStartTimer.current) clearTimeout(rollStartTimer.current);
       socket.off("connect", rejoin);
       socket.io.off("reconnect", rejoin);
       if (countdownRef.current) clearInterval(countdownRef.current);
@@ -1311,7 +1299,7 @@ function GrubContent() {
   }, [roomId, aiParam]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function emitState(newGs: GameState) {
-    if (roomId) getSocket().emit("state-update", { gameState: newGs });
+    if (roomId) getSocket().emit("state-update", { gameState: { ...newGs, staging: undefined } });
   }
 
   function handleStart(names: [string, string], ai: boolean) {
@@ -1344,6 +1332,22 @@ function GrubContent() {
 
   const isMyTurn = !roomId || (gs !== null && gs.currentPlayer === myPlayerIndex);
   const { timeLeft, gameMode } = useTurnTimer(isMyTurn);
+
+  // Trigger roll animation on opponent when active player's phase goes idle→rolled
+  useEffect(() => {
+    if (!gs || !roomId) return;
+    const prevPhase = prevPhaseRef.current;
+    prevPhaseRef.current = gs.phase;
+    if (gs.phase === 'rolled' && prevPhase === 'idle' && !isMyTurn) {
+      setRolling(true);
+      if (rollEndTimer.current) clearTimeout(rollEndTimer.current);
+      rollEndTimer.current = setTimeout(() => setRolling(false), 1600);
+    }
+    if (gs.phase === 'idle' || gs.phase === 'bust') {
+      setRolling(false);
+      if (rollEndTimer.current) { clearTimeout(rollEndTimer.current); rollEndTimer.current = null; }
+    }
+  }, [gs?.phase, isMyTurn, roomId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // AI turn
   useEffect(() => {
@@ -1402,8 +1406,6 @@ function GrubContent() {
     const newTurn = { ...gs.turn, rolled };
     const bust = isBust(newTurn);
     const next = { ...gs, turn: newTurn, phase: 'rolled' } as GameState;
-    // Signal opponents to start animation BEFORE state arrives
-    if (roomId) getSocket().emit("roll-start");
     setGs(next);
     emitState(next);
     if (!roomId) try { localStorage.setItem(LOCAL_KEY, JSON.stringify(next)); } catch { /* ignore */ }
@@ -1641,8 +1643,14 @@ function GrubContent() {
           onShowRules={() => setShowRules(true)}
           onShowLevelSwitch={() => setShowLevelSwitch(true)}
           activeLevelId={activeLevelId}
-          onStage={roomId ? (indices) => getSocket().emit("dice-staging", { indices }) : undefined}
-          opponentStagedIndices={opponentStagedIndices}
+          onStage={roomId ? (indices) => {
+            const curr = gsRef.current;
+            if (!curr) return;
+            const updated = { ...curr, staging: indices.length > 0 ? indices : undefined };
+            setGs(updated);
+            getSocket().emit("state-update", { gameState: updated });
+          } : undefined}
+          opponentStagedIndices={!isMyTurn ? (gs.staging ?? []) : []}
         />
       )}
 
