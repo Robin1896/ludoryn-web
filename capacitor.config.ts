@@ -8,8 +8,8 @@ const config: CapacitorConfig = {
   // In productie (Capacitor build) verbindt de app met de live server.
   // Verwijder server.url om de statische build te gebruiken (na `npm run build:cap`).
   server: {
-    url: "https://ludus-gh4z.onrender.com",
-    allowNavigation: ["ludus-gh4z.onrender.com", "www.ludoryn.com", "ludoryn.com"],
+    url: "https://robin1896-ludoryn.hf.space",
+    allowNavigation: ["robin1896-ludoryn.hf.space", "www.ludoryn.com", "ludoryn.com"],
     androidScheme: "https",
   },
 
