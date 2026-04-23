@@ -290,8 +290,7 @@ function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust
     border: 'none', borderRadius: 0, cursor: 'pointer',
     fontFamily: "var(--font-body)", fontWeight: 600,
     fontSize: 13, padding: '9px 0', flex: 1,
-    boxShadow: '0 4px 0 rgba(0,0,0,0.4)',
-    transition: 'transform 0.1s, box-shadow 0.1s',
+    transition: 'opacity 0.1s',
   };
 
   return (
@@ -299,6 +298,7 @@ function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust
       width: '100%', maxWidth: 520,
       flex: 1,
       display: 'flex', flexDirection: 'column',
+      justifyContent: 'space-between',
     }}>
 
       {/* ── Tile grid ── */}
@@ -316,9 +316,6 @@ function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust
           </div>
         </div>
       </div>
-
-      {/* Spacer */}
-      <div style={{ flex: 1 }} />
 
       {/* ── Dice area ── */}
       <div style={{ padding: '0 14px 12px' }}>
@@ -388,7 +385,7 @@ function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust
                 </div>
               ));
             })()}
-            <button onClick={onRestart} style={{ ...btnBase, marginTop: 12, background: '#00C875', color: '#052e16', padding: '11px 32px', flex: 'unset', boxShadow: '0 4px 0 #007A47' }}>
+            <button onClick={onRestart} style={{ ...btnBase, marginTop: 12, background: '#00C875', color: '#052e16', padding: '11px 32px', flex: 'unset' }}>
               {t.playAgain}
             </button>
           </div>
@@ -398,7 +395,7 @@ function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust
               {vsAI && currentPlayer === 1 ? t.aiBust : t.bust}
             </div>
             {!(vsAI && currentPlayer === 1) && (
-              <button onClick={onBust} style={{ ...btnBase, background: '#FF5252', color: '#fff', padding: '11px 28px', flex: 'unset', boxShadow: '0 4px 0 #B03A3A' }}>{t.continueBtn}</button>
+              <button onClick={onBust} style={{ ...btnBase, background: '#FF5252', color: '#fff', padding: '11px 28px', flex: 'unset' }}>{t.continueBtn}</button>
             )}
           </div>
         ) : waitingFor ? (
@@ -447,7 +444,7 @@ function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust
                   ...btnBase,
                   background: stagingIndices.size > 0 ? '#00C875' : 'var(--card2)',
                   color: stagingIndices.size > 0 ? '#052e16' : 'var(--text-faint)',
-                  boxShadow: stagingIndices.size > 0 ? '0 4px 0 #007A47' : 'none',
+                  
                   cursor: stagingIndices.size > 0 ? 'pointer' : 'not-allowed',
                   fontSize: 14, padding: '12px 0',
                 }}>
@@ -460,7 +457,6 @@ function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust
                   background: rolling || turn.diceLeft === 0 ? 'var(--card2)' : 'var(--accent)',
                   color: rolling || turn.diceLeft === 0 ? 'var(--text-faint)' : '#fff',
                   border: 'none',
-                  boxShadow: rolling || turn.diceLeft === 0 ? 'none' : '0 4px 0 rgba(0,0,0,0.3)',
                   cursor: rolling || turn.diceLeft === 0 ? 'not-allowed' : 'pointer',
                   fontSize: 14,
                   padding: '12px 0',
@@ -483,7 +479,6 @@ function GameBoard({ gs, rolling, onPick, isMyTurn, vsAI, onRoll, onStop, onBust
                   background: canStop ? '#00C875' : 'var(--card2)',
                   color: canStop ? '#052e16' : 'var(--text-faint)',
                   border: 'none',
-                  boxShadow: canStop ? '0 4px 0 #007A47' : 'none',
                   cursor: canStop ? 'pointer' : 'not-allowed',
                   fontSize: 14,
                   padding: '12px 0',
@@ -547,7 +542,7 @@ function HUD({ gs, rolling, vsAI, onRoll, onPick, onStop, onBust, onRestart, isM
     border: 'none', borderRadius: 0, cursor: 'pointer',
     fontFamily: "var(--font-body)", fontWeight: 600,
     fontSize: 12, padding: '7px 0', flex: 1,
-    boxShadow: '0 4px 0 rgba(0,0,0,0.4)',
+    
     transition: 'transform 0.1s, box-shadow 0.1s',
   };
 
@@ -569,7 +564,7 @@ function HUD({ gs, rolling, vsAI, onRoll, onPick, onStop, onBust, onRestart, isM
               </div>
             ));
           })()}
-          <button onClick={onRestart} style={{ ...btnBase, marginTop: 8, background: '#00C875', color: '#052e16', padding: '7px 24px', flex: 'unset', boxShadow: '0 4px 0 #007A47' }}>
+          <button onClick={onRestart} style={{ ...btnBase, marginTop: 8, background: '#00C875', color: '#052e16', padding: '7px 24px', flex: 'unset' }}>
             Opnieuw
           </button>
         </div>
@@ -579,7 +574,7 @@ function HUD({ gs, rolling, vsAI, onRoll, onPick, onStop, onBust, onRestart, isM
             {vsAI && currentPlayer === 1 ? t.aiBust : t.bust}
           </div>
           {!(vsAI && currentPlayer === 1) && (
-            <button onClick={onBust} style={{ ...btnBase, background: '#FF5252', color: '#fff', padding: '7px 24px', flex: 'unset', boxShadow: '0 4px 0 #B03A3A' }}>
+            <button onClick={onBust} style={{ ...btnBase, background: '#FF5252', color: '#fff', padding: '7px 24px', flex: 'unset' }}>
               {t.continueBtn}
             </button>
           )}
@@ -658,7 +653,7 @@ function HUD({ gs, rolling, vsAI, onRoll, onPick, onStop, onBust, onRestart, isM
                 background: canStop ? '#00C875' : 'var(--card2)',
                 color: canStop ? '#052e16' : 'var(--text-faint)',
                 border: 'none',
-                boxShadow: canStop ? '0 4px 0 #007A47' : 'none',
+                
                 cursor: canStop ? 'pointer' : 'not-allowed',
               }}
             >
@@ -1546,7 +1541,8 @@ function GrubContent() {
       width: '100vw', height: '100dvh',
       background: 'var(--bg)',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start',
-      position: 'relative', overflow: 'clip',
+      position: 'fixed', top: 0, left: 0,
+      overflow: 'hidden',
       paddingTop: 80, paddingBottom: 76,
       userSelect: 'none',
     }}>
@@ -1568,7 +1564,7 @@ function GrubContent() {
               ))}
             </div>
             <div style={{ display: 'flex', gap: 4, flexShrink: 0, alignSelf: 'stretch' }}>
-              <button onClick={() => setShowRules(true)} style={{ width: 36, borderRadius: 0, background: 'var(--card2)', border: '1px solid var(--border)', color: 'var(--text-muted)', fontSize: 13, fontWeight: 700, fontFamily: "var(--font-body)", cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>?</button>
+              <button onClick={() => setShowRules(true)} style={{ width: 36, alignSelf: 'stretch', borderRadius: 0, background: 'var(--card2)', border: '1px solid var(--border)', color: 'var(--text-muted)', fontSize: 13, fontWeight: 700, fontFamily: "var(--font-body)", cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>?</button>
               {roomId && (
                 <GameControls
                   roomId={roomId}
@@ -1634,7 +1630,7 @@ function GrubContent() {
           </svg>
           <div style={{ fontFamily: "var(--font-body)", fontSize: 32, fontWeight: 700, color: 'var(--text)' }}>{hasResigned ? 'Opgegeven' : 'Tegenstander gaf op'}</div>
           <div style={{ fontFamily: "var(--font-body)", fontSize: 16, color: 'var(--text-muted)' }}>{hasResigned ? `${forfeitWinner} wint` : `${forfeitWinner} wint!`}</div>
-          <button onClick={() => router.push('/lobby?game=grub')} style={{ marginTop: 12, padding: '12px 32px', borderRadius: 0, border: 'none', background: '#00C875', color: '#052e16', fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 16, cursor: 'pointer', boxShadow: '0 4px 0 #007A47', transition: 'transform 0.1s, box-shadow 0.1s' }}>
+          <button onClick={() => router.push('/lobby?game=grub')} style={{ marginTop: 12, padding: '12px 32px', borderRadius: 0, border: 'none', background: '#00C875', color: '#052e16', fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 16, cursor: 'pointer' }}>
             Terug naar lobby
           </button>
         </div>
@@ -1765,13 +1761,13 @@ function GrubContent() {
                   >{t.previous}</button>
                   <button
                     onClick={() => activeRuleTab < RULES.length - 1 ? setActiveRuleTab(i => i + 1) : close()}
-                    style={{ flex: 2, padding: '11px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: '#fff', fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 14, cursor: 'pointer', boxShadow: '0 4px 0 rgba(0,0,0,0.2)' }}
+                    style={{ flex: 2, padding: '11px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: '#fff', fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 14, cursor: 'pointer' }}
                   >{activeRuleTab < RULES.length - 1 ? t.nextBtn : t.closeConfirm}</button>
                 </div>
               )}
               {filtered && (
                 <div style={{ padding: '12px 20px 20px', flexShrink: 0 }}>
-                  <button onClick={close} style={{ width: '100%', padding: '11px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: '#fff', fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 15, cursor: 'pointer', boxShadow: '0 4px 0 rgba(0,0,0,0.2)' }}>{t.closeBtn}</button>
+                  <button onClick={close} style={{ width: '100%', padding: '11px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: '#fff', fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 15, cursor: 'pointer' }}>{t.closeBtn}</button>
                 </div>
               )}
           </>)}

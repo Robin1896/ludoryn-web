@@ -232,7 +232,8 @@ export default function GameControls({
           <button
             onClick={() => setChatOpen(true)}
             style={{
-              width: inHeader ? 36 : 44, height: inHeader ? 36 : 44,
+              width: inHeader ? 36 : 44, height: inHeader ? undefined : 44,
+              alignSelf: inHeader ? "stretch" : undefined,
               borderRadius: 0,
               background: "var(--card2)",
               border: "1px solid var(--border)",
@@ -263,7 +264,8 @@ export default function GameControls({
             onClick={() => setConfirmResign(true)}
             title="Opgeven"
             style={{
-              width: inHeader ? 36 : 44, height: inHeader ? 36 : 44,
+              width: inHeader ? 36 : 44, height: inHeader ? undefined : 44,
+              alignSelf: inHeader ? "stretch" : undefined,
               borderRadius: 0,
               background: "rgba(193,74,31,0.06)",
               border: "1px solid rgba(193,74,31,0.2)",
