@@ -273,6 +273,7 @@ export default function ShopPage() {
   const [justUnlocked, setJustUnlocked] = useState<ExpansionId | null>(null);
   const [purchaseState, setPurchaseState] = useState<PurchaseState>("idle");
   const [buyingPro, setBuyingPro] = useState(false);
+  const [confirmPro, setConfirmPro] = useState(false);
   const [restoring, setRestoring] = useState(false);
   const [restoreMsg, setRestoreMsg] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
@@ -374,7 +375,7 @@ export default function ShopPage() {
 
   async function handleBuyPro() {
     if (!isNative()) {
-      alert(t.iosAppRequired);
+      setConfirmPro(true);
       return;
     }
     setBuyingPro(true);
@@ -778,6 +779,94 @@ export default function ShopPage() {
             </button>
             <button
               onClick={() => setConfirm(null)}
+              style={{
+                background: "transparent", border: "none",
+                color: "var(--text-faint)", cursor: "pointer",
+                fontFamily: "var(--font-body)", fontSize: 13,
+              }}
+            >
+              {t.cancel}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Pro Bundle web-only modal */}
+      {confirmPro && (
+        <div
+          style={{
+            position: "fixed", inset: 0, background: "rgba(26,29,46,0.5)",
+            display: "flex", alignItems: "flex-end", justifyContent: "center",
+            zIndex: 300, padding: "0 0 20px",
+          }}
+          onClick={() => setConfirmPro(false)}
+        >
+          <div
+            style={{
+              background: "var(--card)",
+              border: "1px solid var(--accent)44",
+              borderRadius: 0,
+              padding: "28px 24px 24px",
+              maxWidth: 400, width: "100%",
+              textAlign: "center",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{
+              width: 88, height: 88, borderRadius: 0, overflow: "hidden",
+              margin: "0 auto 14px",
+              border: "1px solid var(--border)",
+              background: "rgba(193,74,31,0.08)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 36,
+            }}>
+              ♾️
+            </div>
+
+            <div style={{
+              fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 700,
+              color: "var(--text-muted)", letterSpacing: "0.08em",
+              textTransform: "uppercase", marginBottom: 6,
+            }}>
+              Ludoryn
+            </div>
+            <div style={{
+              fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 22, fontWeight: 700,
+              color: "var(--text)", marginBottom: 6,
+            }}>
+              Pro Bundle
+            </div>
+            <div style={{
+              fontFamily: "var(--font-body)", fontSize: 13,
+              color: "var(--text-muted)", marginBottom: 24, lineHeight: 1.5,
+            }}>
+              {t.probundleDesc(ALL_EXPANSION_IDS.length)}
+            </div>
+
+            <div style={{
+              background: "var(--card2)",
+              border: "1px solid var(--border)",
+              borderRadius: 0, padding: "12px 16px", marginBottom: 20,
+              fontFamily: "var(--font-body)", fontSize: 13,
+              color: "var(--text-muted)", lineHeight: 1.6,
+            }}>
+              {t.iosAppRequired}
+            </div>
+
+            <button
+              disabled
+              style={{
+                width: "100%", padding: "13px", borderRadius: 0,
+                background: "var(--card2)", border: "none",
+                color: "var(--text-faint)",
+                fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 16,
+                cursor: "not-allowed", marginBottom: 10,
+              }}
+            >
+              {t.notAvailableOnWeb}
+            </button>
+            <button
+              onClick={() => setConfirmPro(false)}
               style={{
                 background: "transparent", border: "none",
                 color: "var(--text-faint)", cursor: "pointer",
