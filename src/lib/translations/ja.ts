@@ -79,7 +79,7 @@ export const ja: Translation = {
   namePlaceholder: '名前…',
   waitingForOpponentTitle: '相手を待っています', shareCodeSingle: 'このコードを対戦相手と共有してください', shareCodeMulti: 'このコードを共同プレイヤーと共有してください',
   needed: '必要', spectating: (name: string) => `観戦中 — ${name}のボード`, aiRolling: 'AIが振っています…',
-  backToLobby: 'ロビーに戻る', winsShort: 'の勝ち！', grubName: 'グラブハント',
+  backToLobby: 'ロビーに戻る', winsShort: 'の勝ち！', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const ja: Translation = {
   qwixxGemixxDesc: '各列はもはや単一色ではなく、様々な色が混在することで戦略の深みが増します。',
   qwixxBigPointsTagline: '拡張スコアパッド',
   qwixxBigPointsDesc: 'ボーナスマスと新しいペナルティを備えた追加スコアパッド。リスクが高いほど報酬も大きい。',
-  grubExpName: 'ピコミノ 拡張セット',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: '追加タイルとジョーカーワーム',
   grubExpDesc: 'ボーナスワーム付きの高得点タイルと任意のサイコロ目を受け入れるジョーカータイル。',
   searchPlaceholder: 'ルールを検索...', noResults: '結果なし',
@@ -141,7 +141,7 @@ export const ja: Translation = {
     ['🏁', '終了',        '最低合計がラウンドの勝者。複数ラウンドプレイし、最初に100に達した人が負け。'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', '目標',        '最初に10勝利点（VP）を達成したプレイヤーが勝ち。カタン島に開拓地、都市、道を建てよう。'],
+    ['🎯', '目標',        '最初に10勝利点（VP）を達成したプレイヤーが勝ち。Kolonis島に開拓地、都市、道を建てよう。'],
     ['🎲', 'ターン',      'サイコロを振る → その数字に隣接する開拓地を持つプレイヤーに資源が配られる。その後建設か交易。'],
     ['🏠', '建設',        '開拓地：木1＋レンガ1＋麦1＋羊毛1（1VP）。道：木1＋レンガ1。都市：麦2＋鉄鉱3（2VP、開拓地と交換）。'],
     ['💱', '交易',        '銀行と4:1で交易、または港を通じて2:1/3:1で交易。相手とも交易できる。'],

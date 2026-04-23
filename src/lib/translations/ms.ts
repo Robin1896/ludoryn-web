@@ -79,7 +79,7 @@ export const ms: Translation = {
   namePlaceholder: 'Nama…',
   waitingForOpponentTitle: 'Menunggu lawan', shareCodeSingle: 'Kongsi kod ini dengan lawan anda', shareCodeMulti: 'Kongsi kod ini dengan rakan bermain anda',
   needed: 'Diperlukan', spectating: (name: string) => `Pemerhati — papan ${name}`, aiRolling: 'AI melempar…',
-  backToLobby: 'Kembali ke lobi', winsShort: 'menang!', grubName: 'Pemburuan Cacing',
+  backToLobby: 'Kembali ke lobi', winsShort: 'menang!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const ms: Translation = {
   qwixxGemixxDesc: 'Baris tidak lagi berwarna tunggal — setiap baris adalah campuran warna untuk kedalaman taktikal yang lebih.',
   qwixxBigPointsTagline: 'Lembaran markah yang diperluaskan',
   qwixxBigPointsDesc: 'Lembaran markah tambahan dengan kotak bonus dan penalti baharu. Risiko lebih tinggi, ganjaran lebih besar.',
-  grubExpName: 'Pengembangan Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Jubin tambahan & cacing joker',
   grubExpDesc: 'Jubin bernilai lebih tinggi dengan cacing bonus dan jubin joker yang menerima mana-mana nilai dadu.',
   searchPlaceholder: 'Cari peraturan...', noResults: 'Tiada keputusan',
@@ -141,7 +141,7 @@ export const ms: Translation = {
     ['🏁', 'Tamat',           'Jumlah terendah memenangi pusingan. Main beberapa pusingan; yang pertama mencapai 100 kalah.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Matlamat',      'Jadi pemain pertama yang mencapai 10 mata kemenangan (MK). Bina penempatan, bandar, dan jalan di pulau Catan.'],
+    ['🎯', 'Matlamat',      'Jadi pemain pertama yang mencapai 10 mata kemenangan (MK). Bina penempatan, bandar, dan jalan di pulau Kolonis.'],
     ['🎲', 'Giliran',       'Guling dadu → sumber dibagikan kepada pemain yang mempunyai penempatan bersebelahan dengan nombor itu. Kemudian bina atau berdagang.'],
     ['🏠', 'Membina',       'Penempatan: 1 kayu + 1 bata + 1 bijirin + 1 bulu biri-biri (1 MK). Jalan: 1 kayu + 1 bata. Bandar: 2 bijirin + 3 bijih (2 MK, menggantikan penempatan).'],
     ['💱', 'Berdagang',     'Berdagang 4:1 dengan bank, atau 2:1/3:1 melalui pelabuhan. Anda juga boleh berdagang dengan lawan.'],

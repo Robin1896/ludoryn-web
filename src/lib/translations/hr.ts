@@ -79,7 +79,7 @@ export const hr: Translation = {
   namePlaceholder: 'Ime…',
   waitingForOpponentTitle: 'Čekanje na protivnika', shareCodeSingle: 'Podjeli ovaj kod sa svojim protivnikom', shareCodeMulti: 'Podjeli ovaj kod sa suigračima',
   needed: 'Potrebno', spectating: (name: string) => `Promatrač — ploča igrača ${name}`, aiRolling: 'AI baca…',
-  backToLobby: 'Natrag u čekaonicu', winsShort: 'pobjeđuje!', grubName: 'Lov na Crve',
+  backToLobby: 'Natrag u čekaonicu', winsShort: 'pobjeđuje!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const hr: Translation = {
   qwixxGemixxDesc: 'Redovi više nemaju jednu boju — svaki red je mješavina boja za dodatnu taktičku dubinu.',
   qwixxBigPointsTagline: 'Prošireni blok bodova',
   qwixxBigPointsDesc: 'Dodatni blok bodova s bonus poljima i novim kaznama. Veći rizici, veće nagrade.',
-  grubExpName: 'Proširenje Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Dodatne pločice i joker crvi',
   grubExpDesc: 'Više pločice s bonus crvima i joker pločicama koje prihvaćaju bilo koju vrijednost kocke.',
   searchPlaceholder: 'Traži pravilo...', noResults: 'Nema rezultata',
@@ -141,7 +141,7 @@ export const hr: Translation = {
     ['🏁', 'Kraj',            'Najmanji ukupni zbroj pobjeđuje rundu. Igraj više rundi; prvi na 100 gubi.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Cilj',          'Biti prvi igrač s 10 bodova pobjede (BP). Gradi naseoabine, gradove i ceste na otoku Catan.'],
+    ['🎯', 'Cilj',          'Biti prvi igrač s 10 bodova pobjede (BP). Gradi naseoabine, gradove i ceste na otoku Kolonis.'],
     ['🎲', 'Potez',         'Baci kockice → resursi se dijele igračima s naseoabinama uz taj broj. Zatim gradi ili trguj.'],
     ['🏠', 'Gradnja',       'Naseoabina: 1 drvo + 1 cigla + 1 žito + 1 vuna (1 BP). Cesta: 1 drvo + 1 cigla. Grad: 2 žito + 3 ruda (2 BP, zamjenjuje naseoabinu).'],
     ['💱', 'Trgovina',      'Trguj 4:1 s bankom ili 2:1/3:1 putem luka. Možeš i trgovati s protivnicima.'],

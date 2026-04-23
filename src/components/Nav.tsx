@@ -22,7 +22,7 @@ export default function Nav() {
         letterSpacing: -0.3,
         textShadow: "0 2px 8px rgba(200,130,10,0.4)",
       }}>
-        Catan 3D
+        Kolonis 3D
       </Link>
       <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>·</span>
       <Link href="/catalog" style={{ color: "rgba(255,220,150,0.45)", fontWeight: 500, fontSize: 13, textDecoration: "none", transition: "color 0.15s" }}

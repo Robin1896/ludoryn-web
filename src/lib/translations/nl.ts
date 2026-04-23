@@ -79,7 +79,7 @@ export const nl: Translation = {
   namePlaceholder: 'Naam…',
   waitingForOpponentTitle: 'Wachten op tegenstander', shareCodeSingle: 'Deel deze code met je tegenstander', shareCodeMulti: 'Deel deze code met je medespelers',
   needed: 'Nodig', spectating: (name: string) => `Alleen kijken — dit is het bord van ${name}`, aiRolling: 'AI is aan het gooien…',
-  backToLobby: 'Terug naar lobby', winsShort: 'wint!', grubName: 'Regenwormen',
+  backToLobby: 'Terug naar lobby', winsShort: 'wint!', grubName: 'Grub',
   // Game display names
   kriskrasName: 'Kriskras',
   // Lobby — extra
@@ -95,7 +95,7 @@ export const nl: Translation = {
   qwixxGemixxDesc: 'De rijen zijn niet langer één kleur — elke rij bevat een mix van kleuren voor extra tactische diepgang.',
   qwixxBigPointsTagline: 'Uitgebreid scoreblok',
   qwixxBigPointsDesc: "Extra scoreblok met bonusvakjes en nieuwe straffen. Hogere risico's, hogere beloningen.",
-  grubExpName: 'Regenwormen Uitbreiding',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Extra tegels & jokerwormen',
   grubExpDesc: 'Hogere tegels met bonuswormen en jokertegels die elke dobbelsteenwaarde aannemen.',
   searchPlaceholder: 'Zoek een regel...', noResults: 'Geen resultaten',
@@ -141,7 +141,7 @@ export const nl: Translation = {
     ['🏁', 'Einde',           'Laagste totaal wint de ronde. Speel meerdere rondes; wie als eerste 100 bereikt verliest.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Doel',          'Wees de eerste speler met 10 overwinningspunten (VP). Bouw nederzettingen, steden en wegen op het eiland Catan.'],
+    ['🎯', 'Doel',          'Wees de eerste speler met 10 overwinningspunten (VP). Bouw nederzettingen, steden en wegen op het eiland Kolonis.'],
     ['🎲', 'Beurt',         'Gooi de dobbelstenen → grondstoffen worden uitgedeeld aan wie nederzettingen aan die getallen heeft. Bouw daarna of handel.'],
     ['🏠', 'Bouwen',        'Nederzetting: 1 hout + 1 steen + 1 graan + 1 wol (1 VP). Weg: 1 hout + 1 steen. Stad: 2 graan + 3 erts (2 VP, vervangt nederzetting).'],
     ['💱', 'Handelen',      'Handel 4:1 met de bank, of 2:1/3:1 via havens. Je mag ook met de tegenstander handelen.'],

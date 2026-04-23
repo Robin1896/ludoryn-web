@@ -79,7 +79,7 @@ export const cs: Translation = {
   namePlaceholder: 'Jméno…',
   waitingForOpponentTitle: 'Čekáme na soupeře', shareCodeSingle: 'Sdílejte tento kód se svým soupeřem', shareCodeMulti: 'Sdílejte tento kód se svými spoluhráči',
   needed: 'Potřeba', spectating: (name: string) => `Divák — hrací plocha hráče ${name}`, aiRolling: 'AI hází…',
-  backToLobby: 'Zpět do herny', winsShort: 'vyhrává!', grubName: 'Lov Červů',
+  backToLobby: 'Zpět do herny', winsShort: 'vyhrává!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const cs: Translation = {
   qwixxGemixxDesc: 'Řady již nemají jednu barvu — každá řada je kombinací barev pro větší taktickou hloubku.',
   qwixxBigPointsTagline: 'Rozšířený bodovací blok',
   qwixxBigPointsDesc: 'Další bodovací blok s bonusovými políčky a novými tresty. Vyšší rizika, vyšší odměny.',
-  grubExpName: 'Rozšíření Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Extra dlaždice a jokerové červy',
   grubExpDesc: 'Vyšší dlaždice s bonusovými červy a jokerovými dlaždicemi přijímajícími libovolnou hodnotu kostky.',
   searchPlaceholder: 'Hledat pravidlo...', noResults: 'Žádné výsledky',
@@ -141,7 +141,7 @@ export const cs: Translation = {
     ['🏁', 'Konec',           'Nejnižší součet vyhraje kolo. Hrajte více kol; první na 100 prohrává.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Cíl',           'Být prvním hráčem s 10 vítěznými body (VB). Budujte osady, města a cesty na ostrově Catan.'],
+    ['🎯', 'Cíl',           'Být prvním hráčem s 10 vítěznými body (VB). Budujte osady, města a cesty na ostrově Kolonis.'],
     ['🎲', 'Tah',           'Hoďte kostkami → suroviny dostávají hráči s osadami u daného čísla. Potom stavte nebo obchodujte.'],
     ['🏠', 'Stavět',        'Osada: 1 dřevo + 1 cihla + 1 obilí + 1 vlna (1 VB). Cesta: 1 dřevo + 1 cihla. Město: 2 obilí + 3 ruda (2 VB, nahrazuje osadu).'],
     ['💱', 'Obchod',        'Obchodujte 4:1 s bankou nebo 2:1/3:1 přes přístavy. Také lze obchodovat se soupeři.'],

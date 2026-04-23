@@ -79,7 +79,7 @@ export const hu: Translation = {
   namePlaceholder: 'Név…',
   waitingForOpponentTitle: 'Várakozás ellenfélre', shareCodeSingle: 'Oszd meg ezt a kódot az ellenfeleddel', shareCodeMulti: 'Oszd meg ezt a kódot a játékostársaiddal',
   needed: 'Szükséges', spectating: (name: string) => `Néző — ${name} táblája`, aiRolling: 'A MI dob…',
-  backToLobby: 'Vissza az előszobába', winsShort: 'nyert!', grubName: 'Kukac Vadászat',
+  backToLobby: 'Vissza az előszobába', winsShort: 'nyert!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const hu: Translation = {
   qwixxGemixxDesc: 'A sorok már nem egyszínűek — minden sor színek keveréke a mélyebb taktikai élményért.',
   qwixxBigPointsTagline: 'Bővített pontosítótömb',
   qwixxBigPointsDesc: 'Extra pontosítótömb bónuszmezőkkel és új büntetésekkel. Nagyobb kockázat, nagyobb jutalom.',
-  grubExpName: 'Pickomino Bővítmény',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Extra csempék és joker férgek',
   grubExpDesc: 'Magasabb értékű csempék bónusz férgekkel és joker csempékkel, amelyek bármilyen dobókocka értéket elfogadnak.',
   searchPlaceholder: 'Szabály keresése...', noResults: 'Nincs találat',
@@ -141,7 +141,7 @@ export const hu: Translation = {
     ['🏁', 'Vége',            'A legkisebb összeg nyeri a kört. Több kört játssz; aki először eléri a 100-at, veszít.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Cél',           'Légy az első játékos, aki eléri a 10 győzelmi pontot (GP). Építs településeket, városokat és utakat a Catan szigetén.'],
+    ['🎯', 'Cél',           'Légy az első játékos, aki eléri a 10 győzelmi pontot (GP). Építs településeket, városokat és utakat a Kolonis szigetén.'],
     ['🎲', 'Kör',           'Dobj kockával → az nyersanyagot kap, akinek telepe van az adott számon. Ezután építhetsz vagy kereskedhetsz.'],
     ['🏠', 'Építés',        'Telep: 1 fa + 1 tégla + 1 gabona + 1 gyapjú (1 GP). Út: 1 fa + 1 tégla. Város: 2 gabona + 3 érc (2 GP, telept helyettesít).'],
     ['💱', 'Kereskedés',    'Kereskedj 4:1 arányban a bankkal, vagy 2:1/3:1 arányban kikötőkön keresztül. Ellenfelekkel is kereskedhetsz.'],

@@ -644,9 +644,9 @@ function RummikubArt({ uid = 'rum' }: { uid?: string }) {
 
 export const GAME_ART: Record<string, (props: { uid?: string }) => React.ReactElement> = {
   catan:            (p) => <ArtWithImage src="/images/games/catan-banner.png"           alt="Catan"           fallback={<CatanArt {...p} />} />,
-  grub:             (p) => <ArtWithImage src="/images/games/grub-banner.png"            alt="Regenwormen"     fallback={<GrubArt {...p} />} />,
+  grub:             (p) => <ArtWithImage src="/images/games/grub-banner.png"            alt="Grub"     fallback={<GrubArt {...p} />} />,
   qwixx:            (p) => <ArtWithImage src="/images/games/qwixx-banner.png"           alt="Qwixx"           fallback={<QwixxArt {...p} />} />,
-  "ticket-to-ride": (p) => <ArtWithImage src="/images/games/ticket-to-ride-banner.png" alt="Ticket to Ride"  fallback={<TicketToRideArt {...p} />} />,
+  "ticket-to-ride": (p) => <ArtWithImage src="/images/games/ticket-to-ride-banner.png" alt="Traxion"  fallback={<TicketToRideArt {...p} />} />,
   carcassonne:      (p) => <ArtWithImage src="/images/games/carcassonne-banner.png"     alt="Carcassonne"     fallback={<CarcassonneArt {...p} />} />,
   beverbende:       (p) => <ArtWithImage src="/images/games/beverbende-banner.png"      alt="Beverbende"      fallback={<BeaverbendeArt {...p} />} />,
   rummikub:         (p) => <ArtWithImage src="/images/games/rummikub-banner.png"        alt="Rummikub"        fallback={<RummikubArt {...p} />} />,

@@ -79,7 +79,7 @@ export const ar: Translation = {
   namePlaceholder: 'الاسم…',
   waitingForOpponentTitle: 'في انتظار المنافس', shareCodeSingle: 'شارك هذا الرمز مع منافسك', shareCodeMulti: 'شارك هذا الرمز مع رفاق اللعب',
   needed: 'مطلوب', spectating: (name: string) => `مشاهد — لوحة ${name}`, aiRolling: 'الذكاء الاصطناعي يرمي…',
-  backToLobby: 'العودة إلى الصالة', winsShort: 'يفوز!', grubName: 'صيد الديدان',
+  backToLobby: 'العودة إلى الصالة', winsShort: 'يفوز!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const ar: Translation = {
   qwixxGemixxDesc: 'لم تعد الصفوف ذات لون واحد — كل صف عبارة عن مزيج من الألوان لعمق تكتيكي أكبر.',
   qwixxBigPointsTagline: 'ورقة نقاط موسّعة',
   qwixxBigPointsDesc: 'ورقة نقاط إضافية مع خانات مكافآت وعقوبات جديدة. مخاطر أعلى، مكافآت أكبر.',
-  grubExpName: 'توسعة Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'قطع إضافية وديدان جوكر',
   grubExpDesc: 'قطع ذات قيمة أعلى مع ديدان مكافأة وقطع جوكر تقبل أي قيمة للنرد.',
   searchPlaceholder: 'ابحث عن قاعدة...', noResults: 'لا نتائج',
@@ -141,7 +141,7 @@ export const ar: Translation = {
     ['🏁', 'النهاية',         'أدنى مجموع يفوز بالجولة. العب جولات متعددة؛ أول من يصل إلى 100 يخسر.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'الهدف',         'كن أول لاعب يصل إلى 10 نقاط انتصار (NA). ابنِ مستوطنات ومدناً وطرقاً في جزيرة كاتان.'],
+    ['🎯', 'الهدف',         'كن أول لاعب يصل إلى 10 نقاط انتصار (NA). ابنِ مستوطنات ومدناً وطرقاً في جزيرة Kolonis.'],
     ['🎲', 'الدور',         'أرمِ النرد ← توُزَّع الموارد على اللاعبين أصحاب المستوطنات المجاورة لذلك الرقم. ثم ابنِ أو تاجر.'],
     ['🏠', 'البناء',        'مستوطنة: 1 خشب + 1 طوب + 1 حبوب + 1 صوف (1 NA). طريق: 1 خشب + 1 طوب. مدينة: 2 حبوب + 3 خام (2 NA، تحل محل مستوطنة).'],
     ['💱', 'التجارة',       'تاجر 4:1 مع البنك، أو 2:1/3:1 عبر الموانئ. يمكنك أيضاً التجارة مع المنافسين.'],

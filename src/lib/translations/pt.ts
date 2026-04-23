@@ -79,7 +79,7 @@ export const pt: Translation = {
   namePlaceholder: 'Nome…',
   waitingForOpponentTitle: 'Aguardando adversário', shareCodeSingle: 'Compartilhe este código com seu adversário', shareCodeMulti: 'Compartilhe este código com seus co-jogadores',
   needed: 'Necessário', spectating: (name: string) => `Espectador — tabuleiro de ${name}`, aiRolling: 'A IA está rolando…',
-  backToLobby: 'Voltar para sala', winsShort: 'vence!', grubName: 'Caça de Minhocas',
+  backToLobby: 'Voltar para sala', winsShort: 'vence!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const pt: Translation = {
   qwixxGemixxDesc: 'As fileiras não têm mais uma única cor — cada fileira é uma mistura de cores para mais profundidade tática.',
   qwixxBigPointsTagline: 'Bloco de pontuação estendido',
   qwixxBigPointsDesc: 'Bloco de pontuação extra com caixas de bônus e novas penalidades. Riscos maiores, recompensas maiores.',
-  grubExpName: 'Expansão Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Peças extras e minhocas coringa',
   grubExpDesc: 'Peças mais altas com minhocas bônus e peças coringa que aceitam qualquer valor do dado.',
   searchPlaceholder: 'Buscar uma regra...', noResults: 'Sem resultados',
@@ -141,7 +141,7 @@ export const pt: Translation = {
     ['🏁', 'Fim',             'O menor total vence a rodada. Jogue várias rodadas; quem chegar a 100 primeiro perde.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Objetivo',      'Ser o primeiro jogador a atingir 10 pontos de vitória (PV). Construa assentamentos, cidades e estradas na ilha de Catan.'],
+    ['🎯', 'Objetivo',      'Ser o primeiro jogador a atingir 10 pontos de vitória (PV). Construa assentamentos, cidades e estradas na ilha de Kolonis.'],
     ['🎲', 'Turno',         'Role os dados → recursos são distribuídos para jogadores com assentamentos adjacentes a esse número. Depois construa ou negocie.'],
     ['🏠', 'Construir',     'Assentamento: 1 madeira + 1 tijolo + 1 grão + 1 lã (1 PV). Estrada: 1 madeira + 1 tijolo. Cidade: 2 grão + 3 minério (2 PV, substitui assentamento).'],
     ['💱', 'Negociar',      'Negocie 4:1 com o banco, ou 2:1/3:1 via portos. Você também pode negociar com adversários.'],

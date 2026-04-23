@@ -13,14 +13,14 @@ export type ExpansionId =
   | 'wingspan-european'
   | 'wingspan-oceania'
   | 'wingspan-asia'
-  // Catan
+  // Kolonis
   | 'catan-seafarers'
   | 'catan-cities-knights'
   | 'catan-traders-barbarians'
-  // Qwixx
+  // Kriskras
   | 'qwixx-gemixxt'
   | 'qwixx-big-points'
-  // Ticket to Ride
+  // Traxion
   | 'ttr-europe'
   | 'ttr-usa-1910'
   | 'ttr-nordic'
@@ -33,7 +33,7 @@ export type ExpansionId =
   | 'ttr-london'
   | 'ttr-new-york'
   | 'ttr-japan-italy'
-  // Carcassonne
+  // Basteon
   | 'carcassonne-inns-cathedrals'
   | 'carcassonne-traders-builders'
   | 'carcassonne-princess-dragon'
@@ -138,10 +138,10 @@ export const EXPANSIONS: ExpansionDef[] = [
     price: '€3,99',
   },
 
-  // ── Catan ───────────────────────────────────────────────────────────────────
+  // ── Kolonis ───────────────────────────────────────────────────────────────────
   {
     id: 'catan-seafarers',
-    game: 'Catan',
+    game: 'Kolonis',
     name: 'Zeevaarders',
     tagline: 'Bouw schepen, verover zeeën',
     description: 'Breid het eiland uit met nieuwe zee-eilanden, goudvelden en schepen. Ontdek en koloniseer onbekende gebieden.',
@@ -152,10 +152,10 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'catan-cities-knights',
-    game: 'Catan',
+    game: 'Kolonis',
     name: 'Steden & Ridders',
     tagline: 'Versterk je steden, weersla barbaren',
-    description: 'Kathedralen, ridders en barbaarse aanvallen. Upgrade je steden met verbeteringen en verdedig Catan.',
+    description: 'Kathedralen, ridders en barbaarse aanvallen. Upgrade je steden met verbeteringen en verdedig Kolonis.',
     icon: '⚔️',
     img: '/images/shop/catan-cities-knights.png',
     price: '€4,99',
@@ -163,7 +163,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'catan-traders-barbarians',
-    game: 'Catan',
+    game: 'Kolonis',
     name: 'Handelaars & Barbaren',
     tagline: '5 scenario\'s met nieuwe mechanica',
     description: 'Vijf unieke scenario\'s: handel over rivieren, bescherm karavanen en bouw bruggen.',
@@ -172,10 +172,10 @@ export const EXPANSIONS: ExpansionDef[] = [
     price: '€4,99',
   },
 
-  // ── Qwixx ───────────────────────────────────────────────────────────────────
+  // ── Kriskras ───────────────────────────────────────────────────────────────────
   {
     id: 'qwixx-gemixxt',
-    game: 'Qwixx',
+    game: 'Kriskras',
     name: 'Gemixxt',
     tagline: 'Kleuren door elkaar',
     taglineEn: 'Mixed colours',
@@ -189,7 +189,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'qwixx-big-points',
-    game: 'Qwixx',
+    game: 'Kriskras',
     name: 'Big Points',
     tagline: 'Uitgebreid scoreblok',
     taglineEn: 'Extended score pad',
@@ -200,10 +200,10 @@ export const EXPANSIONS: ExpansionDef[] = [
     price: '€1,99',
   },
 
-  // ── Ticket to Ride ──────────────────────────────────────────────────────────
+  // ── Traxion ──────────────────────────────────────────────────────────
   {
     id: 'ttr-europe',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'Europa',
     tagline: 'Nieuwe kaart, tunnels & veerponten',
     description: 'Reis door Europa met treinstations, tunnels en veerponten. Een compleet nieuw bord vol uitdaging.',
@@ -214,7 +214,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'ttr-usa-1910',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'USA 1910',
     tagline: '35 extra bestemmingstickets',
     description: 'Meer bestemmingen, grotere steden en een nieuw "Continent" ticket voor de ultieme USA-uitdaging.',
@@ -224,7 +224,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'ttr-nordic',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'Scandinavië',
     tagline: 'Sneeuw, fjorden & Scandinavische routes',
     description: 'Reis door Noorwegen, Zweden en Finland over bevroren meren en door dichte bossen. Alleen voor 2-3 spelers.',
@@ -235,7 +235,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'ttr-switzerland',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'Zwitserland',
     tagline: 'Alpentunnels & steden',
     description: 'Klim door de Alpen, rij door tunnels en verbind Zwitserse steden met de rest van Europa. Compact en snel.',
@@ -245,7 +245,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'ttr-germany',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'Duitsland',
     tagline: 'Passagiers ophalen & afzetten',
     description: 'Nieuw mechanic: laad passagiers in aan stations en breng ze naar hun bestemming voor bonuspunten.',
@@ -255,7 +255,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'ttr-france',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'Frankrijk & Oud West',
     tagline: 'Twee kaarten in één',
     description: 'Bouw spoorlijnen door de Franse wijngaarden of verover het Wilde Westen van Amerika. Twee complete kaarten.',
@@ -266,7 +266,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'ttr-asia',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'Azië',
     tagline: 'Team-spel & legendarische routes',
     description: 'Speel samen als team of doorzoek legendarische Aziatische routes over de Zijderoute. Twee kaarten, nieuwe strategieën.',
@@ -276,7 +276,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'ttr-africa',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'Afrika',
     tagline: 'Terrein-tegels & safari-routes',
     description: 'Oversteek het Afrikaanse continent met terrein-tegels die extra punten geven op bepaalde routes.',
@@ -286,7 +286,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'ttr-amsterdam',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'Amsterdam',
     tagline: 'Grachten & mini-kaart (15 min)',
     description: 'Snelle rondrit door de Amsterdamse grachten. In 15 minuten gespeeld — perfect als tussendoor.',
@@ -297,7 +297,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'ttr-london',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'Londen',
     tagline: 'Busdiensten door de Londense wijken',
     description: 'Verbind Londense wijken met busdiensten. Compact spel voor 2-4 spelers in nog geen 20 minuten.',
@@ -307,7 +307,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'ttr-new-york',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'New York',
     tagline: 'Taxi\'s door Manhattan',
     description: 'Race door Manhattan met gele taxi\'s langs toeristische attracties. Snel, stijlvol en competitief.',
@@ -317,7 +317,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'ttr-japan-italy',
-    game: 'Ticket to Ride',
+    game: 'Traxion',
     name: 'Japan & Italië',
     tagline: 'Bullet trains & schilderachtige routes',
     description: 'Scheur over Japanse shinkansen-lijnen of rij rustig door de Italiaanse laars. Twee contrasterende kaarten.',
@@ -327,10 +327,10 @@ export const EXPANSIONS: ExpansionDef[] = [
     badge: 'Nieuw',
   },
 
-  // ── Carcassonne ─────────────────────────────────────────────────────────────
+  // ── Basteon ─────────────────────────────────────────────────────────────
   {
     id: 'carcassonne-inns-cathedrals',
-    game: 'Carcassonne',
+    game: 'Basteon',
     name: 'Herbergen & Kathedralen',
     tagline: 'Meer punten, meer risico',
     description: 'Herbergen verdubbelen wegpunten maar je krijgt niets bij onvoltooide wegen. Kathedralen boosten steden enorm.',
@@ -341,7 +341,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'carcassonne-traders-builders',
-    game: 'Carcassonne',
+    game: 'Basteon',
     name: 'Handelaars & Bouwers',
     tagline: 'Extra beurt met de bouwer',
     description: 'Plaats een bouwer in je stad of weg voor een extra tegel. Handelsgoederen leveren bonuspunten op.',
@@ -351,7 +351,7 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
   {
     id: 'carcassonne-princess-dragon',
-    game: 'Carcassonne',
+    game: 'Basteon',
     name: 'Prinses & Draak',
     tagline: 'Chaos met de draak',
     description: 'De draak vernietigt pionnen op zijn pad. De fee beschermt jouw pionnen. Avontuur en chaos in één uitbreiding.',
@@ -376,9 +376,9 @@ export const EXPANSIONS: ExpansionDef[] = [
   // ── Grub ────────────────────────────────────────────────────────────────────
   {
     id: 'grub-uitbreiding',
-    game: 'Regenwormen',
-    name: 'Regenwormen Uitbreiding',
-    nameEn: 'Grub Hunt Expansion',
+    game: 'Grub',
+    name: 'Grub Expansion',
+    nameEn: 'Grub Expansion',
     tagline: 'Extra tegels & jokerwormen',
     taglineEn: 'Extra tiles & joker grubs',
     description: 'Hogere tegels met bonuswormen en jokertegels die elke dobbelsteenwaarde aannemen.',
@@ -403,27 +403,27 @@ export const EXPANSIONS: ExpansionDef[] = [
   },
 ];
 
-export const GAMES_IN_SHOP = ['Qwixx', 'Regenwormen'] as const;
+export const GAMES_IN_SHOP = ['Kriskras', 'Grub'] as const;
 
 export const GAME_ICON: Record<string, string> = {
   Wingspan: '🦅',
-  Catan: '🏝️',
-  Qwixx: '🎲',
-  'Ticket to Ride': '🚃',
-  Carcassonne: '🏰',
+  Kolonis: '🏝️',
+  Kriskras: '🎲',
+  'Traxion': '🚃',
+  Basteon: '🏰',
   Beverbende: '🦫',
-  Regenwormen: '🪱',
+  Grub: '🪱',
   Rummikub: '🔢',
 };
 
 export const GAME_ACCENT: Record<string, string> = {
   Wingspan: '#4A90D9',
-  Catan: '#FF5252',
-  Qwixx: '#FFCA28',
-  'Ticket to Ride': '#4285F4',
-  Carcassonne: '#66BB6A',
+  Kolonis: '#FF5252',
+  Kriskras: '#FFCA28',
+  'Traxion': '#4285F4',
+  Basteon: '#66BB6A',
   Beverbende: '#AB47BC',
-  Regenwormen: '#00C875',
+  Grub: '#00C875',
   Rummikub: '#FF7043',
 };
 

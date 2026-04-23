@@ -79,7 +79,7 @@ export const sk: Translation = {
   namePlaceholder: 'Meno…',
   waitingForOpponentTitle: 'Čakáme na súpera', shareCodeSingle: 'Zdieľajte tento kód so svojím súperom', shareCodeMulti: 'Zdieľajte tento kód so svojimi spoluhráčmi',
   needed: 'Potrebné', spectating: (name: string) => `Divák — hracia plocha hráča ${name}`, aiRolling: 'AI háže…',
-  backToLobby: 'Späť do herne', winsShort: 'vyhráva!', grubName: 'Lov Červov',
+  backToLobby: 'Späť do herne', winsShort: 'vyhráva!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const sk: Translation = {
   qwixxGemixxDesc: 'Rady už nemajú jednu farbu — každý rad je zmesou farieb pre väčšiu taktickú hĺbku.',
   qwixxBigPointsTagline: 'Rozšírený bodovací blok',
   qwixxBigPointsDesc: 'Ďalší bodovací blok s bonusovými políčkami a novými trestami. Vyššie riziká, vyššie odmeny.',
-  grubExpName: 'Rozšírenie Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Extra dlaždice a jokerové červy',
   grubExpDesc: 'Vyššie dlaždice s bonusovými červmi a jokerovými dlaždicami prijímajúcimi ľubovoľnú hodnotu kocky.',
   searchPlaceholder: 'Hľadať pravidlo...', noResults: 'Žiadne výsledky',
@@ -141,7 +141,7 @@ export const sk: Translation = {
     ['🏁', 'Koniec',          'Najnižší súčet vyhráva kolo. Hrajte viac kôl; prvý na 100 prehráva.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Cieľ',          'Byť prvým hráčom s 10 víťaznými bodmi (VB). Budujte osady, mestá a cesty na ostrove Catan.'],
+    ['🎯', 'Cieľ',          'Byť prvým hráčom s 10 víťaznými bodmi (VB). Budujte osady, mestá a cesty na ostrove Kolonis.'],
     ['🎲', 'Ťah',           'Hoďte kockami → suroviny dostávajú hráči s osadami pri danom čísle. Potom stavajte alebo obchodujte.'],
     ['🏠', 'Stavať',        'Osada: 1 drevo + 1 tehla + 1 obilie + 1 vlna (1 VB). Cesta: 1 drevo + 1 tehla. Mesto: 2 obilie + 3 ruda (2 VB, nahrádza osadu).'],
     ['💱', 'Obchod',        'Obchodujte 4:1 s bankou alebo 2:1/3:1 cez prístavy. Tiež možno obchodovať so súpermi.'],

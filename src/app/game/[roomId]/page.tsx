@@ -662,7 +662,7 @@ export default function GamePage() {
       }}>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "'Fredoka', sans-serif", fontSize: 16, fontWeight: 700, color: '#FF5252' }}>
-            🏝 Catan
+            🏝 Kolonis
           </div>
           <div style={{ fontFamily: "'Nunito', sans-serif", fontSize: 11, color: 'rgba(238,242,255,0.4)', marginTop: 1 }}>
             {gameState
@@ -854,7 +854,7 @@ export default function GamePage() {
             {(close) => (<>
               <div style={{ padding: '0 20px 12px', flexShrink: 0 }}>
                 <div style={{ fontFamily: "'Fredoka', sans-serif", fontWeight: 700, fontSize: 20, color: '#FF5252', marginBottom: 10 }}>
-                  {t.gameRules('Catan')}
+                  {t.gameRules('Kolonis')}
                 </div>
                 <div style={{ position: 'relative', marginBottom: 12 }}>
                   <svg style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', opacity: 0.45, pointerEvents: 'none' }} width="15" height="15" viewBox="0 0 20 20" fill="none">

@@ -79,7 +79,7 @@ export const he: Translation = {
   namePlaceholder: 'שם…',
   waitingForOpponentTitle: 'ממתין ליריב', shareCodeSingle: 'שתף קוד זה עם היריב שלך', shareCodeMulti: 'שתף קוד זה עם שחקני הצוות שלך',
   needed: 'נדרש', spectating: (name: string) => `צופה — לוח של ${name}`, aiRolling: 'הבינה המלאכותית מגלגלת…',
-  backToLobby: 'חזרה ללובי', winsShort: 'מנצח!', grubName: 'ציד התולעים',
+  backToLobby: 'חזרה ללובי', winsShort: 'מנצח!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const he: Translation = {
   qwixxGemixxDesc: 'השורות כבר אינן בצבע אחד — כל שורה היא תמהיל של צבעים לעומק טקטי נוסף.',
   qwixxBigPointsTagline: 'דף ניקוד מורחב',
   qwixxBigPointsDesc: 'דף ניקוד נוסף עם קופסאות בונוס ועונשים חדשים. סיכון גבוה יותר, תגמול גבוה יותר.',
-  grubExpName: 'הרחבה ל-Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'אריחים נוספים ותולעי ג\'וקר',
   grubExpDesc: 'אריחים בעלי ערך גבוה יותר עם תולעי בונוס ואריחי ג\'וקר המקבלים כל ערך קובייה.',
   searchPlaceholder: 'חפש חוק...', noResults: 'אין תוצאות',
@@ -141,7 +141,7 @@ export const he: Translation = {
     ['🏁', 'סיום',            'הסכום הנמוך ביותר מנצח בסיבוב. שחק מספר סיבובים; הראשון שמגיע ל-100 מפסיד.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'מטרה',          'היה השחקן הראשון שמגיע ל-10 נקודות ניצחון (נ"נ). בנה התנחלויות, ערים ודרכים באי קאטאן.'],
+    ['🎯', 'מטרה',          'היה השחקן הראשון שמגיע ל-10 נקודות ניצחון (נ"נ). בנה התנחלויות, ערים ודרכים באי Kolonis.'],
     ['🎲', 'תור',           'הגלגל קוביות ← משאבים מחולקים לשחקנים עם התנחלויות ליד המספר הזה. ואז בנה או סחר.'],
     ['🏠', 'בנייה',         'התנחלות: 1 עץ + 1 לבנה + 1 תבואה + 1 צמר (1 נ"נ). דרך: 1 עץ + 1 לבנה. עיר: 2 תבואה + 3 עפרת (2 נ"נ, מחליפה התנחלות).'],
     ['💱', 'סחר',           'סחר 4:1 עם הבנק, או 2:1/3:1 דרך נמלים. ניתן גם לסחור עם יריבים.'],

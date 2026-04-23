@@ -39,11 +39,11 @@ const AVATARS = [
 ];
 
 const SVG_BANNERS = [
-  { id: "catan",         label: "Catan",          accent: "#FF9A3C", Component: CatanArt },
+  { id: "catan",         label: "Kolonis",          accent: "#FF9A3C", Component: CatanArt },
   { id: "grub",          label: "Kriekelduel",     accent: "#20D9A0", Component: GrubArt },
   { id: "qwixx",         label: "Kriskras",        accent: "#FFB830", Component: QwixxArt },
   { id: "ticket-to-ride",label: "Treinreis",       accent: "#E8B56D", Component: TicketToRideArt },
-  { id: "carcassonne",   label: "Carcassonne",     accent: "#c4a050", Component: CarcassonneArt },
+  { id: "carcassonne",   label: "Basteon",     accent: "#c4a050", Component: CarcassonneArt },
   { id: "beverbende",    label: "Beverbende",      accent: "#2EC4B6", Component: BeaverbendeArt },
 ];
 
@@ -61,7 +61,7 @@ const PNG_BANNERS = [
 const GAME_SECTIONS = [
   {
     id: "catan",
-    label: "Catan",
+    label: "Kolonis",
     accent: "#FF9A3C",
     assets: [
       { src: "/images/games/catan-card-wood.png",  label: "Hout"     },
@@ -167,7 +167,7 @@ const SHOP_ART = [
   { src: "/images/shop/carcassonne-traders-builders.png",label: "Carcassonne — Handelaars"          },
   { src: "/images/shop/carcassonne-princess-dragon.png", label: "Carcassonne — Prinses & Draak"     },
   { src: "/images/shop/beverbende-specials.png",         label: "Beverbende — Speciale Kaarten"     },
-  { src: "/images/shop/grub-uitbreiding.png",            label: "Regenwormen — Uitbreiding"         },
+  { src: "/images/shop/grub-uitbreiding.png",            label: "Grub Expansion"         },
   { src: "/images/shop/rummikub-twist.png",              label: "Rummikub — Twist"                  },
 ];
 
@@ -196,7 +196,7 @@ const GRUB_TILES = Array.from({ length: 16 }, (_, i) => ({
 
 const SVG_MISC = [
   { src: "/images/dobbelsteen-uitvouw.svg",   label: "Dobbelsteen uitvouw" },
-  { src: "/images/regenwormen-tegels.svg",    label: "Regenwormen tegels"  },
+  { src: "/images/regenwormen-tegels.svg",    label: "Grub tegels"  },
   { src: "/og-image.svg",                     label: "OG image"            },
   { src: "/icon.svg",                         label: "App icoon"           },
 ];

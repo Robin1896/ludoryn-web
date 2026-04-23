@@ -79,7 +79,7 @@ export const fi: Translation = {
   namePlaceholder: 'Nimi…',
   waitingForOpponentTitle: 'Odotetaan vastustajaa', shareCodeSingle: 'Jaa tämä koodi vastustajallesi', shareCodeMulti: 'Jaa tämä koodi kanssapelaajillesi',
   needed: 'Tarvitaan', spectating: (name: string) => `Katsoja — ${name}n lauta`, aiRolling: 'Tekoäly heittää…',
-  backToLobby: 'Takaisin aulaan', winsShort: 'voittaa!', grubName: 'Matojen Metsästys',
+  backToLobby: 'Takaisin aulaan', winsShort: 'voittaa!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const fi: Translation = {
   qwixxGemixxDesc: 'Riveillä ei enää ole yhtä väriä — jokainen rivi on värien yhdistelmä lisää taktista syvyyttä varten.',
   qwixxBigPointsTagline: 'Laajennettu pisteseuranta',
   qwixxBigPointsDesc: 'Lisäpisteseuranta bonusruuduilla ja uusilla rangaistuksilla. Suuremmat riskit, suuremmat palkinnot.',
-  grubExpName: 'Pickomino Laajennus',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Lisäpalat ja jokeromatot',
   grubExpDesc: 'Korkeamman arvon palat bonusmatoilla ja jokeripalat, jotka hyväksyvät minkä tahansa noppa-arvon.',
   searchPlaceholder: 'Etsi sääntö...', noResults: 'Ei tuloksia',
@@ -141,7 +141,7 @@ export const fi: Translation = {
     ['🏁', 'Loppu',           'Pienin yhteensumma voittaa kierroksen. Pelaa useita kierroksia; ensimmäinen joka saavuttaa 100 häviää.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Tavoite',       'Ole ensimmäinen pelaaja, jolla on 10 voittopistettä (VP). Rakenna asutuksia, kaupunkeja ja teitä Catanin saarella.'],
+    ['🎯', 'Tavoite',       'Ole ensimmäinen pelaaja, jolla on 10 voittopistettä (VP). Rakenna asutuksia, kaupunkeja ja teitä Kolonisin saarella.'],
     ['🎲', 'Vuoro',         'Heitä noppaa → resurssit jaetaan pelaajille, joilla on asutuksia kyseisen numeron vieressä. Sitten rakenna tai käy kauppaa.'],
     ['🏠', 'Rakentaminen',  'Asutus: 1 puu + 1 tiili + 1 vilja + 1 villa (1 VP). Tie: 1 puu + 1 tiili. Kaupunki: 2 vilja + 3 malmi (2 VP, korvaa asutuksen).'],
     ['💱', 'Kaupankäynti',  'Käy kauppaa 4:1 pankin kanssa tai 2:1/3:1 satamien kautta. Voit myös käydä kauppaa vastustajien kanssa.'],

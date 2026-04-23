@@ -79,7 +79,7 @@ export const pl: Translation = {
   namePlaceholder: 'Nazwa…',
   waitingForOpponentTitle: 'Oczekiwanie na przeciwnika', shareCodeSingle: 'Udostępnij ten kod swojemu przeciwnikowi', shareCodeMulti: 'Udostępnij ten kod swoim współgraczom',
   needed: 'Wymagane', spectating: (name: string) => `Obserwator — plansza gracza ${name}`, aiRolling: 'AI rzuca…',
-  backToLobby: 'Powrót do lobby', winsShort: 'wygrywa!', grubName: 'Polowanie na Robaki',
+  backToLobby: 'Powrót do lobby', winsShort: 'wygrywa!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const pl: Translation = {
   qwixxGemixxDesc: 'Rzędy nie mają już jednego koloru — każdy rząd to mieszanka kolorów dla większej głębi taktycznej.',
   qwixxBigPointsTagline: 'Rozszerzony blok punktacji',
   qwixxBigPointsDesc: 'Dodatkowy blok punktacji z polami bonusowymi i nowymi karami. Wyższe ryzyko, wyższe nagrody.',
-  grubExpName: 'Rozszerzenie Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Dodatkowe kafelki i robaki-jokery',
   grubExpDesc: 'Wyższe kafelki z bonusowymi robakami i kafelkami-jokerami akceptującymi dowolną wartość kości.',
   searchPlaceholder: 'Szukaj zasady...', noResults: 'Brak wyników',
@@ -141,7 +141,7 @@ export const pl: Translation = {
     ['🏁', 'Koniec',          'Najniższa suma wygrywa rundę. Graj kilka rund; pierwszy do 100 przegrywa.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Cel',           'Być pierwszym graczem z 10 punktami zwycięstwa (PZ). Buduj osady, miasta i drogi na wyspie Catan.'],
+    ['🎯', 'Cel',           'Być pierwszym graczem z 10 punktami zwycięstwa (PZ). Buduj osady, miasta i drogi na wyspie Kolonis.'],
     ['🎲', 'Tura',          'Rzuć kośćmi → surowce trafiają do graczy z osadami przy tej liczbie. Potem buduj lub handluj.'],
     ['🏠', 'Budowanie',     'Osada: 1 drewno + 1 cegła + 1 zboże + 1 wełna (1 PZ). Droga: 1 drewno + 1 cegła. Miasto: 2 zboże + 3 ruda (2 PZ, zastępuje osadę).'],
     ['💱', 'Handel',        'Handluj 4:1 z bankiem lub 2:1/3:1 przez porty. Możesz też handlować z przeciwnikami.'],

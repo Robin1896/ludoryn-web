@@ -79,7 +79,7 @@ export const de: Translation = {
   namePlaceholder: 'Name…',
   waitingForOpponentTitle: 'Warte auf Gegner', shareCodeSingle: 'Teile diesen Code mit deinem Gegner', shareCodeMulti: 'Teile diesen Code mit deinen Mitspielern',
   needed: 'Benötigt', spectating: (name: string) => `Zuschauer — Brett von ${name}`, aiRolling: 'KI würfelt…',
-  backToLobby: 'Zurück zur Lobby', winsShort: 'gewinnt!', grubName: 'Regenwormen',
+  backToLobby: 'Zurück zur Lobby', winsShort: 'gewinnt!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const de: Translation = {
   qwixxGemixxDesc: 'Die Reihen haben keine einheitliche Farbe mehr — jede Reihe ist ein Mix aus Farben für zusätzliche taktische Tiefe.',
   qwixxBigPointsTagline: 'Erweiterter Wertungsblock',
   qwixxBigPointsDesc: 'Zusätzlicher Wertungsblock mit Bonusfeldern und neuen Strafen. Höhere Risiken, höhere Belohnungen.',
-  grubExpName: 'Pickomino Erweiterung',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Extra Plättchen & Joker-Würmer',
   grubExpDesc: 'Höhere Plättchen mit Bonuswürmern und Jokerplättchen, die jeden Würfelwert akzeptieren.',
   searchPlaceholder: 'Regel suchen...', noResults: 'Keine Ergebnisse',
@@ -141,7 +141,7 @@ export const de: Translation = {
     ['🏁', 'Ende',            'Niedrigstes Gesamt gewinnt die Runde. Spiele mehrere Runden; wer zuerst 100 erreicht, verliert.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Ziel',          'Sei der erste Spieler mit 10 Siegpunkten (SP). Baue Siedlungen, Städte und Straßen auf der Insel Catan.'],
+    ['🎯', 'Ziel',          'Sei der erste Spieler mit 10 Siegpunkten (SP). Baue Siedlungen, Städte und Straßen auf der Insel Kolonis.'],
     ['🎲', 'Zug',           'Würfle → Rohstoffe werden an Spieler mit Siedlungen neben dieser Zahl verteilt. Dann bauen oder handeln.'],
     ['🏠', 'Bauen',         'Siedlung: 1 Holz + 1 Lehm + 1 Getreide + 1 Wolle (1 SP). Straße: 1 Holz + 1 Lehm. Stadt: 2 Getreide + 3 Erz (2 SP, ersetzt Siedlung).'],
     ['💱', 'Handeln',       'Handele 4:1 mit der Bank oder 2:1/3:1 über Häfen. Du kannst auch mit Gegnern handeln.'],

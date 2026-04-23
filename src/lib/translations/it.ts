@@ -79,7 +79,7 @@ export const it: Translation = {
   namePlaceholder: 'Nome…',
   waitingForOpponentTitle: 'In attesa dell\'avversario', shareCodeSingle: 'Condividi questo codice con il tuo avversario', shareCodeMulti: 'Condividi questo codice con i tuoi co-giocatori',
   needed: 'Necessario', spectating: (name: string) => `Spettatore — tabellone di ${name}`, aiRolling: 'L\'IA lancia…',
-  backToLobby: 'Torna alla sala', winsShort: 'vince!', grubName: 'Caccia ai Vermi',
+  backToLobby: 'Torna alla sala', winsShort: 'vince!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const it: Translation = {
   qwixxGemixxDesc: 'Le file non hanno più un unico colore — ogni fila è un mix di colori per maggiore profondità tattica.',
   qwixxBigPointsTagline: 'Blocco punteggio esteso',
   qwixxBigPointsDesc: 'Blocco punteggio aggiuntivo con caselle bonus e nuove penalità. Rischi più alti, ricompense più alte.',
-  grubExpName: 'Espansione Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Tessere extra & vermi jolly',
   grubExpDesc: 'Tessere più alte con vermi bonus e tessere jolly che accettano qualsiasi valore dei dadi.',
   searchPlaceholder: 'Cerca una regola...', noResults: 'Nessun risultato',
@@ -141,7 +141,7 @@ export const it: Translation = {
     ['🏁', 'Fine',            'Il totale più basso vince il round. Gioca più round; chi arriva prima a 100 perde.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Obiettivo',     'Essere il primo giocatore a raggiungere 10 punti vittoria (PV). Costruisci insediamenti, città e strade sull\'isola di Catan.'],
+    ['🎯', 'Obiettivo',     'Essere il primo giocatore a raggiungere 10 punti vittoria (PV). Costruisci insediamenti, città e strade sull\'isola di Kolonis.'],
     ['🎲', 'Turno',         'Lancia i dadi → le risorse vengono distribuite ai giocatori con insediamenti adiacenti a quel numero. Poi costruisci o commercia.'],
     ['🏠', 'Costruire',     'Insediamento: 1 legno + 1 mattone + 1 grano + 1 lana (1 PV). Strada: 1 legno + 1 mattone. Città: 2 grano + 3 minerale (2 PV, sostituisce insediamento).'],
     ['💱', 'Commercio',     'Commercia 4:1 con la banca, o 2:1/3:1 tramite porti. Puoi anche commerciare con gli avversari.'],

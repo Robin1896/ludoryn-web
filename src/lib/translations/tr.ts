@@ -79,7 +79,7 @@ export const tr: Translation = {
   namePlaceholder: 'İsim…',
   waitingForOpponentTitle: 'Rakip bekleniyor', shareCodeSingle: 'Bu kodu rakibinle paylaş', shareCodeMulti: 'Bu kodu birlikte oynadığın oyuncularla paylaş',
   needed: 'Gerekli', spectating: (name: string) => `İzleyici — ${name} tahtası`, aiRolling: 'YZ atıyor…',
-  backToLobby: 'Lobiye dön', winsShort: 'kazandı!', grubName: 'Kurt Avı',
+  backToLobby: 'Lobiye dön', winsShort: 'kazandı!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const tr: Translation = {
   qwixxGemixxDesc: 'Satırlar artık tek renk değil — her satır ekstra taktik derinlik için renklerin karışımı.',
   qwixxBigPointsTagline: 'Genişletilmiş puan bloğu',
   qwixxBigPointsDesc: 'Bonus kutular ve yeni cezalarla ekstra puan bloğu. Daha yüksek riskler, daha yüksek ödüller.',
-  grubExpName: 'Pickomino Genişlemesi',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Ekstra karolar ve joker solucanlar',
   grubExpDesc: 'Bonus solucanlar içeren daha yüksek değerli karolar ve herhangi bir zar değerini kabul eden joker karolar.',
   searchPlaceholder: 'Kural ara...', noResults: 'Sonuç yok',
@@ -141,7 +141,7 @@ export const tr: Translation = {
     ['🏁', 'Son',             'En düşük toplam turu kazanır. Birden fazla tur oynayın; 100\'e ilk ulaşan kaybeder.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Amaç',          'İlk 10 zafer puanına (ZP) ulaşan oyuncu kazanır. Catan adasında yerleşimler, şehirler ve yollar inşa edin.'],
+    ['🎯', 'Amaç',          'İlk 10 zafer puanına (ZP) ulaşan oyuncu kazanır. Kolonis adasında yerleşimler, şehirler ve yollar inşa edin.'],
     ['🎲', 'Tur',           'Zarları atın → o sayıya komşu yerleşimleri olan oyunculara kaynaklar dağıtılır. Sonra inşa edin veya ticaret yapın.'],
     ['🏠', 'İnşa etme',     'Yerleşim: 1 odun + 1 tuğla + 1 tahıl + 1 yün (1 ZP). Yol: 1 odun + 1 tuğla. Şehir: 2 tahıl + 3 cevher (2 ZP, yerleşimin yerini alır).'],
     ['💱', 'Ticaret',       'Bankayla 4:1, veya limanlar aracılığıyla 2:1/3:1 ticaret yapın. Rakiplerle de ticaret yapabilirsiniz.'],

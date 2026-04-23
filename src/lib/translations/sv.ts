@@ -79,7 +79,7 @@ export const sv: Translation = {
   namePlaceholder: 'Namn…',
   waitingForOpponentTitle: 'Väntar på motståndare', shareCodeSingle: 'Dela den här koden med din motståndare', shareCodeMulti: 'Dela den här koden med dina medspelare',
   needed: 'Behövs', spectating: (name: string) => `Åskådare — ${name}s bräda`, aiRolling: 'Datorn slår…',
-  backToLobby: 'Tillbaka till lobby', winsShort: 'vinner!', grubName: 'Masken',
+  backToLobby: 'Tillbaka till lobby', winsShort: 'vinner!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const sv: Translation = {
   qwixxGemixxDesc: 'Raderna har inte längre en enda färg — varje rad är en blandning av färger för extra taktiskt djup.',
   qwixxBigPointsTagline: 'Utökat poängblock',
   qwixxBigPointsDesc: 'Extra poängblock med bonusrutor och nya straff. Högre risker, högre belöningar.',
-  grubExpName: 'Maskar & Co Expansion',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Extra brickor & jokermaskar',
   grubExpDesc: 'Högre brickor med bonusmaskar och jokerbrickor som accepterar vilket tärningsvärde som helst.',
   searchPlaceholder: 'Sök en regel...', noResults: 'Inga resultat',
@@ -141,7 +141,7 @@ export const sv: Translation = {
     ['🏁', 'Slut',            'Lägst total vinner rundan. Spela flera rundor; den som först når 100 förlorar.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Mål',           'Bli den förste spelaren med 10 segerpoäng (SP). Bygg bosättningar, städer och vägar på ön Catan.'],
+    ['🎯', 'Mål',           'Bli den förste spelaren med 10 segerpoäng (SP). Bygg bosättningar, städer och vägar på ön Kolonis.'],
     ['🎲', 'Tur',           'Slå tärningarna → resurser delas ut till spelare med bosättningar intill det numret. Bygg eller handla sedan.'],
     ['🏠', 'Bygg',          'Bosättning: 1 trä + 1 tegel + 1 säd + 1 ull (1 SP). Väg: 1 trä + 1 tegel. Stad: 2 säd + 3 malm (2 SP, ersätter bosättning).'],
     ['💱', 'Handla',        'Handla 4:1 med banken, eller 2:1/3:1 via hamnar. Du kan också handla med motståndare.'],

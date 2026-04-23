@@ -79,7 +79,7 @@ export const no: Translation = {
   namePlaceholder: 'Navn…',
   waitingForOpponentTitle: 'Venter på motstander', shareCodeSingle: 'Del denne koden med motstanderen din', shareCodeMulti: 'Del denne koden med medspillerne dine',
   needed: 'Nødvendig', spectating: (name: string) => `Tilskuer — ${name}s brett`, aiRolling: 'AI kaster…',
-  backToLobby: 'Tilbake til lobby', winsShort: 'vinner!', grubName: 'Regnmark',
+  backToLobby: 'Tilbake til lobby', winsShort: 'vinner!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const no: Translation = {
   qwixxGemixxDesc: 'Radene har ikke lenger én farge — hver rad er en blanding av farger for ekstra taktisk dybde.',
   qwixxBigPointsTagline: 'Utvidet poengblokk',
   qwixxBigPointsDesc: 'Ekstra poengblokk med bonusbokser og nye straffer. Høyere risiko, høyere belønninger.',
-  grubExpName: 'Meitemark Utvidelse',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Ekstra brikker & jokermakk',
   grubExpDesc: 'Høyere brikker med bonusmakk og jokerbrikker som aksepterer enhver terningverdi.',
   searchPlaceholder: 'Søk en regel...', noResults: 'Ingen resultater',
@@ -141,7 +141,7 @@ export const no: Translation = {
     ['🏁', 'Slutt',           'Lavest total vinner runden. Spill flere runder; den første til 100 taper.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Mål',           'Vær den første spilleren med 10 seierspoeng (SP). Bygg bosetninger, byer og veier på øya Catan.'],
+    ['🎯', 'Mål',           'Vær den første spilleren med 10 seierspoeng (SP). Bygg bosetninger, byer og veier på øya Kolonis.'],
     ['🎲', 'Tur',           'Kast terningene → ressurser deles ut til spillere med bosetninger ved det tallet. Bygg deretter eller handl.'],
     ['🏠', 'Bygg',          'Bosetning: 1 tre + 1 tegl + 1 korn + 1 ull (1 SP). Vei: 1 tre + 1 tegl. By: 2 korn + 3 malm (2 SP, erstatter bosetning).'],
     ['💱', 'Handel',        'Handl 4:1 med banken, eller 2:1/3:1 via havner. Du kan også handle med motstandere.'],

@@ -79,7 +79,7 @@ export const ca: Translation = {
   namePlaceholder: 'Nom…',
   waitingForOpponentTitle: 'Esperant rival', shareCodeSingle: 'Comparteix aquest codi amb el teu rival', shareCodeMulti: 'Comparteix aquest codi amb els teus co-jugadors',
   needed: 'Necessari', spectating: (name: string) => `Espectador — tauler de ${name}`, aiRolling: 'La IA llança…',
-  backToLobby: 'Tornar a la sala', winsShort: 'guanya!', grubName: 'Caça de Cucs',
+  backToLobby: 'Tornar a la sala', winsShort: 'guanya!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const ca: Translation = {
   qwixxGemixxDesc: "Les files ja no tenen un sol color — cada fila és una barreja de colors per a més profunditat tàctica.",
   qwixxBigPointsTagline: 'Bloc de puntuació ampliat',
   qwixxBigPointsDesc: 'Bloc de puntuació addicional amb caselles de bonificació i noves penalitzacions. Riscos més alts, recompenses més grans.',
-  grubExpName: 'Expansió Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Peces addicionals i cucs comodí',
   grubExpDesc: 'Peces més altes amb cucs de bonificació i peces comodí que accepten qualsevol valor del dau.',
   searchPlaceholder: 'Cerca una regla...', noResults: 'Sense resultats',
@@ -141,7 +141,7 @@ export const ca: Translation = {
     ['🏁', 'Final',           'El total més baix guanya la ronda. Juga diverses rondes; el primer a arribar a 100 perd.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Objectiu',      "Ser el primer jugador a arribar a 10 punts de victòria (PV). Construeix assentaments, ciutats i camins a l'illa de Catan."],
+    ['🎯', 'Objectiu',      "Ser el primer jugador a arribar a 10 punts de victòria (PV). Construeix assentaments, ciutats i camins a l'illa de Kolonis."],
     ['🎲', 'Torn',          'Llança els daus → els recursos es distribueixen als jugadors amb assentaments adjacents a aquell número. Després construeix o negocia.'],
     ['🏠', 'Construir',     'Assentament: 1 fusta + 1 maó + 1 gra + 1 llana (1 PV). Camí: 1 fusta + 1 maó. Ciutat: 2 gra + 3 mineral (2 PV, substitueix assentament).'],
     ['💱', 'Negociar',      'Negocia 4:1 amb el banc, o 2:1/3:1 via ports. També pots negociar amb rivals.'],

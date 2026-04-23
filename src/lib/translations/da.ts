@@ -79,7 +79,7 @@ export const da: Translation = {
   namePlaceholder: 'Navn…',
   waitingForOpponentTitle: 'Venter på modstander', shareCodeSingle: 'Del denne kode med din modstander', shareCodeMulti: 'Del denne kode med dine medspillere',
   needed: 'Nødvendigt', spectating: (name: string) => `Tilskuer — ${name}s bræt`, aiRolling: 'AI slår…',
-  backToLobby: 'Tilbage til lobby', winsShort: 'vinder!', grubName: 'Regnorme',
+  backToLobby: 'Tilbage til lobby', winsShort: 'vinder!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const da: Translation = {
   qwixxGemixxDesc: 'Rækkerne har ikke længere én farve — hver række er en blanding af farver for ekstra taktisk dybde.',
   qwixxBigPointsTagline: 'Udvidet scoreblok',
   qwixxBigPointsDesc: 'Ekstra scoreblok med bonusfelter og nye straffe. Højere risici, højere belønninger.',
-  grubExpName: 'Ormefest Udvidelse',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Ekstra brikker & jokerormer',
   grubExpDesc: 'Højere brikker med bonusormer og jokerbrikker der accepterer enhver terningværdi.',
   searchPlaceholder: 'Søg en regel...', noResults: 'Ingen resultater',
@@ -141,7 +141,7 @@ export const da: Translation = {
     ['🏁', 'Slut',            'Lavest total vinder runden. Spil flere runder; den første til 100 taber.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Mål',           'Vær den første spiller med 10 sejrpoint (SP). Byg bosættelser, byer og veje på øen Catan.'],
+    ['🎯', 'Mål',           'Vær den første spiller med 10 sejrpoint (SP). Byg bosættelser, byer og veje på øen Kolonis.'],
     ['🎲', 'Tur',           'Slå terningerne → ressourcer uddeles til spillere med bosættelser ved det tal. Byg derefter eller handl.'],
     ['🏠', 'Byg',           'Bosættelse: 1 træ + 1 tegl + 1 korn + 1 uld (1 SP). Vej: 1 træ + 1 tegl. By: 2 korn + 3 malm (2 SP, erstatter bosættelse).'],
     ['💱', 'Handel',        'Handl 4:1 med banken, eller 2:1/3:1 via havne. Du kan også handle med modstandere.'],

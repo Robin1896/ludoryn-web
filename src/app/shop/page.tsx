@@ -236,8 +236,8 @@ const BADGE_NL: Record<string, keyof Translation> = {
 };
 
 const GAME_NAME_KEY: Record<string, keyof Translation> = {
-  'Qwixx':       'kriskrasName',
-  'Regenwormen': 'grubName',
+  'Kriskras': 'kriskrasName',
+  'Grub':     'grubName',
 };
 
 function getGameName(game: string, t: Translation): string {

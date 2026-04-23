@@ -79,7 +79,7 @@ export const zh: Translation = {
   namePlaceholder: '名称…',
   waitingForOpponentTitle: '等待对手', shareCodeSingle: '将此代码分享给你的对手', shareCodeMulti: '将此代码分享给你的共同玩家',
   needed: '需要', spectating: (name: string) => `观战中 — ${name}的棋盘`, aiRolling: 'AI正在掷骰…',
-  backToLobby: '返回大厅', winsShort: '获胜！', grubName: '虫子猎手',
+  backToLobby: '返回大厅', winsShort: '获胜！', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const zh: Translation = {
   qwixxGemixxDesc: '各行不再是单一颜色——每行都是多种颜色的混合，增加了战术深度。',
   qwixxBigPointsTagline: '扩展记分本',
   qwixxBigPointsDesc: '额外记分本，含奖励格和新惩罚。风险越高，奖励越大。',
-  grubExpName: '啄木鸟扩展包',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: '额外瓦片和万能虫',
   grubExpDesc: '更高分值的瓦片，含奖励虫和可接受任意骰子值的万能瓦片。',
   searchPlaceholder: '搜索规则...', noResults: '没有结果',
@@ -141,7 +141,7 @@ export const zh: Translation = {
     ['🏁', '结束',        '最低总分赢得回合。进行多轮；第一个达到100分的人输掉。'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', '目标',        '第一个达到10个胜利点（VP）的玩家获胜。在卡坦岛上建造定居点、城市和道路。'],
+    ['🎯', '目标',        '第一个达到10个胜利点（VP）的玩家获胜。在Kolonis岛上建造定居点、城市和道路。'],
     ['🎲', '回合',        '掷骰子→资源分配给在该数字附近有定居点的玩家。然后建造或交易。'],
     ['🏠', '建造',        '定居点：木材1+砖块1+粮食1+羊毛1（1VP）。道路：木材1+砖块1。城市：粮食2+矿石3（2VP，替换定居点）。'],
     ['💱', '交易',        '与银行4:1交易，或通过港口2:1/3:1交易。也可以与对手交易。'],

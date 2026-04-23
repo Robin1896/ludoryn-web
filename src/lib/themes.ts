@@ -23,10 +23,10 @@ const LIGHT: Omit<GameTheme, "id" | "name" | "icon" | "available"> = {
 };
 
 export const THEMES: Record<string, GameTheme> = {
-  catan:          { id: "catan",          name: "Catan",      icon: "",   available: true,  ...LIGHT },
+  catan:          { id: "catan",          name: "Kolonis",    icon: "",   available: true,  ...LIGHT },
   grub:           { id: "grub",           name: "Grub",       icon: "",   available: true,  ...LIGHT },
   "ticket-to-ride":{ id: "ticket-to-ride", name: "Treinreis", icon: "🚂", available: true,  ...LIGHT },
-  carcassonne:    { id: "carcassonne",    name: "Carcassonne",icon: "",   available: true,  ...LIGHT },
+  carcassonne:    { id: "carcassonne",    name: "Basteon",    icon: "",   available: true,  ...LIGHT },
   wingspan:       { id: "wingspan",       name: "Wingspan",   icon: "🦅", available: true,  ...LIGHT },
   beverbende:     { id: "beverbende",     name: "Beverbende", icon: "🦫", available: true,  ...LIGHT },
   qwixx:          { id: "qwixx",          name: "Kriskras",   icon: "",   available: true,  ...LIGHT },

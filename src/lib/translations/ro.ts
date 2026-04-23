@@ -79,7 +79,7 @@ export const ro: Translation = {
   namePlaceholder: 'Nume…',
   waitingForOpponentTitle: 'Se așteaptă adversarul', shareCodeSingle: 'Partajează acest cod cu adversarul tău', shareCodeMulti: 'Partajează acest cod cu co-jucătorii tăi',
   needed: 'Necesar', spectating: (name: string) => `Spectator — tabla lui ${name}`, aiRolling: 'IA aruncă…',
-  backToLobby: 'Înapoi la sală', winsShort: 'câștigă!', grubName: 'Vânătoarea de Viermi',
+  backToLobby: 'Înapoi la sală', winsShort: 'câștigă!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const ro: Translation = {
   qwixxGemixxDesc: 'Rândurile nu mai au o singură culoare — fiecare rând este un amestec de culori pentru mai multă profunzime tactică.',
   qwixxBigPointsTagline: 'Bloc de scor extins',
   qwixxBigPointsDesc: 'Bloc de scor suplimentar cu căsuțe bonus și noi penalități. Riscuri mai mari, recompense mai mari.',
-  grubExpName: 'Extensie Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Piese suplimentare & viermi joker',
   grubExpDesc: 'Piese mai înalte cu viermi bonus și piese joker care acceptă orice valoare a zarului.',
   searchPlaceholder: 'Caută o regulă...', noResults: 'Niciun rezultat',
@@ -141,7 +141,7 @@ export const ro: Translation = {
     ['🏁', 'Sfârșit',         'Cel mai mic total câștigă runda. Joacă mai multe runde; primul care ajunge la 100 pierde.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Scop',          'Fii primul jucător cu 10 puncte de victorie (PV). Construiește așezări, orașe și drumuri pe insula Catan.'],
+    ['🎯', 'Scop',          'Fii primul jucător cu 10 puncte de victorie (PV). Construiește așezări, orașe și drumuri pe insula Kolonis.'],
     ['🎲', 'Tur',           'Aruncă zarurile → resursele sunt distribuite jucătorilor cu așezări adiacente acelui număr. Apoi construiește sau negociează.'],
     ['🏠', 'Construire',    'Așezare: 1 lemn + 1 cărămidă + 1 grâu + 1 lână (1 PV). Drum: 1 lemn + 1 cărămidă. Oraș: 2 grâu + 3 minereu (2 PV, înlocuiește așezarea).'],
     ['💱', 'Comerț',        'Comercializează 4:1 cu banca, sau 2:1/3:1 prin porturi. Poți, de asemenea, negocia cu adversarii.'],

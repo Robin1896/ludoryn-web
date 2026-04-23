@@ -79,7 +79,7 @@ export const fr: Translation = {
   namePlaceholder: 'Nom…',
   waitingForOpponentTitle: 'En attente d\'un adversaire', shareCodeSingle: 'Partagez ce code avec votre adversaire', shareCodeMulti: 'Partagez ce code avec vos co-joueurs',
   needed: 'Requis', spectating: (name: string) => `Spectateur — plateau de ${name}`, aiRolling: 'L\'IA lance…',
-  backToLobby: 'Retour au salon', winsShort: 'gagne !', grubName: 'Chasse aux Vers',
+  backToLobby: 'Retour au salon', winsShort: 'gagne !', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const fr: Translation = {
   qwixxGemixxDesc: 'Les rangées ne sont plus monocolores — chaque rangée est un mélange de couleurs pour plus de profondeur tactique.',
   qwixxBigPointsTagline: 'Bloc de score étendu',
   qwixxBigPointsDesc: 'Bloc de score supplémentaire avec cases bonus et nouvelles pénalités. Plus de risques, plus de récompenses.',
-  grubExpName: 'Extension Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Tuiles supplémentaires & vers joker',
   grubExpDesc: 'Tuiles plus élevées avec vers bonus et tuiles joker acceptant toute valeur de dé.',
   searchPlaceholder: 'Chercher une règle...', noResults: 'Aucun résultat',
@@ -141,7 +141,7 @@ export const fr: Translation = {
     ['🏁', 'Fin',             'Le total le plus bas gagne la manche. Jouez plusieurs manches ; le premier à 100 perd.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Objectif',      'Être le premier joueur à atteindre 10 points de victoire (PV). Construisez des colonies, des villes et des routes sur l\'île de Catan.'],
+    ['🎯', 'Objectif',      'Être le premier joueur à atteindre 10 points de victoire (PV). Construisez des colonies, des villes et des routes sur l\'île de Kolonis.'],
     ['🎲', 'Tour',          'Lancez les dés → les ressources sont distribuées aux joueurs avec des colonies adjacentes à ce chiffre. Ensuite construisez ou échangez.'],
     ['🏠', 'Construire',    'Colonie : 1 bois + 1 brique + 1 blé + 1 laine (1 PV). Route : 1 bois + 1 brique. Ville : 2 blé + 3 minerai (2 PV, remplace une colonie).'],
     ['💱', 'Échanger',      'Échangez 4:1 avec la banque, ou 2:1/3:1 via les ports. Vous pouvez aussi échanger avec des adversaires.'],

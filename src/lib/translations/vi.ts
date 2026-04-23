@@ -79,7 +79,7 @@ export const vi: Translation = {
   namePlaceholder: 'Tên…',
   waitingForOpponentTitle: 'Đang chờ đối thủ', shareCodeSingle: 'Chia sẻ mã này với đối thủ của bạn', shareCodeMulti: 'Chia sẻ mã này với những người chơi cùng',
   needed: 'Cần thiết', spectating: (name: string) => `Đang xem — bàn của ${name}`, aiRolling: 'AI đang lăn…',
-  backToLobby: 'Quay lại sảnh', winsShort: 'thắng!', grubName: 'Săn Sâu',
+  backToLobby: 'Quay lại sảnh', winsShort: 'thắng!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const vi: Translation = {
   qwixxGemixxDesc: 'Các hàng không còn chỉ có một màu nữa — mỗi hàng là sự kết hợp nhiều màu để tăng chiều sâu chiến thuật.',
   qwixxBigPointsTagline: 'Tờ ghi điểm mở rộng',
   qwixxBigPointsDesc: 'Tờ ghi điểm bổ sung với ô thưởng và hình phạt mới. Rủi ro cao hơn, phần thưởng cao hơn.',
-  grubExpName: 'Mở rộng Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Ô bổ sung & sâu joker',
   grubExpDesc: 'Ô có giá trị cao hơn với sâu thưởng và ô joker chấp nhận bất kỳ giá trị xúc xắc nào.',
   searchPlaceholder: 'Tìm kiếm luật...', noResults: 'Không có kết quả',
@@ -141,7 +141,7 @@ export const vi: Translation = {
     ['🏁', 'Kết thúc',   'Tổng thấp nhất thắng vòng. Chơi nhiều vòng; người đầu tiên đạt 100 thua.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Mục tiêu',  'Người chơi đầu tiên đạt 10 điểm chiến thắng (VĐ) sẽ thắng. Xây dựng khu định cư, thành phố và đường trên đảo Catan.'],
+    ['🎯', 'Mục tiêu',  'Người chơi đầu tiên đạt 10 điểm chiến thắng (VĐ) sẽ thắng. Xây dựng khu định cư, thành phố và đường trên đảo Kolonis.'],
     ['🎲', 'Lượt',      'Lăn xúc xắc → tài nguyên được phân phối cho người chơi có khu định cư cạnh số đó. Sau đó xây dựng hoặc giao dịch.'],
     ['🏠', 'Xây dựng',  'Khu định cư: gỗ1+gạch1+lúa1+len1(1VĐ). Đường: gỗ1+gạch1. Thành phố: lúa2+quặng3(2VĐ, thay khu định cư).'],
     ['💱', 'Giao dịch', 'Giao dịch 4:1 với ngân hàng, hoặc 2:1/3:1 qua cảng. Cũng có thể giao dịch với đối thủ.'],

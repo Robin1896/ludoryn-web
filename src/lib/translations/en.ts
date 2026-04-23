@@ -79,7 +79,7 @@ export const en: Translation = {
   namePlaceholder: 'Name…',
   waitingForOpponentTitle: 'Waiting for opponent', shareCodeSingle: 'Share this code with your opponent', shareCodeMulti: 'Share this code with your co-players',
   needed: 'Needed', spectating: (name: string) => `Spectating — board of ${name}`, aiRolling: 'AI is rolling…',
-  backToLobby: 'Back to lobby', winsShort: 'wins!', grubName: 'Grub Hunt',
+  backToLobby: 'Back to lobby', winsShort: 'wins!', grubName: 'Grub',
   // Game display names
   kriskrasName: 'Kriskras',
   // Lobby — extra
@@ -95,7 +95,7 @@ export const en: Translation = {
   qwixxGemixxDesc: 'Rows are no longer one colour — each row is a mix of colours for extra tactical depth.',
   qwixxBigPointsTagline: 'Extended score pad',
   qwixxBigPointsDesc: 'Extra score pad with bonus boxes and new penalties. Higher risks, higher rewards.',
-  grubExpName: 'Grub Hunt Expansion',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Extra tiles & joker grubs',
   grubExpDesc: 'Higher tiles with bonus grubs and joker tiles that accept any dice value.',
   searchPlaceholder: 'Search a rule...', noResults: 'No results',
@@ -141,7 +141,7 @@ export const en: Translation = {
     ['🏁', 'End',             'Lowest total wins the round. Play multiple rounds; first to 100 loses.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Goal',          'Be the first player to reach 10 victory points (VP). Build settlements, cities, and roads on the island of Catan.'],
+    ['🎯', 'Goal',          'Be the first player to reach 10 victory points (VP). Build settlements, cities, and roads on the island of Kolonis.'],
     ['🎲', 'Turn',          'Roll the dice → resources are distributed to players with settlements adjacent to that number. Then build or trade.'],
     ['🏠', 'Build',         'Settlement: 1 wood + 1 brick + 1 grain + 1 wool (1 VP). Road: 1 wood + 1 brick. City: 2 grain + 3 ore (2 VP, replaces settlement).'],
     ['💱', 'Trade',         'Trade 4:1 with the bank, or 2:1/3:1 via harbors. You may also trade with opponents.'],

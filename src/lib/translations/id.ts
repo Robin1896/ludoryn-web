@@ -79,7 +79,7 @@ export const id: Translation = {
   namePlaceholder: 'Nama…',
   waitingForOpponentTitle: 'Menunggu lawan', shareCodeSingle: 'Bagikan kode ini dengan lawanmu', shareCodeMulti: 'Bagikan kode ini dengan rekan bermainmu',
   needed: 'Diperlukan', spectating: (name: string) => `Menonton — papan milik ${name}`, aiRolling: 'AI melempar…',
-  backToLobby: 'Kembali ke lobi', winsShort: 'menang!', grubName: 'Perburuan Cacing',
+  backToLobby: 'Kembali ke lobi', winsShort: 'menang!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const id: Translation = {
   qwixxGemixxDesc: 'Baris tidak lagi berwarna tunggal — setiap baris adalah campuran warna untuk kedalaman taktis yang lebih.',
   qwixxBigPointsTagline: 'Lembar skor diperluas',
   qwixxBigPointsDesc: 'Lembar skor tambahan dengan kotak bonus dan penalti baru. Risiko lebih tinggi, hadiah lebih besar.',
-  grubExpName: 'Ekspansi Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Ubin ekstra & cacing joker',
   grubExpDesc: 'Ubin bernilai lebih tinggi dengan cacing bonus dan ubin joker yang menerima nilai dadu apa pun.',
   searchPlaceholder: 'Cari aturan...', noResults: 'Tidak ada hasil',
@@ -141,7 +141,7 @@ export const id: Translation = {
     ['🏁', 'Akhir',           'Total terendah memenangkan ronde. Mainkan beberapa ronde; yang pertama mencapai 100 kalah.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Tujuan',        'Jadi pemain pertama yang mencapai 10 poin kemenangan (PK). Bangun pemukiman, kota, dan jalan di pulau Catan.'],
+    ['🎯', 'Tujuan',        'Jadi pemain pertama yang mencapai 10 poin kemenangan (PK). Bangun pemukiman, kota, dan jalan di pulau Kolonis.'],
     ['🎲', 'Giliran',       'Lempar dadu → sumber daya dibagikan ke pemain yang memiliki pemukiman berdekatan dengan angka itu. Kemudian bangun atau berdagang.'],
     ['🏠', 'Membangun',     'Pemukiman: 1 kayu + 1 bata + 1 gandum + 1 wool (1 PK). Jalan: 1 kayu + 1 bata. Kota: 2 gandum + 3 bijih (2 PK, menggantikan pemukiman).'],
     ['💱', 'Berdagang',     'Berdagang 4:1 dengan bank, atau 2:1/3:1 melalui pelabuhan. Kamu juga bisa berdagang dengan lawan.'],

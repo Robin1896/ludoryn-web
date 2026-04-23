@@ -68,8 +68,8 @@ function ResumeGameBanner() {
     qwixx: "Kriskras",
     "ticket-to-ride": "Treinreis",
     beverbende: "Flikflak",
-    carcassonne: "Carcassonne",
-    catan: "Catan",
+    carcassonne: "Basteon",
+    catan: "Kolonis",
   };
 
   return (
@@ -137,10 +137,10 @@ const GAMES = [
   },
   {
     id: "catan",
-    title: "Catan",
+    title: "Kolonis",
     subtitle: "RESOURCES · HANDEL · BOUW",
     description:
-      "Bouw nederzettingen, leg wegen en handel in grondstoffen. Wie als eerste 10 overwinningspunten haalt op het eiland Catan wint!",
+      "Bouw nederzettingen, leg wegen en handel in grondstoffen. Wie als eerste 10 overwinningspunten haalt op het eiland Kolonis wint!",
     players: "2–4 spelers",
     duration: "60–120 min",
     accent: "#FF5252",
@@ -176,7 +176,7 @@ const GAMES = [
   },
   {
     id: "carcassonne",
-    title: "Carcassonne",
+    title: "Basteon",
     subtitle: "TEGELS · MEEPLES",
     description:
       "Leg tegels om steden, wegen en kloosters te bouwen. Plaats je meeples slim en scoor punten als features worden afgemaakt.",

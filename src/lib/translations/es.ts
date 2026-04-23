@@ -79,7 +79,7 @@ export const es: Translation = {
   namePlaceholder: 'Nombre…',
   waitingForOpponentTitle: 'Esperando al rival', shareCodeSingle: 'Comparte este código con tu rival', shareCodeMulti: 'Comparte este código con tus co-jugadores',
   needed: 'Necesario', spectating: (name: string) => `Espectador — tablero de ${name}`, aiRolling: 'La IA lanza…',
-  backToLobby: 'Volver a la sala', winsShort: '¡gana!', grubName: 'Caza de Gusanos',
+  backToLobby: 'Volver a la sala', winsShort: '¡gana!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const es: Translation = {
   qwixxGemixxDesc: 'Las filas ya no tienen un solo color — cada fila es una mezcla de colores para mayor profundidad táctica.',
   qwixxBigPointsTagline: 'Bloc de puntuación extendido',
   qwixxBigPointsDesc: 'Bloc de puntuación extra con casillas de bonificación y nuevas penalizaciones. Mayores riesgos, mayores recompensas.',
-  grubExpName: 'Expansión Pickomino',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: 'Fichas extra y gusanos comodín',
   grubExpDesc: 'Fichas más altas con gusanos de bonificación y fichas comodín que aceptan cualquier valor del dado.',
   searchPlaceholder: 'Buscar una regla...', noResults: 'Sin resultados',
@@ -141,7 +141,7 @@ export const es: Translation = {
     ['🏁', 'Final',           'El total más bajo gana la ronda. Juega múltiples rondas; el primero en llegar a 100 pierde.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', 'Objetivo',      'Ser el primer jugador en alcanzar 10 puntos de victoria (PV). Construye asentamientos, ciudades y caminos en la isla de Catán.'],
+    ['🎯', 'Objetivo',      'Ser el primer jugador en alcanzar 10 puntos de victoria (PV). Construye asentamientos, ciudades y caminos en la isla de Kolonis.'],
     ['🎲', 'Turno',         'Lanza los dados → los recursos se distribuyen a los jugadores con asentamientos adyacentes a ese número. Luego construye o comercia.'],
     ['🏠', 'Construir',     'Asentamiento: 1 madera + 1 ladrillo + 1 grano + 1 lana (1 PV). Camino: 1 madera + 1 ladrillo. Ciudad: 2 grano + 3 mineral (2 PV, reemplaza asentamiento).'],
     ['💱', 'Comerciar',     'Comercia 4:1 con el banco, o 2:1/3:1 vía puertos. También puedes comerciar con rivales.'],

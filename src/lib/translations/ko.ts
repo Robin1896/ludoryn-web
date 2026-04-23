@@ -79,7 +79,7 @@ export const ko: Translation = {
   namePlaceholder: '이름…',
   waitingForOpponentTitle: '상대 기다리는 중', shareCodeSingle: '이 코드를 상대방과 공유하세요', shareCodeMulti: '이 코드를 공동 플레이어와 공유하세요',
   needed: '필요', spectating: (name: string) => `관전 중 — ${name}의 보드`, aiRolling: 'AI 굴리는 중…',
-  backToLobby: '로비로 돌아가기', winsShort: '승리!', grubName: '그루브 헌트',
+  backToLobby: '로비로 돌아가기', winsShort: '승리!', grubName: 'Grub',
   // Lobby — extra
   // Game display names
   kriskrasName: 'Kriskras',
@@ -95,7 +95,7 @@ export const ko: Translation = {
   qwixxGemixxDesc: '열이 더 이상 단일 색상이 아닙니다 — 각 열은 추가적인 전술적 깊이를 위한 색상 혼합입니다.',
   qwixxBigPointsTagline: '확장 점수 패드',
   qwixxBigPointsDesc: '보너스 칸과 새로운 패널티가 있는 추가 점수 패드. 더 높은 위험, 더 높은 보상.',
-  grubExpName: '피코미노 확장판',
+  grubExpName: 'Grub Expansion',
   grubExpTagline: '추가 타일 및 조커 웜',
   grubExpDesc: '보너스 웜이 있는 높은 타일과 어떤 주사위 값도 받아들이는 조커 타일.',
   searchPlaceholder: '규칙 검색...', noResults: '결과 없음',
@@ -141,7 +141,7 @@ export const ko: Translation = {
     ['🏁', '종료',        '합계가 가장 낮은 사람이 라운드 승리. 여러 라운드 플레이; 100에 먼저 도달한 사람이 패배.'],
   ] as [string, string, string][],
   catanRules: [
-    ['🎯', '목표',        '10 승리 포인트(VP)에 먼저 도달하는 플레이어가 승리. 카탄 섬에 정착지, 도시, 도로를 건설하세요.'],
+    ['🎯', '목표',        '10 승리 포인트(VP)에 먼저 도달하는 플레이어가 승리. Kolonis 섬에 정착지, 도시, 도로를 건설하세요.'],
     ['🎲', '턴',          '주사위 굴리기 → 그 숫자에 인접한 정착지를 가진 플레이어들에게 자원 분배. 그런 다음 건설하거나 거래.'],
     ['🏠', '건설',        '정착지: 목재1+벽돌1+곡물1+양털1(1VP). 도로: 목재1+벽돌1. 도시: 곡물2+광석3(2VP, 정착지 대체).'],
     ['💱', '거래',        '은행과 4:1로 거래, 또는 항구를 통해 2:1/3:1로 거래. 상대방과도 거래 가능.'],
