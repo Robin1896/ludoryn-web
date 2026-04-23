@@ -1272,6 +1272,13 @@ function GrubContent() {
       setIncomingEmoji({ emoji, ts: Date.now() });
     });
 
+    const rollStartTimer = { current: null as ReturnType<typeof setTimeout> | null };
+    socket.on("roll-start", () => {
+      setRolling(true);
+      if (rollStartTimer.current) clearTimeout(rollStartTimer.current);
+      rollStartTimer.current = setTimeout(() => setRolling(false), 1600);
+    });
+
     return () => {
       socket.off("room-update", onRoomUpdate);
       socket.off("state-sync", onStateSync);
@@ -1280,6 +1287,8 @@ function GrubContent() {
       socket.off("turn-timeout");
       socket.off("all-ready");
       socket.off("react");
+      socket.off("roll-start");
+      if (rollStartTimer.current) clearTimeout(rollStartTimer.current);
       socket.off("connect", rejoin);
       socket.io.off("reconnect", rejoin);
       if (countdownRef.current) clearInterval(countdownRef.current);
@@ -1377,15 +1386,16 @@ function GrubContent() {
     const rolled = rollN(gs.turn.diceLeft);
     const newTurn = { ...gs.turn, rolled };
     const bust = isBust(newTurn);
-    // Toon altijd eerst de gegooid dobbelstenen, switch pas naar bust ná animatie
     const next = { ...gs, turn: newTurn, phase: 'rolled' } as GameState;
+    // Signal opponents to start their rolling animation
+    if (roomId) getSocket().emit("roll-start");
     setGs(next);
-    emitState(next);
-    // Sla direct op — voorkomt hergooien bij refresh (useEffect is asynchroon)
     if (!roomId) try { localStorage.setItem(LOCAL_KEY, JSON.stringify(next)); } catch { /* ignore */ }
     setRolling(true);
     setTimeout(() => {
       setRolling(false);
+      // Emit state after animation so opponent sees result at same time
+      emitState(next);
       if (bust) {
         const busted = { ...next, phase: 'bust' as const };
         setGs(busted);
