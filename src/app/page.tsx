@@ -388,7 +388,7 @@ export default function HomePage() {
       <ResumeGameBanner />
 
       {/* Game grid */}
-      <section style={{ padding: "0 16px 24px" }}>
+      <section style={{ padding: "0 16px 100px" }}>
         <div
           className="games-grid"
           style={{
