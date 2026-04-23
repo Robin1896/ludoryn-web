@@ -11,7 +11,6 @@ import toast from "react-hot-toast";
 
 type ChatMsg = { user: string; text: string };
 
-const REACTION_EMOJIS = ['😂','🔥','💀','😤','🤡','👀','🫡','🐛','😈','🎲','💯','😭','🙈','⚡','👑','🫶','🤌','💅','🥶','🤯','🫠','🗿'];
 interface FloatingEmoji { id: number; emoji: string; x: number; }
 
 function playReactSound() {
@@ -30,9 +29,9 @@ function playReactSound() {
 }
 
 function getGameRoute(gameType: string, roomId: string) {
-  if (gameType === "grub")  return `/grub?room=${roomId}`;
+  if (gameType === "grub") return `/grub?room=${roomId}`;
   if (gameType === "ticket-to-ride") return `/ticket-to-ride?room=${roomId}`;
-  if (gameType === "carcassonne")  return `/carcassonne?room=${roomId}`;
+  if (gameType === "carcassonne") return `/carcassonne?room=${roomId}`;
   return `/game/${roomId}`;
 }
 
@@ -60,7 +59,7 @@ export default function GameControls({
   isSpectator,
   isGameOver,
   myPlayerIndex,
-  accent = "#5B7FFF",
+  accent = "var(--accent)",
   onResign,
   inHeader = false,
   onSendEmoji,
@@ -86,32 +85,21 @@ export default function GameControls({
   useEffect(() => {
     const socket = getSocket();
 
-    console.log("[chat] mount — room-chat-history voor roomId:", roomId);
     socket.emit("room-chat-history", { roomId }, (history: ChatMsg[]) => {
-      console.log("[chat] mount history ontvangen:", history);
       setMessages(history);
     });
 
     const onMsg = (msg: ChatMsg) => {
-      console.log("[chat] room-chat ontvangen:", msg);
       setMessages((prev) => [...prev.slice(-99), msg]);
       if (!chatOpenRef.current) {
         setUnread((n) => n + 1);
-        toast(`${msg.user}: ${msg.text}`, {
-          icon: "💬",
-          style: { maxWidth: 320 },
-        });
+        toast(`${msg.user}: ${msg.text}`, { icon: "💬", style: { maxWidth: 320 } });
       }
     };
-    const onOffer = ({ from }: { from: string }) => {
-      setRematchFrom(from);
-      setRematch("incoming");
-    };
+    const onOffer = ({ from }: { from: string }) => { setRematchFrom(from); setRematch("incoming"); };
     const onDeclined = () => setRematch("declined");
     const onRoomUpdate = ({ ready, roomId: rid }: { ready: boolean; roomId: string }) => {
-      if (ready && rid) {
-        router.push(getGameRoute(gameType, rid));
-      }
+      if (ready && rid) router.push(getGameRoute(gameType, rid));
     };
 
     socket.on("room-chat", onMsg);
@@ -130,41 +118,27 @@ export default function GameControls({
   useEffect(() => {
     if (!chatOpen) return;
     setUnread(0);
-    // Herlaad history elke keer dat chat opengaat
-    console.log("[chat] open — room-chat-history voor roomId:", roomId);
     getSocket().emit("room-chat-history", { roomId }, (history: ChatMsg[]) => {
-      console.log("[chat] open history ontvangen:", history);
       if (Array.isArray(history) && history.length > 0) setMessages(history);
     });
   }, [chatOpen, roomId]);
 
   function sendChatMessage(text: string) {
-    console.log("[chat] stuur bericht:", { text, name: myName, roomId });
     getSocket().emit("room-chat-send", { message: text, name: myName, roomId });
     setMessages((prev) => [...prev.slice(-99), { user: myName, text }]);
   }
 
-  function requestRematch() {
-    setRematch("offered_by_us");
-    getSocket().emit("rematch-request");
-  }
-
-  function acceptRematch() {
-    getSocket().emit("rematch-request");
-  }
-
-  function declineRematch() {
-    getSocket().emit("rematch-decline");
-    setRematch("idle");
-  }
+  function requestRematch() { setRematch("offered_by_us"); getSocket().emit("rematch-request"); }
+  function acceptRematch() { getSocket().emit("rematch-request"); }
+  function declineRematch() { getSocket().emit("rematch-decline"); setRematch("idle"); }
 
   useEffect(() => {
     if (!incomingEmoji) return;
     playReactSound();
     const id = nextEmojiId.current++;
     setFloating(prev => [...prev, { id, emoji: incomingEmoji.emoji, x: window.innerWidth * 0.72 }]);
-    const t = setTimeout(() => setFloating(prev => prev.filter(f => f.id !== id)), 1400);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setFloating(prev => prev.filter(f => f.id !== id)), 1400);
+    return () => clearTimeout(timer);
   }, [incomingEmoji]);
 
   function handleEmojiClick(emoji: string, e: React.MouseEvent) {
@@ -199,9 +173,9 @@ export default function GameControls({
       {/* Floating emojis */}
       {floating.map(f => (
         <div key={f.id} style={{
-          position: 'fixed', left: f.x, bottom: 130,
-          fontSize: 32, pointerEvents: 'none', zIndex: 500, lineHeight: 1,
-          animation: 'emoji-float 1.4s ease-out forwards',
+          position: "fixed", left: f.x, bottom: 130,
+          fontSize: 32, pointerEvents: "none", zIndex: 500, lineHeight: 1,
+          animation: "emoji-float 1.4s ease-out forwards",
         }}>
           {f.emoji}
         </div>
@@ -211,10 +185,11 @@ export default function GameControls({
       {isSpectator && (
         <div style={{
           position: "fixed", top: 12, left: "50%", transform: "translateX(-50%)",
-          background: "rgba(0,0,0,0.7)", border: "1px solid rgba(255,255,255,0.15)",
-          borderRadius: 20, padding: "6px 16px", zIndex: 200,
-          fontFamily: "'Nunito', sans-serif", fontSize: 12, fontWeight: 700,
-          color: "rgba(255,255,255,0.6)", backdropFilter: "blur(8px)",
+          background: "var(--card)", border: "1px solid var(--border)",
+          borderRadius: 0, padding: "5px 14px", zIndex: 200,
+          fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 600,
+          letterSpacing: "0.1em", textTransform: "uppercase",
+          color: "var(--text-muted)",
         }}>
           Toeschouwer
         </div>
@@ -281,27 +256,26 @@ export default function GameControls({
         )}
       </div>
 
-      {/* Chat — bottom sheet met ChatPanel */}
+      {/* Chat bottom sheet */}
       <BottomSheet
         isOpen={chatOpen}
         onClose={() => setChatOpen(false)}
         fixed
         zIndex={9000}
         maxHeight="80vh"
-        sheetStyle={{ background: "#0E0B1E", borderRadius: "24px 24px 0 0", border: "1px solid rgba(255,255,255,0.08)", borderBottom: "none", display: "flex", flexDirection: "column" }}
+        sheetStyle={{
+          background: "var(--card)",
+          borderRadius: 0,
+          borderTop: "1px solid var(--border)",
+          display: "flex", flexDirection: "column",
+        }}
       >
         {(close) => (
           <>
-            {/* Handle */}
-            <div style={{ display: "flex", justifyContent: "center", padding: "12px 0 4px" }}>
-              <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.15)" }} />
+            <div style={{ padding: "14px 20px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0, borderBottom: "1px solid var(--border)" }}>
+              <div style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 20, fontWeight: 400, color: "var(--text)" }}>Spelchat</div>
+              <button onClick={close} style={{ background: "none", border: "none", color: "var(--text-muted)", fontSize: 20, cursor: "pointer", lineHeight: 1, padding: "2px 6px" }}>×</button>
             </div>
-            {/* Header */}
-            <div style={{ padding: "8px 20px 12px", display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0 }}>
-              <div style={{ fontFamily: "'Fredoka', sans-serif", fontSize: 20, fontWeight: 700, color: accent }}>Spelchat</div>
-              <button onClick={close} style={{ background: "none", border: "none", color: "rgba(238,242,255,0.35)", fontSize: 22, cursor: "pointer", lineHeight: 1 }}>×</button>
-            </div>
-            {/* ChatPanel */}
             <div style={{ flex: 1, minHeight: 0, padding: "0 12px 20px", display: "flex", flexDirection: "column" }}>
               <ChatPanel
                 messages={messages}
@@ -316,53 +290,54 @@ export default function GameControls({
         )}
       </BottomSheet>
 
-      {/* Resign confirm — bottom drawer */}
+      {/* Resign confirm bottom sheet */}
       <BottomSheet
         isOpen={confirmResign}
         onClose={() => setConfirmResign(false)}
         fixed
         zIndex={9000}
-        sheetStyle={{ background: "#11163A", borderRadius: "24px 24px 0 0", border: "1px solid rgba(255,255,255,0.08)", borderBottom: "none", padding: "8px 0 0", boxShadow: "0 -8px 40px rgba(0,0,0,0.5)" }}
+        sheetStyle={{
+          background: "var(--card)",
+          borderRadius: 0,
+          borderTop: "1px solid var(--border)",
+          padding: "20px 24px 32px",
+        }}
       >
         {(close) => (
-          <>
-            <div style={{ display: "flex", justifyContent: "center", paddingBottom: 12 }}>
-              <div style={{ width: 36, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.15)" }} />
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            <div>
+              <div style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 24, fontWeight: 400, color: "var(--text)", marginBottom: 6 }}>{t.resignTitle}</div>
+              <div style={{ fontFamily: "var(--font-body)", fontSize: 13, color: "var(--text-muted)" }}>{t.resignSub}</div>
             </div>
-            <div style={{ padding: "0 24px 32px" }}>
-              <div style={{ fontFamily: "'Fredoka', sans-serif", fontSize: 24, fontWeight: 700, color: "#EEF2FF", marginBottom: 6, textAlign: "center" }}>{t.resignTitle}</div>
-              <div style={{ fontFamily: "'Nunito', sans-serif", fontSize: 14, color: "rgba(255,255,255,0.45)", marginBottom: 28, textAlign: "center" }}>
-                {t.resignSub}
-              </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                <button
-                  onClick={() => { close(); setTimeout(() => onResign?.(), 420); }}
-                  style={{ width: "100%", padding: "14px 0", borderRadius: 50, border: "none", background: "#ef4444", color: "#fff", fontFamily: "'Fredoka', sans-serif", fontWeight: 600, fontSize: 17, cursor: "pointer", boxShadow: "0 4px 0 #b91c1c" }}
-                >
-                  {t.resignBtn}
-                </button>
-                <button
-                  onClick={close}
-                  style={{ width: "100%", padding: "14px 0", borderRadius: 50, border: "1px solid rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)", fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: 15, cursor: "pointer", boxShadow: "0 4px 0 rgba(0,0,0,0.4)" }}
-                >
-                  {t.cancelBtn}
-                </button>
-              </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <button
+                onClick={() => { close(); setTimeout(() => onResign?.(), 320); }}
+                style={{ width: "100%", padding: "12px 0", borderRadius: 0, border: "none", background: "var(--accent)", color: "#fff", fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer" }}
+              >
+                {t.resignBtn}
+              </button>
+              <button
+                onClick={close}
+                style={{ width: "100%", padding: "12px 0", borderRadius: 0, border: "1px solid var(--border)", background: "transparent", color: "var(--text-muted)", fontFamily: "var(--font-body)", fontWeight: 500, fontSize: 13, letterSpacing: "0.08em", textTransform: "uppercase", cursor: "pointer" }}
+              >
+                {t.cancelBtn}
+              </button>
             </div>
-          </>
+          </div>
         )}
       </BottomSheet>
 
       {/* Rematch overlays */}
       {isGameOver && canAction && rematch === "idle" && (
-        <div style={{ position: "fixed", bottom: 80, left: "50%", transform: "translateX(-50%)", zIndex: 200 }}>
+        <div style={{ position: "fixed", bottom: 88, left: "50%", transform: "translateX(-50%)", zIndex: 200 }}>
           <button
             onClick={requestRematch}
             style={{
-              padding: "11px 28px", borderRadius: 50, border: "none",
-              background: accent, color: "#fff",
-              fontFamily: "'Fredoka', sans-serif", fontWeight: 600, fontSize: 15,
-              cursor: "pointer", boxShadow: `0 0 20px ${accent}55`,
+              padding: "10px 24px", borderRadius: 0, border: "none",
+              background: "var(--accent)", color: "#fff",
+              fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 12,
+              letterSpacing: "0.08em", textTransform: "uppercase",
+              cursor: "pointer", whiteSpace: "nowrap",
             }}
           >
             Rematch aanvragen
@@ -371,27 +346,27 @@ export default function GameControls({
       )}
 
       {rematch === "offered_by_us" && (
-        <div style={{ position: "fixed", bottom: 80, left: "50%", transform: "translateX(-50%)", zIndex: 200, fontFamily: "'Nunito', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.45)", background: "rgba(17,22,58,0.9)", borderRadius: 50, padding: "10px 20px", backdropFilter: "blur(8px)" }}>
-          Wachten op tegenstander...
+        <div style={{ position: "fixed", bottom: 88, left: "50%", transform: "translateX(-50%)", zIndex: 200, fontFamily: "var(--font-body)", fontSize: 12, color: "var(--text-muted)", background: "var(--card)", border: "1px solid var(--border)", padding: "8px 16px", whiteSpace: "nowrap" }}>
+          Wachten op tegenstander…
         </div>
       )}
 
       {rematch === "incoming" && (
-        <div style={{ position: "fixed", bottom: 80, left: "50%", transform: "translateX(-50%)", zIndex: 200, display: "flex", gap: 10, alignItems: "center", background: "rgba(17,22,58,0.95)", borderRadius: 20, padding: "12px 20px", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.1)" }}>
-          <span style={{ fontFamily: "'Nunito', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.7)" }}>
+        <div style={{ position: "fixed", bottom: 88, left: "50%", transform: "translateX(-50%)", zIndex: 200, display: "flex", gap: 8, alignItems: "center", background: "var(--card)", border: "1px solid var(--border)", padding: "10px 16px" }}>
+          <span style={{ fontFamily: "var(--font-body)", fontSize: 12, color: "var(--text-muted)", whiteSpace: "nowrap" }}>
             {rematchFrom} wil rematch
           </span>
-          <button onClick={acceptRematch} style={{ padding: "7px 18px", borderRadius: 50, border: "none", background: accent, color: "#fff", fontFamily: "'Fredoka', sans-serif", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>
-            Accepteren
+          <button onClick={acceptRematch} style={{ padding: "6px 14px", borderRadius: 0, border: "none", background: "var(--accent)", color: "#fff", fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", cursor: "pointer" }}>
+            Ja
           </button>
-          <button onClick={declineRematch} style={{ padding: "7px 14px", borderRadius: 50, border: "1px solid rgba(255,255,255,0.15)", background: "transparent", color: "rgba(255,255,255,0.5)", fontFamily: "'Nunito', sans-serif", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>
+          <button onClick={declineRematch} style={{ padding: "6px 12px", borderRadius: 0, border: "1px solid var(--border)", background: "transparent", color: "var(--text-muted)", fontFamily: "var(--font-body)", fontWeight: 500, fontSize: 11, cursor: "pointer" }}>
             Nee
           </button>
         </div>
       )}
 
       {rematch === "declined" && (
-        <div style={{ position: "fixed", bottom: 80, left: "50%", transform: "translateX(-50%)", zIndex: 200, fontFamily: "'Nunito', sans-serif", fontSize: 13, color: "rgba(255,100,100,0.7)", background: "rgba(17,22,58,0.9)", borderRadius: 50, padding: "10px 20px", backdropFilter: "blur(8px)" }}>
+        <div style={{ position: "fixed", bottom: 88, left: "50%", transform: "translateX(-50%)", zIndex: 200, fontFamily: "var(--font-body)", fontSize: 12, color: "var(--accent)", background: "var(--card)", border: "1px solid var(--border)", padding: "8px 16px", whiteSpace: "nowrap" }}>
           Rematch geweigerd
         </div>
       )}
