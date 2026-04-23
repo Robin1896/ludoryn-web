@@ -1656,15 +1656,36 @@ function GrubContent() {
 
 
       {forfeitWinner && (
-        <div style={{ position: 'absolute', inset: 0, background: 'var(--bg)', backdropFilter: 'blur(20px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 20, zIndex: 200 }}>
-          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="1.5" strokeLinecap="round">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M12 7v5l3 3"/>
-            <path d="M9 3h6"/>
-          </svg>
-          <div style={{ fontFamily: "var(--font-body)", fontSize: 32, fontWeight: 700, color: 'var(--text)' }}>{hasResigned ? 'Opgegeven' : 'Tegenstander gaf op'}</div>
-          <div style={{ fontFamily: "var(--font-body)", fontSize: 16, color: 'var(--text-muted)' }}>{hasResigned ? `${forfeitWinner} wint` : `${forfeitWinner} wint!`}</div>
-          <button onClick={() => router.push('/lobby?game=grub')} style={{ marginTop: 12, padding: '12px 32px', borderRadius: 0, border: 'none', background: '#00C875', color: '#052e16', fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 16, cursor: 'pointer' }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'var(--bg)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24, zIndex: 200, padding: '0 24px' }}>
+          <div style={{ fontFamily: "var(--font-display)", fontStyle: 'italic', fontSize: 28, fontWeight: 400, color: 'var(--text)' }}>
+            {hasResigned ? 'Opgegeven' : 'Tegenstander gaf op'}
+          </div>
+          {gs && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%', maxWidth: 320 }}>
+              {gs.players.map((p) => {
+                const worms = totalWorms(p);
+                const isWinner = p.name === forfeitWinner;
+                return (
+                  <div key={p.name} style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    padding: '10px 14px',
+                    background: isWinner ? 'rgba(0,200,117,0.08)' : 'var(--card)',
+                    border: `1px solid ${isWinner ? 'rgba(0,200,117,0.3)' : 'var(--border)'}`,
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 600, color: isWinner ? '#00C875' : 'var(--text)' }}>{p.name}</span>
+                      {isWinner && <span style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 600, color: '#00C875', letterSpacing: '0.08em', textTransform: 'uppercase' }}>winnaar</span>}
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <span style={{ fontFamily: "var(--font-body)", fontSize: 16, fontWeight: 700, color: isWinner ? '#00C875' : 'var(--text)' }}>{worms}</span>
+                      <BugIcon size={14} color={isWinner ? '#00C875' : 'var(--text-muted)'} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          <button onClick={() => router.push('/lobby?game=grub')} style={{ padding: '12px 32px', borderRadius: 0, border: 'none', background: 'var(--accent)', color: '#fff', fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', cursor: 'pointer' }}>
             Terug naar lobby
           </button>
         </div>
