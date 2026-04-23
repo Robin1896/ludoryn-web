@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ludus</string>
+    <string name="title_activity_main">Ludus</string>
+    <string name="package_name">nl.ludus.app</string>
+    <string name="custom_url_scheme">nl.ludus.app</string>
+</resources>
