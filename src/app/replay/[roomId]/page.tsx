@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { apiFetch } from "@/lib/api";
 import { useParams, useRouter } from "next/navigation";
-import { BottomNav, Skeleton, StatusBadge } from "@/components/ui";
+import { BottomNav, PageHeader, Skeleton, StatusBadge } from "@/components/ui";
 import { useLang } from "@/lib/lang";
 
 interface GrubTile { value: number; worms: number; available: boolean; }
@@ -268,7 +268,30 @@ export default function ReplayPage() {
 
   return (
     <main style={{ minHeight: "100vh", background: "var(--bg)" }}>
-      <div style={{ maxWidth: 600, margin: "0 auto", padding: "24px 16px 100px" }}>
+
+      {session && (
+        <PageHeader
+          left={<>
+            <button onClick={() => router.back()} style={{ background: "none", border: "none", color: "var(--text-muted)", cursor: "pointer", padding: "0 4px 0 0", display: "flex", alignItems: "center" }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 22, fontWeight: 400, color: "var(--text)" }}>
+              {session.player1_name} vs {session.player2_name}
+            </span>
+            {session.game_mode && (
+              <StatusBadge label={session.game_mode === "slow" ? "Slow" : "Fast"} color={session.game_mode === "slow" ? "#8B5CF6" : "#F59E0B"} />
+            )}
+          </>}
+          right={
+            <span style={{ fontFamily: "var(--font-body)", fontSize: 11, color: "var(--text-muted)" }}>
+              {new Date(session.started_at).toLocaleDateString("nl-NL")}
+              {session.winner_name && ` · ${session.winner_name} wint`}
+            </span>
+          }
+        />
+      )}
+
+      <div style={{ padding: "20px 20px 100px" }}>
 
         {loading ? (
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -280,24 +303,6 @@ export default function ReplayPage() {
           </div>
         ) : (
           <>
-            {/* Header */}
-            <div style={{ marginBottom: 24 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
-                <div style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 22, fontWeight: 400, color: "var(--text)" }}>
-                  {session.player1_name} vs {session.player2_name}
-                </div>
-                {session.game_mode && (
-                  <StatusBadge
-                    label={session.game_mode === "slow" ? "Slow" : "Fast"}
-                    color={session.game_mode === "slow" ? "#8B5CF6" : "#F59E0B"}
-                  />
-                )}
-              </div>
-              <div style={{ fontFamily: "var(--font-body)", fontSize: 12, color: "var(--text-muted)" }}>
-                {new Date(session.started_at).toLocaleDateString("nl-NL")}
-                {session.winner_name && ` · ${session.winner_name} wint`}
-              </div>
-            </div>
 
             {snapshots.length === 0 ? (
               <div style={{ background: "var(--card)", border: "1px solid var(--border)", padding: 40, textAlign: "center", color: "var(--text-muted)", fontFamily: "var(--font-body)", fontSize: 13 }}>
