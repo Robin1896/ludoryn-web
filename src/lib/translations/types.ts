@@ -5,6 +5,8 @@ export type Translation = {
   kriskrasSubtitle: string; kriskrasDesc: string; kriskrasPlayers: string; kriskrasDuration: string;
   ttrSubtitle: string; ttrDesc: string; ttrPlayers: string; ttrDuration: string;
   beaverSubtitle: string; beaverDesc: string; beaverPlayers: string; beaverDuration: string;
+  bommenSubtitle: string; bommenDesc: string; bommenPlayers: string; bommenDuration: string;
+  bommenName: string; bommenRules: [string, string, string][];
   moreGames: string;
   roll: string; rolling: string; stop: string; confirm: string;
   kept: string; dice: string; total: string;
