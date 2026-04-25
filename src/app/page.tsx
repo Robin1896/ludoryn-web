@@ -10,6 +10,7 @@ import { useLang, LANGUAGES } from "@/lib/lang";
 const GAME_ROUTES: Record<string, string> = {
   grub: "/grub",
   qwixx: "/qwixx",
+  bommen: "/bommen",
   "ticket-to-ride": "/ticket-to-ride",
   beverbende: "/beverbende",
   carcassonne: "/carcassonne",
@@ -66,6 +67,7 @@ function ResumeGameBanner() {
   const gameLabel: Record<string, string> = {
     grub: "Wormenjacht",
     qwixx: "Kriskras",
+    bommen: "1000 Bommen",
     "ticket-to-ride": "Treinreis",
     beverbende: "Flikflak",
     carcassonne: "Basteon",
@@ -134,6 +136,18 @@ const GAMES = [
     shadow: "#9A7800",
     href: "/lobby?game=qwixx",
     available: false,
+  },
+  {
+    id: "bommen",
+    title: "1000 Bommen",
+    subtitle: "Kaarten · Stapelen",
+    description: "Speel kaarten op een stapel en probeer niet degene te zijn die het totaal boven 1000 brengt. De Bom reset alles!",
+    players: "2–4 spelers",
+    duration: "15–30 min",
+    accent: "#FF4444",
+    shadow: "#990000",
+    href: "/lobby?game=bommen",
+    available: true,
   },
   {
     id: "catan",
@@ -241,18 +255,21 @@ function GameTile({ game, index }: { game: (typeof GAMES)[number]; index: number
   const translated = {
     subtitle: game.id === 'grub' ? t.grubSubtitle
       : game.id === 'qwixx' ? t.kriskrasSubtitle
+      : game.id === 'bommen' ? t.bommenSubtitle
       : game.id === 'ticket-to-ride' ? t.ttrSubtitle
       : game.id === 'beverbende' ? t.beaverSubtitle
       : game.id === 'placeholder' ? t.comingSoon
       : game.subtitle,
     description: game.id === 'grub' ? t.grubDesc
       : game.id === 'qwixx' ? t.kriskrasDesc
+      : game.id === 'bommen' ? t.bommenDesc
       : game.id === 'ticket-to-ride' ? t.ttrDesc
       : game.id === 'beverbende' ? t.beaverDesc
       : game.id === 'placeholder' ? t.moreComing
       : game.description,
     players: game.id === 'grub' ? t.grubPlayers
       : game.id === 'qwixx' ? t.kriskrasPlayers
+      : game.id === 'bommen' ? t.bommenPlayers
       : game.id === 'ticket-to-ride' ? t.ttrPlayers
       : game.id === 'beverbende' ? t.beaverPlayers
       : game.players,
