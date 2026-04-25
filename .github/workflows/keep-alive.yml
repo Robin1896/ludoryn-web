@@ -1,4 +1,4 @@
-name: Keep Render Alive
+name: Keep HuggingFace Alive
 
 on:
   schedule:
@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping
-        run: curl -fsS --max-time 30 https://ludus-gh4z.onrender.com/api/ping && echo "OK" || echo "timeout (waking up)"
+        run: curl -fsS --max-time 30 https://robin1896-ludoryn-web.hf.space/api/ping && echo "OK" || echo "timeout (waking up)"
