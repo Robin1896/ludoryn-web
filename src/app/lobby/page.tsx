@@ -101,6 +101,7 @@ function LobbyContent() {
 
   function getGameRoute(roomId: string) {
     if (gameId === "grub") return `/grub?room=${roomId}`;
+    if (gameId === "bommen") return `/bommen?room=${roomId}`;
     if (gameId === "ticket-to-ride") return `/ticket-to-ride?room=${roomId}`;
     if (gameId === "carcassonne") return `/carcassonne?room=${roomId}`;
     if (gameId === "qwixx") return `/qwixx?room=${roomId}`;
@@ -180,6 +181,8 @@ function LobbyContent() {
           router.push(`/qwixx?room=${res.roomId}&ai=1`);
         } else if (gameId === "beverbende") {
           router.push(`/beverbende?room=${res.roomId}&ai=1`);
+        } else if (gameId === "bommen") {
+          router.push(`/bommen?room=${res.roomId}&ai=1`);
         } else {
           router.push(getGameRoute(res.roomId!));
         }
@@ -241,6 +244,8 @@ function LobbyContent() {
               style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 700, background: "var(--card2)", color: "var(--text-muted)", border: "1px solid var(--border)", borderRadius: 0, padding: "4px 22px 4px 8px", cursor: "pointer", outline: "none", appearance: "none", WebkitAppearance: "none", letterSpacing: "0.08em", textTransform: "uppercase" }}
             >
               <option value="grub">Grub</option>
+              <option value="bommen">1000 Bommen</option>
+              <option value="qwixx">Kriskras</option>
             </select>
             <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ position: "absolute", right: 7, pointerEvents: "none" }}>
               <path d="M1 1l4 4 4-4" stroke="var(--text-muted)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -289,7 +294,7 @@ function LobbyContent() {
               <h2 style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 20, fontWeight: 600, letterSpacing: "0.02em", margin: "0 0 -4px", color: "var(--text)" }}>{t.myGames}</h2>
               {mySessions.map((s) => {
                 const opponent = s.player1_name === playerName ? s.player2_name : s.player1_name;
-                const gameLabel = s.game_type === "grub" ? t.grubName : s.game_type === "ticket-to-ride" ? "Traxion" : s.game_type === "carcassonne" ? "Basteon" : s.game_type === "beverbende" ? "Beverbende" : s.game_type === "qwixx" ? t.kriskrasName : s.game_type;
+                const gameLabel = s.game_type === "grub" ? t.grubName : s.game_type === "bommen" ? t.bommenName : s.game_type === "ticket-to-ride" ? "Traxion" : s.game_type === "carcassonne" ? "Basteon" : s.game_type === "beverbende" ? "Beverbende" : s.game_type === "qwixx" ? t.kriskrasName : s.game_type;
                 return (
                   <div key={s.room_id} style={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 0, padding: "12px 16px", display: "flex", alignItems: "center", gap: 12 }}>
                     <div style={{ flex: 1, minWidth: 0 }}>
