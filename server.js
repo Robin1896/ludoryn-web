@@ -283,7 +283,7 @@ app.prepare().then(async () => {
       let code;
       do { code = makeCode(); } while (rooms.has(code));
 
-      const maxPlayers = gameType === "grub" ? 7 : 2;
+      const maxPlayers = gameType === "grub" ? 7 : gameType === "bommen" ? 4 : 2;
       rooms.set(code, {
         players:       [{ socketId: socket.id, name: name ?? "Speler 1", index: 0 }],
         spectators:    [],
@@ -466,7 +466,7 @@ app.prepare().then(async () => {
         let code;
         do { code = makeCode(); } while (rooms.has(code));
 
-        const maxPlayers = gameType === "grub" ? 7 : 2;
+        const maxPlayers = gameType === "grub" ? 7 : gameType === "bommen" ? 4 : 2;
         rooms.set(code, { players: [{ socketId: socket.id, name, index: 0 }], spectators: [], gameType, gameMode, maxPlayers, readyPlayers: new Set(), tiles: null, gameState: null, currentPlayer: undefined, rematchVotes: new Set(), turnCount: 0 });
         myRoom  = code;
         myIndex = 0;
