@@ -24,10 +24,12 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Run tests against live HuggingFace space
-        run: npx playwright test --config playwright.config.ts
+      - name: Run tests
+        run: npx playwright test --reporter=list,json --output=test-results 2>&1 | tee test-output.txt; echo "{\"exit\":$?}" > exit-code.json
+        env:
+          PLAYWRIGHT_JSON_OUTPUT_NAME: report.json
 
-      - name: Take screenshots of all pages
+      - name: Take screenshots
         if: always()
         run: |
           node -e "
@@ -51,28 +53,44 @@ jobs:
               const page = await ctx.newPage();
               await page.goto(BASE + p.url, { waitUntil: 'networkidle', timeout: 20000 }).catch(() => {});
               await page.waitForTimeout(2000);
-              await page.screenshot({ path: \`screenshots/\${p.name}.png\` });
+              await page.screenshot({ path: 'screenshots/' + p.name + '.png' });
               await page.close();
+              console.log('screenshot: ' + p.name);
             }
             await browser.close();
           })();
           "
 
-      - name: Upload screenshots
+      - name: Publish results to test-results branch
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshots-${{ github.run_number }}
-          path: screenshots/
-          retention-days: 30
+        run: |
+          git config user.email "gureattenberrie@gmail.com"
+          git config user.name "robin1896"
 
-      - name: Upload test report on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report-${{ github.run_number }}
-          path: test-results/
-          retention-days: 7
+          # Maak meta.json met run info
+          echo "{
+            \"run\": ${{ github.run_number }},
+            \"sha\": \"${{ github.sha }}\",
+            \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
+            \"passed\": $(cat report.json 2>/dev/null | node -e \"let d=''; process.stdin.on('data',c=>d+=c); process.stdin.on('end',()=>{ try{ const r=JSON.parse(d); console.log(r.stats?.expected||0) }catch(e){console.log(0)} })\"),
+            \"failed\": $(cat report.json 2>/dev/null | node -e \"let d=''; process.stdin.on('data',c=>d+=c); process.stdin.on('end',()=>{ try{ const r=JSON.parse(d); console.log(r.stats?.unexpected||0) }catch(e){console.log(0)} })\")
+          }" > meta.json
+
+          # Switch naar test-results branch
+          git fetch origin test-results 2>/dev/null || true
+          git checkout --orphan test-results-new
+          git rm -rf . --quiet 2>/dev/null || true
+
+          cp report.json . 2>/dev/null || echo '{}' > report.json
+          cp meta.json .
+          cp -r screenshots . 2>/dev/null || mkdir screenshots
+
+          git add report.json meta.json screenshots/
+          git commit -m "test results: run #${{ github.run_number }}"
+
+          git push origin test-results-new:test-results --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     name: Deploy to HuggingFace
