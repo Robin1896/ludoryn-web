@@ -70,29 +70,29 @@ jobs:
           git config user.email "gureattenberrie@gmail.com"
           git config user.name "robin1896"
 
-          # Haal passed/failed op via jq (beschikbaar op ubuntu runners)
           PASSED=$(jq '.stats.expected // 0' report.json 2>/dev/null || echo 0)
           FAILED=$(jq '.stats.unexpected // 0' report.json 2>/dev/null || echo 0)
           TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 
-          cat > meta.json << METAEOF
-          {
-            "run": ${{ github.run_number }},
-            "sha": "${{ github.sha }}",
-            "timestamp": "${TS}",
-            "passed": ${PASSED},
-            "failed": ${FAILED}
-          }
-          METAEOF
+          # Schrijf meta.json
+          printf '{\n  "run": %s,\n  "sha": "%s",\n  "timestamp": "%s",\n  "passed": %s,\n  "failed": %s\n}\n' \
+            "${{ github.run_number }}" "${{ github.sha }}" "${TS}" "${PASSED}" "${FAILED}" > meta.json
 
-          # Switch naar test-results branch (orphan zodat hij klein blijft)
+          # Kopieer alles naar /tmp voordat we van branch wisselen
+          mkdir -p /tmp/publish
+          cp report.json /tmp/publish/report.json 2>/dev/null || echo '{}' > /tmp/publish/report.json
+          cp meta.json /tmp/publish/meta.json
+          cp -r screenshots /tmp/publish/screenshots 2>/dev/null || mkdir /tmp/publish/screenshots
+
+          # Switch naar orphan test-results branch
           git fetch origin test-results 2>/dev/null || true
           git checkout --orphan test-results-new
           git rm -rf . --quiet 2>/dev/null || true
 
-          cp report.json . 2>/dev/null || echo '{}' > report.json
-          cp meta.json .
-          cp -r screenshots . 2>/dev/null || mkdir screenshots
+          # Zet bestanden terug vanuit /tmp
+          cp /tmp/publish/report.json report.json
+          cp /tmp/publish/meta.json meta.json
+          cp -r /tmp/publish/screenshots screenshots
 
           git add report.json meta.json screenshots/
           git commit -m "test results: run #${{ github.run_number }}"
