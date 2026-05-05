@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+
 jobs:
   test:
     name: Playwright Tests
@@ -67,16 +70,22 @@ jobs:
           git config user.email "gureattenberrie@gmail.com"
           git config user.name "robin1896"
 
-          # Maak meta.json met run info
-          echo "{
-            \"run\": ${{ github.run_number }},
-            \"sha\": \"${{ github.sha }}\",
-            \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
-            \"passed\": $(cat report.json 2>/dev/null | node -e \"let d=''; process.stdin.on('data',c=>d+=c); process.stdin.on('end',()=>{ try{ const r=JSON.parse(d); console.log(r.stats?.expected||0) }catch(e){console.log(0)} })\"),
-            \"failed\": $(cat report.json 2>/dev/null | node -e \"let d=''; process.stdin.on('data',c=>d+=c); process.stdin.on('end',()=>{ try{ const r=JSON.parse(d); console.log(r.stats?.unexpected||0) }catch(e){console.log(0)} })\")
-          }" > meta.json
+          # Haal passed/failed op via jq (beschikbaar op ubuntu runners)
+          PASSED=$(jq '.stats.expected // 0' report.json 2>/dev/null || echo 0)
+          FAILED=$(jq '.stats.unexpected // 0' report.json 2>/dev/null || echo 0)
+          TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 
-          # Switch naar test-results branch
+          cat > meta.json << METAEOF
+          {
+            "run": ${{ github.run_number }},
+            "sha": "${{ github.sha }}",
+            "timestamp": "${TS}",
+            "passed": ${PASSED},
+            "failed": ${FAILED}
+          }
+          METAEOF
+
+          # Switch naar test-results branch (orphan zodat hij klein blijft)
           git fetch origin test-results 2>/dev/null || true
           git checkout --orphan test-results-new
           git rm -rf . --quiet 2>/dev/null || true
@@ -87,7 +96,6 @@ jobs:
 
           git add report.json meta.json screenshots/
           git commit -m "test results: run #${{ github.run_number }}"
-
           git push origin test-results-new:test-results --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
