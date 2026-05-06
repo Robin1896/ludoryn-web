@@ -203,7 +203,7 @@ const GAMES = [
   },
   {
     id: "wingspan",
-    title: "Wingspan",
+    title: "Vleugels",
     subtitle: "Vogels · Eieren · Habitats",
     description:
       "Verzamel vogels, leg eieren en beheer je habitats. Speel krachtige vogelkaarten en scoor punten over 4 rondes!",
@@ -216,7 +216,7 @@ const GAMES = [
   },
   {
     id: "rummikub",
-    title: "Rummikub",
+    title: "Tegelrak",
     subtitle: "Tegels · Sets · Runs",
     description:
       "Leg sets en reeksen op tafel met genummerde tegels in vier kleuren. Eerste speler met een leeg rek wint!",
@@ -425,7 +425,6 @@ export default function HomePage() {
           { label: t.home,   icon: "home",   active: true },
           { label: t.lobby,  icon: "lobby",  onClick: () => router.push("/lobby") },
           { label: t.scores, icon: "scores", onClick: () => router.push("/scores") },
-          { label: "Shop",   icon: "shop",   onClick: () => router.push("/shop") },
         ]}
       />
 

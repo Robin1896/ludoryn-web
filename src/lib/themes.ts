@@ -27,7 +27,7 @@ export const THEMES: Record<string, GameTheme> = {
   grub:           { id: "grub",           name: "Grub",       icon: "",   available: true,  ...LIGHT },
   "ticket-to-ride":{ id: "ticket-to-ride", name: "Treinreis", icon: "🚂", available: true,  ...LIGHT },
   carcassonne:    { id: "carcassonne",    name: "Basteon",    icon: "",   available: true,  ...LIGHT },
-  wingspan:       { id: "wingspan",       name: "Wingspan",   icon: "🦅", available: true,  ...LIGHT },
+  wingspan:       { id: "wingspan",       name: "Vleugels",   icon: "🦅", available: true,  ...LIGHT },
   beverbende:     { id: "beverbende",     name: "Beverbende", icon: "🦫", available: true,  ...LIGHT },
   qwixx:          { id: "qwixx",          name: "Kriskras",   icon: "",   available: true,  ...LIGHT },
 };
