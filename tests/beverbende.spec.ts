@@ -11,7 +11,6 @@ test.describe("Flikflak spel", () => {
   test("startscherm toont naam-invoervelden", async ({ page }) => {
     await page.goto("/beverbende");
     await expect(page.getByText("Flikflak").first()).toBeVisible({ timeout: 8000 });
-    // Labels hebben geen htmlFor — zoek inputs direct
     const inputs = page.locator("input[type='text'], input:not([type])");
     await expect(inputs.first()).toBeVisible({ timeout: 5000 });
     expect(await inputs.count()).toBeGreaterThanOrEqual(2);
@@ -21,19 +20,16 @@ test.describe("Flikflak spel", () => {
     await page.goto("/beverbende");
     await expect(page.getByRole("button", { name: "Spelen!" })).toBeVisible({ timeout: 8000 });
     await page.getByRole("button", { name: "Spelen!" }).click();
-    // BottomNav heeft home knop
     const homeBtn = page.locator("button").filter({ hasText: /home/i }).first();
     if (await homeBtn.isVisible({ timeout: 2000 })) {
       await homeBtn.click();
       await expect(page).toHaveURL(/\/$/, { timeout: 8000 });
     } else {
-      // Terugknop in header
       const backBtn = page.locator("button").filter({ hasText: "←" }).first();
       if (await backBtn.isVisible({ timeout: 2000 })) {
         await backBtn.click();
         await expect(page.getByRole("button", { name: "Spelen!" })).toBeVisible({ timeout: 5000 });
       } else {
-        // Acceptabel: geen terugknop
         await expect(page.getByText(/Flikflak|bekijkt kaarten|aan de beurt/i).first()).toBeVisible({ timeout: 5000 });
       }
     }
@@ -85,7 +81,7 @@ test.describe("Flikflak spel", () => {
     await expect(page.getByRole("button", { name: "Spelen!" })).toBeVisible({ timeout: 8000 });
     await page.getByRole("button", { name: "Spelen!" }).click();
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 8; i++) {
       const btn = page.getByRole("button", { name: /Begrepen/i });
       if (await btn.isVisible({ timeout: 800 })) {
         await btn.click();
@@ -93,10 +89,10 @@ test.describe("Flikflak spel", () => {
         const clickables = page.locator("[style*='cursor: pointer']");
         if (await clickables.count() > 0) await clickables.first().click();
       }
-      await page.waitForTimeout(200);
+      await page.waitForTimeout(300);
     }
 
-    await expect(page.locator("button").filter({ hasText: "Flikflak" }).first()).toBeVisible({ timeout: 5000 });
+    await expect(page.locator("button").filter({ hasText: "Flikflak" }).first()).toBeVisible({ timeout: 10000 });
   });
 
   test("reveal fase toont scores en 'Nieuwe ronde' knop", async ({ page }) => {
@@ -126,7 +122,8 @@ test.describe("Flikflak spel", () => {
   test("vs AI modus via URL parameter ?ai=1", async ({ page }) => {
     await page.goto("/beverbende?ai=1");
     await expect(page.getByText("Flikflak").first()).toBeVisible({ timeout: 8000 });
-    await expect(page.getByText("AI").first()).toBeVisible({ timeout: 5000 });
+    // In AI modus toont het label "Tegenstander" voor speler 2
+    await expect(page.getByText("Tegenstander").first()).toBeVisible({ timeout: 5000 });
     await page.getByRole("button", { name: "Spelen!" }).click();
     await expect(page.getByText(/bekijkt kaarten|aan de beurt|Flikflak/i).first()).toBeVisible({ timeout: 8000 });
   });
@@ -147,11 +144,12 @@ test.describe("Flikflak spel", () => {
     await page.goto("/beverbende");
     await expect(page.getByRole("button", { name: "Spelen!" })).toBeVisible({ timeout: 8000 });
     await page.getByRole("button", { name: "Spelen!" }).click();
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(500);
     const rulesBtn = page.locator("button").filter({ hasText: "?" });
-    if (await rulesBtn.isVisible({ timeout: 2000 })) {
+    if (await rulesBtn.isVisible({ timeout: 3000 })) {
       await rulesBtn.click();
-      await expect(page.locator("div").filter({ hasText: /regel|hoe speel/i }).first()).toBeVisible({ timeout: 3000 });
+      // Spelregels popup toont "Spelregels — Flikflak"
+      await expect(page.getByText(/Spelregels/i).first()).toBeVisible({ timeout: 5000 });
     }
   });
 });

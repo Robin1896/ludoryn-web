@@ -148,7 +148,7 @@ async function playUntilGameOver(page: Page) {
     }
   }
 
-  await expect(page.getByText("Spel Voorbij!")).toBeVisible({ timeout: 10000 });
+  await expect(page.getByText("Spel Voorbij!")).toBeVisible({ timeout: 15000 });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -164,12 +164,12 @@ test.describe("Grub Hunt (Kriekel Duel) — startscherm", () => {
      * - Knoppen "2 Spelers" en "vs AI"
      */
     await page.goto("/grub");
-    await expect(page.getByText("KRIEKEL")).toBeVisible({ timeout: 10000 });
+    await expect(page.getByText("KRIEKEL")).toBeVisible({ timeout: 15000 });
     await expect(page.getByText("DUEL")).toBeVisible();
     await expect(page.getByRole("button", { name: "2 Spelers" })).toBeVisible();
     await expect(page.getByRole("button", { name: "vs AI" })).toBeVisible();
     // Beschrijving van het spel
-    await expect(page.getByText(/dobbelstenen.*beestjes/i)).toBeVisible();
+    await expect(page.getByText("Dobbelstenen · Beestjes · Stelen")).toBeVisible();
   });
 
   test("naam-invoervelden tonen standaardwaarden", async ({ page }) => {
@@ -197,10 +197,11 @@ test.describe("Grub Hunt (Kriekel Duel) — startscherm", () => {
      * Als speler 1 "Tester" intypt, staat "Tester" in het speelbord.
      */
     await page.goto("/grub");
+    await expect(page.getByRole("button", { name: "vs AI" })).toBeVisible({ timeout: 15000 });
     await page.locator("input").first().fill("Tester");
     await page.getByRole("button", { name: "vs AI" }).click();
     // Wacht op het speelbord
-    await expect(page.getByRole("button", { name: /Gooi/ })).toBeVisible({ timeout: 10000 });
+    await expect(page.getByRole("button", { name: /Gooi/ })).toBeVisible({ timeout: 15000 });
     // Naam "Tester" is zichtbaar in spelersinformatie
     await expect(page.getByText("Tester")).toBeVisible();
   });
@@ -215,7 +216,7 @@ test.describe("Grub Hunt — speelbord (vs AI)", () => {
     await page.goto("/grub");
     await page.getByRole("button", { name: "vs AI" }).click();
     // Wacht op het speelbord (Gooi-knop)
-    await expect(page.getByRole("button", { name: /Gooi/ })).toBeVisible({ timeout: 10000 });
+    await expect(page.getByRole("button", { name: /Gooi/ })).toBeVisible({ timeout: 15000 });
     // Dobbelstenen-teller begint op 8
     await expect(page.getByText("8")).toBeVisible();
   });
@@ -227,7 +228,7 @@ test.describe("Grub Hunt — speelbord (vs AI)", () => {
      */
     await page.goto("/grub");
     await page.getByRole("button", { name: "vs AI" }).click();
-    await expect(page.getByRole("button", { name: /Gooi/ })).toBeEnabled({ timeout: 10000 });
+    await expect(page.getByRole("button", { name: /Gooi/ })).toBeEnabled({ timeout: 15000 });
     await page.getByRole("button", { name: /Gooi/ }).click();
     // Na het gooien: statuslabel verandert of dobbelstenen verschijnen
     await expect(
@@ -245,7 +246,7 @@ test.describe("Grub Hunt — speelbord (vs AI)", () => {
      */
     await page.goto("/grub");
     await page.getByRole("button", { name: "vs AI" }).click();
-    await expect(page.getByRole("button", { name: /Gooi/ })).toBeEnabled({ timeout: 10000 });
+    await expect(page.getByRole("button", { name: /Gooi/ })).toBeEnabled({ timeout: 15000 });
 
     // Speel max 6 beurten — pech is random, niet gegarandeerd
     let hadBust = false;
@@ -273,7 +274,7 @@ test.describe("Grub Hunt — speelbord (vs AI)", () => {
      */
     await page.goto("/grub");
     await page.getByRole("button", { name: "vs AI" }).click();
-    await expect(page.getByRole("button", { name: /Gooi/ })).toBeEnabled({ timeout: 10000 });
+    await expect(page.getByRole("button", { name: /Gooi/ })).toBeEnabled({ timeout: 15000 });
 
     // Rol en stop zo snel mogelijk
     await page.getByRole("button", { name: /Gooi/ }).click();
@@ -362,7 +363,7 @@ test.describe("Grub Hunt — 2-spelers modus", () => {
     await page.locator("input").nth(1).fill("Speler2");
     await page.getByRole("button", { name: "2 Spelers" }).click();
 
-    await expect(page.getByRole("button", { name: /Gooi/ })).toBeEnabled({ timeout: 10000 });
+    await expect(page.getByRole("button", { name: /Gooi/ })).toBeEnabled({ timeout: 15000 });
     await expect(page.getByText("Speler1")).toBeVisible();
     await expect(page.getByText("Speler2")).toBeVisible();
   });

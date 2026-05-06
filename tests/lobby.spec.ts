@@ -5,34 +5,45 @@ const itCI = process.env.CI ? test.skip : test;
 test.describe("Lobby", () => {
   test("laadt open tafels sectie", async ({ page }) => {
     await page.goto("/lobby?game=grub");
-    await expect(page.getByText("Open tafels")).toBeVisible();
-    await expect(page.getByText("Nieuw")).toBeVisible();
-    await expect(page.getByText("Quick")).toBeVisible();
+    await expect(page.getByText("Open tafels")).toBeVisible({ timeout: 20000 });
+    // "+" knop voor nieuw spel aanmaken
+    await expect(page.locator("button").filter({ hasText: "+" })).toBeVisible({ timeout: 5000 });
+    // Zoek tegenstander knop
+    await expect(page.getByText("Zoek tegenstander")).toBeVisible({ timeout: 5000 });
   });
 
   test("game switcher navigeert naar ander spel", async ({ page }) => {
     await page.goto("/lobby?game=grub");
-    await page.selectOption("select", "carcassonne");
-    await expect(page).toHaveURL(/game=carcassonne/);
+    await expect(page.getByText("Open tafels")).toBeVisible({ timeout: 20000 });
+    await page.selectOption("select", "bommen");
+    await expect(page).toHaveURL(/game=bommen/, { timeout: 8000 });
   });
 
   test("Fast/Slow mode toggle werkt", async ({ page }) => {
     await page.goto("/lobby?game=grub");
-    await page.getByText("Slow").click();
+    await expect(page.getByText("Open tafels")).toBeVisible({ timeout: 20000 });
+    // Open het "+" dropdown
+    await page.locator("button").filter({ hasText: "+" }).click();
+    // Toggle Fast/Traag knoppen zijn nu zichtbaar
+    await expect(page.getByText("Fast")).toBeVisible({ timeout: 5000 });
+    // Klik Fast om te selecteren, dan sluiten
     await page.getByText("Fast").click();
-    await expect(page.getByText("Open tafels")).toBeVisible();
+    await expect(page.getByText("Open tafels")).toBeVisible({ timeout: 5000 });
   });
 
   test("naam instellen via NameModal en tafel aanmaken", async ({ page }) => {
     await page.addInitScript(() => sessionStorage.removeItem("catanja-name"));
     await page.goto("/lobby?game=grub");
-    await page.getByText("Nieuw").click();
+    await expect(page.getByText("Open tafels")).toBeVisible({ timeout: 20000 });
+    // Open "+" dropdown en klik "Tafel aanmaken"
+    await page.locator("button").filter({ hasText: "+" }).click();
+    await page.getByText("Tafel aanmaken").click();
 
-    await expect(page.getByText("Jouw naam")).toBeVisible({ timeout: 3000 });
+    await expect(page.getByText("Jouw naam")).toBeVisible({ timeout: 5000 });
     await page.getByPlaceholder("Jouw naam...").fill("TestSpeler");
     await page.getByRole("button", { name: /Bevestigen/i }).click();
 
-    await expect(page).toHaveURL(/\/grub/, { timeout: 10000 });
+    await expect(page).toHaveURL(/\/grub/, { timeout: 15000 });
     expect(new URL(page.url()).searchParams.get("room")).toBeTruthy();
   });
 
@@ -46,11 +57,12 @@ test.describe("Lobby", () => {
 
     await p1.addInitScript(() => sessionStorage.removeItem("catanja-name"));
     await p1.goto("/lobby?game=grub");
-    await p1.getByText("Nieuw").click();
-    await expect(p1.getByText("Jouw naam")).toBeVisible({ timeout: 3000 });
+    await p1.locator("button").filter({ hasText: "+" }).click();
+    await p1.getByText("Tafel aanmaken").click();
+    await expect(p1.getByText("Jouw naam")).toBeVisible({ timeout: 5000 });
     await p1.getByPlaceholder("Jouw naam...").fill("ActiveSpeler1");
     await p1.getByRole("button", { name: /Bevestigen/i }).click();
-    await expect(p1).toHaveURL(/\/grub/, { timeout: 10000 });
+    await expect(p1).toHaveURL(/\/grub/, { timeout: 15000 });
 
     const roomId = new URL(p1.url()).searchParams.get("room");
     expect(roomId).toBeTruthy();

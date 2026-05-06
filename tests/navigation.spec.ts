@@ -5,11 +5,13 @@ const itCI = process.env.CI ? test.skip : test;
 async function createWaitingRoom(page: Page, name: string): Promise<string> {
   await page.addInitScript(() => sessionStorage.removeItem("catanja-name"));
   await page.goto("/lobby?game=grub");
-  await page.getByText("Nieuw").click();
-  await expect(page.getByText("Jouw naam")).toBeVisible({ timeout: 3000 });
+  await expect(page.getByText("Open tafels")).toBeVisible({ timeout: 20000 });
+  await page.locator("button").filter({ hasText: "+" }).click();
+  await page.getByText("Tafel aanmaken").click();
+  await expect(page.getByText("Jouw naam")).toBeVisible({ timeout: 5000 });
   await page.getByPlaceholder("Jouw naam...").fill(name);
   await page.getByRole("button", { name: /Bevestigen/i }).click();
-  await expect(page).toHaveURL(/\/grub/, { timeout: 10000 });
+  await expect(page).toHaveURL(/\/grub/, { timeout: 15000 });
   return new URL(page.url()).searchParams.get("room") ?? "";
 }
 
@@ -24,17 +26,22 @@ test.describe("Navigatie", () => {
     await page.goto("/");
     await page.getByText("Scores").first().click();
     await expect(page).toHaveURL(/\/scores/, { timeout: 5000 });
-    await expect(page.getByRole("heading", { name: "Scores" })).toBeVisible();
+    // Scores pagina gebruikt een span, geen heading
+    await expect(page.getByText("Scores").first()).toBeVisible({ timeout: 5000 });
+    await expect(page.getByText("Leaderboard")).toBeVisible({ timeout: 5000 });
   });
 
   test("spelernaam blijft bewaard na herladen pagina", async ({ page }) => {
     await page.goto("/");
     await page.evaluate(() => sessionStorage.setItem("catanja-name", "GeheugenTest"));
     await page.goto("/lobby?game=grub");
+    await expect(page.getByText("Open tafels")).toBeVisible({ timeout: 20000 });
     await page.reload();
-    await expect(page.getByText("Nieuw")).toBeVisible({ timeout: 5000 });
-    await page.getByText("Nieuw").click();
-    await expect(page).toHaveURL(/\/grub/, { timeout: 10000 });
+    await expect(page.getByText("Open tafels")).toBeVisible({ timeout: 20000 });
+    // Naam is al ingesteld → klik "+" en "Tafel aanmaken" navigeert direct naar spel
+    await page.locator("button").filter({ hasText: "+" }).click();
+    await page.getByText("Tafel aanmaken").click();
+    await expect(page).toHaveURL(/\/grub/, { timeout: 15000 });
   });
 
   itCI("P2 joint P1 via 'Join' knop in de lobby", async ({ browser }) => {

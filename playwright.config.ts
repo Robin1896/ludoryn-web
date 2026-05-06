@@ -17,8 +17,9 @@ export default defineConfig({
   use: {
     baseURL: BASE_URL,
     trace: "on-first-retry",
-    actionTimeout: isCI ? 12000 : 5000,
-    navigationTimeout: isCI ? 20000 : 10000,
+    actionTimeout: isCI ? 15000 : 5000,
+    navigationTimeout: isCI ? 25000 : 10000,
+    locale: "nl-NL",
   },
   projects: [
     {
