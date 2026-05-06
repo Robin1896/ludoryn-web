@@ -12,7 +12,9 @@ export default defineConfig({
   fullyParallel: false,
   retries: isCI ? 1 : 0,
   workers: 1,
-  reporter: "list",
+  reporter: isCI
+    ? [["list"], ["json", { outputFile: "report.json" }]]
+    : "list",
   use: {
     baseURL: BASE_URL,
     trace: "on-first-retry",

@@ -28,9 +28,12 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run tests
-        run: npx playwright test --reporter=list,json --output=test-results 2>&1 | tee test-output.txt; echo "{\"exit\":$?}" > exit-code.json
-        env:
-          PLAYWRIGHT_JSON_OUTPUT_NAME: report.json
+        run: |
+          set +e
+          npx playwright test 2>&1 | tee test-output.txt
+          TEST_EXIT=${PIPESTATUS[0]}
+          echo "{\"exit\":$TEST_EXIT}" > exit-code.json
+          set -e
 
       - name: Take screenshots
         if: always()
