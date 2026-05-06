@@ -24,11 +24,15 @@ test.describe("Lobby", () => {
     await expect(page.getByText("Open tafels")).toBeVisible({ timeout: 20000 });
     // Open het "+" dropdown
     await page.locator("button").filter({ hasText: "+" }).click();
-    // Toggle Fast/Traag knoppen zijn nu zichtbaar
+    // Toggle Fast/Traag knoppen zichtbaar in dropdown
     await expect(page.getByText("Fast")).toBeVisible({ timeout: 5000 });
-    // Klik Fast om te selecteren, dan sluiten
-    await page.getByText("Fast").click();
-    await expect(page.getByText("Open tafels")).toBeVisible({ timeout: 5000 });
+    await expect(page.getByText("Traag")).toBeVisible({ timeout: 3000 });
+    // Wissel naar Traag
+    await page.getByText("Traag").click();
+    // Sluit dropdown door op de overlay buiten te klikken
+    await page.mouse.click(10, 300);
+    // Lobby is nog steeds geladen
+    await expect(page.locator("h2").filter({ hasText: /open tafels/i })).toBeVisible({ timeout: 8000 });
   });
 
   test("naam instellen via NameModal en tafel aanmaken", async ({ page }) => {

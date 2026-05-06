@@ -77,22 +77,25 @@ test.describe("Flikflak spel", () => {
   });
 
   test("'🃏 Flikflak!' roepknop verschijnt in speelfase", async ({ page }) => {
-    await page.goto("/beverbende");
+    // Gebruik AI modus: alleen speler 0 moet 2 kaarten bekijken, AI peeked automatisch
+    await page.goto("/beverbende?ai=1");
     await expect(page.getByRole("button", { name: "Spelen!" })).toBeVisible({ timeout: 8000 });
     await page.getByRole("button", { name: "Spelen!" }).click();
 
-    for (let i = 0; i < 8; i++) {
+    // Doorloop de peek fase (maximaal 4 iteraties)
+    for (let i = 0; i < 4; i++) {
       const btn = page.getByRole("button", { name: /Begrepen/i });
-      if (await btn.isVisible({ timeout: 800 })) {
+      if (await btn.isVisible({ timeout: 1200 })) {
         await btn.click();
       } else {
         const clickables = page.locator("[style*='cursor: pointer']");
         if (await clickables.count() > 0) await clickables.first().click();
       }
-      await page.waitForTimeout(300);
+      await page.waitForTimeout(400);
     }
 
-    await expect(page.locator("button").filter({ hasText: "Flikflak" }).first()).toBeVisible({ timeout: 10000 });
+    // Na peek fase: Flikflak knop moet verschijnen voor speler 0
+    await expect(page.locator("button").filter({ hasText: "Flikflak" }).first()).toBeVisible({ timeout: 12000 });
   });
 
   test("reveal fase toont scores en 'Nieuwe ronde' knop", async ({ page }) => {

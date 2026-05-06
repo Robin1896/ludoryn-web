@@ -102,9 +102,7 @@ async function playOneTurn(page: Page): Promise<"bust" | "stopped" | "gameover">
     }
 
     // Klik de eerst beschikbare dobbelsteen
-    const pickableDice = page.locator('[style*="cursor: pointer"]').filter({
-      hasNot: page.getByRole("button"),
-    });
+    const pickableDice = page.locator('[style*="cursor: pointer"]');
     const diceCount = await pickableDice.count();
     if (diceCount > 0) {
       await pickableDice.first().click();
@@ -218,7 +216,7 @@ test.describe("Grub Hunt — speelbord (vs AI)", () => {
     // Wacht op het speelbord (Gooi-knop)
     await expect(page.getByRole("button", { name: /Gooi/ })).toBeVisible({ timeout: 15000 });
     // Dobbelstenen-teller begint op 8
-    await expect(page.getByText("8")).toBeVisible();
+    await expect(page.getByText("8").first()).toBeVisible();
   });
 
   test("dobbelsteen gooien toont nieuwe dobbelstenen", async ({ page }) => {
@@ -348,7 +346,7 @@ test.describe("Grub Hunt — volledig spel vs AI (E2E)", () => {
     // Na reset: "Gooi" knop actief → nieuw spel begonnen
     await expect(page.getByRole("button", { name: /Gooi/ })).toBeEnabled({ timeout: 8000 });
     // Alle tegels terug (dobbelstenen-teller staat weer op 8)
-    await expect(page.getByText("8")).toBeVisible();
+    await expect(page.getByText("8").first()).toBeVisible();
   });
 });
 

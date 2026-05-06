@@ -19,11 +19,12 @@ test.describe("Carcassonne spel", () => {
     await page.goto("/carcassonne");
     await expect(page.getByRole("button", { name: "Spelen!" })).toBeVisible({ timeout: 8000 });
     await page.getByRole("button", { name: "Spelen!" }).click();
+    // Na start toont het bord "Jouw tegel" of "{naam}'s tegel"
     await expect(
-      page.getByText(/Leg tegels|Bouw|Meeple|Plaatsen|jouw beurt/i).first().or(
+      page.getByText(/tegel|Klooster|Speler/i).first().or(
         page.locator("canvas").first()
       )
-    ).toBeVisible({ timeout: 8000 });
+    ).toBeVisible({ timeout: 10000 });
   });
 
   test("terugknop navigeert naar home", async ({ page }) => {

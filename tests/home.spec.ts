@@ -5,8 +5,8 @@ test.describe("Home pagina", () => {
     await page.goto("/");
     await expect(page.locator("h1, h2").first()).toBeVisible();
     await expect(page.getByText("Grub Hunt").first()).toBeVisible();
-    // Basteon is de naam voor Carcassonne in dit spel
-    await expect(page.getByText("Basteon").first()).toBeVisible();
+    // 1000 Bommen is beschikbaar op de home pagina (Basteon/Carcassonne is gefilterd)
+    await expect(page.getByText("1000 Bommen").first()).toBeVisible();
   });
 
   test("Grub kaart is klikbaar en navigeert naar lobby", async ({ page }) => {

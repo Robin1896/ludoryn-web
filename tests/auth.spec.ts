@@ -9,7 +9,7 @@ test.describe("Authenticatie", () => {
     await expect(page.getByText("Open tafels")).toBeVisible({ timeout: 20000 });
 
     await page.getByRole("button", { name: "Inloggen" }).last().click();
-    await expect(page.getByText("Account")).toBeVisible({ timeout: 5000 });
+    await expect(page.getByText("Account", { exact: true })).toBeVisible({ timeout: 5000 });
 
     // Wissel naar de "Account aanmaken" tab (= registreer tab)
     await page.getByRole("button", { name: "Account aanmaken" }).first().click();
