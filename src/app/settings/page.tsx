@@ -226,7 +226,7 @@ function SettingsContent() {
         { label: t.home,   icon: "home",   onClick: () => router.push("/")       },
         { label: t.lobby,  icon: "lobby",  onClick: () => router.push("/lobby")  },
         { label: t.scores, icon: "scores", onClick: () => router.push("/scores") },
-        { label: t.shop,   icon: "shop",   onClick: () => router.push("/shop")   },
+
       ]} />
     </div>
   );

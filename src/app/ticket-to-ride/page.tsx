@@ -1165,7 +1165,7 @@ function TicketToRideContent() {
         { label: t.home, icon: "home", active: false, onClick: () => router.push("/") },
         { label: t.lobby, icon: "lobby", active: false, onClick: () => router.push("/lobby?game=ticket-to-ride") },
         { label: t.scores, icon: "scores", active: false, onClick: () => router.push("/scores") },
-        { label: t.shop, icon: "shop", onClick: () => router.push("/shop") },
+
       ]} />
 
       {/* Ticket picker */}

@@ -446,7 +446,7 @@ function BommenContent() {
           { label: t.home, icon: "home", onClick: () => router.push("/") },
           { label: t.lobby, icon: "lobby", onClick: () => router.push("/lobby?game=bommen") },
           { label: t.scores, icon: "scores", onClick: () => router.push("/scores") },
-          { label: t.shop, icon: "shop", onClick: () => router.push("/shop") },
+
         ]} />
       </div>
     );
@@ -487,9 +487,9 @@ function BommenContent() {
 
   return (
     <div style={{
-      width: '100vw', minHeight: '100dvh', background: 'var(--bg-gradient)',
-      display: 'flex', flexDirection: 'column', alignItems: 'center',
-      paddingTop: 72, paddingBottom: 80, userSelect: 'none',
+      width: '100vw', height: '100dvh', background: 'var(--bg-gradient)',
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      paddingTop: 72, paddingBottom: 80, boxSizing: 'border-box', userSelect: 'none', gap: 8,
     }}>
       {/* Fixed header */}
       <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 20, display: 'flex', justifyContent: 'center', padding: '8px 8px', background: 'linear-gradient(to bottom, rgba(8,5,20,0.92) 60%, transparent)', backdropFilter: 'blur(12px)' }}>
@@ -515,7 +515,7 @@ function BommenContent() {
       </div>
 
       {/* Total + last action */}
-      <div style={{ width: '100%', maxWidth: 500, padding: '0 16px', marginBottom: 12 }}>
+      <div style={{ width: '100%', maxWidth: 500, padding: '0 16px' }}>
         <TotalDisplay total={gs.total} boomPlayer={gs.boomPlayer} players={gs.players} />
         {gs.lastAction && (
           <div style={{ textAlign: 'center', marginTop: 8, fontFamily: "'Nunito', sans-serif", fontSize: 12, color: 'rgba(238,242,255,0.35)', animation: 'fadeIn .3s ease' }}>
@@ -529,7 +529,7 @@ function BommenContent() {
       </div>
 
       {/* Card hand */}
-      <div style={{ width: '100%', maxWidth: 500, padding: '0 12px', marginBottom: 12 }}>
+      <div style={{ width: '100%', maxWidth: 500, padding: '0 12px' }}>
         <div style={{ fontFamily: "'Nunito', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: myTurn ? ACCENT : 'rgba(238,242,255,0.2)', marginBottom: 10, textAlign: 'center', transition: 'color 0.3s' }}>
           {myTurn ? 'Jouw beurt — kies een kaart' : myChoosing ? 'Kies een waarde' : gs.phase === 'boom' ? '' : isActivePlayer ? 'Aan het kiezen…' : `Wacht op ${activePlayer.name}…`}
         </div>
@@ -684,7 +684,7 @@ function BommenContent() {
         { label: t.home, icon: "home", onClick: () => router.push("/") },
         { label: t.lobby, icon: "lobby", onClick: () => router.push("/lobby?game=bommen") },
         { label: t.scores, icon: "scores", onClick: () => router.push("/scores") },
-        { label: t.shop, icon: "shop", onClick: () => router.push("/shop") },
+
       ]} />
 
       <style>{`

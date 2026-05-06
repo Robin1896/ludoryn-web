@@ -182,7 +182,7 @@ export default function ScoresPage() {
           { label: t.home,   icon: "home", onClick: () => router.push("/") },
           { label: t.lobby,  icon: "lobby", onClick: () => router.push("/lobby") },
           { label: t.scores, icon: "scores", active: true },
-          { label: t.shop, icon: "shop", onClick: () => router.push("/shop") },
+
         ]}
       />
 

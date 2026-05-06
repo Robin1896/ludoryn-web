@@ -458,7 +458,7 @@ function LobbyContent() {
           { label: t.home,   icon: "home",   onClick: () => router.push("/") },
           { label: t.lobby,  icon: "lobby",  active: true },
           { label: t.scores, icon: "scores", onClick: () => router.push("/scores") },
-          { label: t.shop, icon: "shop", onClick: () => router.push("/shop") },
+
         ]}
       />
 

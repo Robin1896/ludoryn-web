@@ -700,7 +700,7 @@ export default function GamePage() {
         { label: t.home,   icon: "home", onClick: () => router.push("/") },
         { label: t.lobby,  icon: "lobby", onClick: () => router.push("/lobby?game=catan") },
         { label: t.scores, icon: "scores", onClick: () => router.push("/scores") },
-        { label: t.shop, icon: "shop", onClick: () => router.push("/shop") },
+
       ]} />
 
       <CatanBoard2D

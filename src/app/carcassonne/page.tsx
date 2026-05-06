@@ -621,7 +621,7 @@ function CarcassonneContent() {
           { label: 'Home', icon: 'home', onClick: () => { if (typeof window !== 'undefined') window.location.href = '/'; } },
           { label: 'Lobby', icon: 'lobby', onClick: () => { if (typeof window !== 'undefined') window.location.href = '/lobby?game=carcassonne'; } },
           { label: 'Scores', icon: 'scores', onClick: () => { if (typeof window !== 'undefined') window.location.href = '/scores'; } },
-          { label: 'Shop', icon: 'shop', onClick: () => router.push('/shop') },
+
         ]} />
       </div>
     );
@@ -1264,7 +1264,7 @@ function CarcassonneContent() {
           { label: 'Home', icon: 'home', onClick: () => router.push('/') },
           { label: 'Lobby', icon: 'lobby', onClick: () => router.push('/lobby?game=carcassonne') },
           { label: 'Scores', icon: 'scores', onClick: () => router.push('/scores') },
-          { label: 'Shop', icon: 'shop', onClick: () => router.push('/shop') },
+
         ]}
       />
 
