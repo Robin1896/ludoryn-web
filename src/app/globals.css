@@ -108,10 +108,6 @@ select { appearance: none; -webkit-appearance: none; }
   to   { opacity: 1; transform: scale(1); }
 }
 
-@keyframes nav-slide-up {
-  from { opacity: 0; transform: translateY(20px) scale(0.95); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
 
 html {
   height: 100%;

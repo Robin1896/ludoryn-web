@@ -828,8 +828,6 @@ export function BottomNav({
         paddingBottom: "max(16px, env(safe-area-inset-bottom, 16px))",
         pointerEvents: "none",
         zIndex: 50,
-        willChange: "transform",
-        transform: "translateZ(0)",
       }}>
         <nav style={{
           pointerEvents: "all",
