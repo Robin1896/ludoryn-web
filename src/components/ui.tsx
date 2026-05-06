@@ -842,7 +842,6 @@ export function BottomNav({
           borderRadius: 0,
           padding: "4px 6px",
           boxShadow: "0 8px 40px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.02)",
-          animation: "nav-slide-up 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.1s both",
         }}>
           {allItems.map(({ label, icon, active, onClick }) => {
             const isPressed = pressed === label;
