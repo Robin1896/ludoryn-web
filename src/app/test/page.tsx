@@ -174,7 +174,7 @@ export default function TestPage() {
   }
 
   if (!auth) return (
-    <div style={{ minHeight: '100vh', background: BG, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'system-ui,sans-serif' }}>
+    <div style={{ height: '100dvh', minHeight: '-webkit-fill-available', background: BG, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'system-ui,sans-serif' }}>
       <div style={{ background: CARD, border: `1px solid ${BORDER}`, borderRadius: 20, padding: 40, width: 340, boxShadow: '0 2px 20px rgba(0,0,0,0.06)' }}>
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 3, color: MUTED, textTransform: 'uppercase', marginBottom: 6 }}>Ludoryn</div>
         <div style={{ fontSize: 28, fontWeight: 800, color: TEXT, marginBottom: 28, fontFamily: 'Georgia,serif' }}>Test Dashboard</div>
