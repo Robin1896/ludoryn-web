@@ -473,7 +473,7 @@ function BommenContent() {
       )}
 
       {/* AI thinking */}
-      {vsAI && gs.currentPlayer === 1 && gs.phase !== 'gameover' && (
+      {vsAI && gs.currentPlayer === 1 && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 12 }}>
           <div style={{ width: 6, height: 6, borderRadius: '50%', background: ACCENT, animation: 'pulse 1s infinite' }} />
           <span style={{ fontFamily: "'Nunito', sans-serif", fontSize: 13, color: 'rgba(238,242,255,0.35)' }}>AI denkt na…</span>
