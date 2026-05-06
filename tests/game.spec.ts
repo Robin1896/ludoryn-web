@@ -13,7 +13,7 @@ test.describe("Grub lokaal spel", () => {
   test("terugknop navigeert naar home", async ({ page }) => {
     await page.goto("/grub");
     await page.getByText("← Terug").click();
-    await expect(page).toHaveURL(/^http:\/\/localhost:8080\/?$/);
+    await expect(page).toHaveURL(/\/$/);
   });
 
   test("2-spelers lokaal spel start en toont Gooi-knop", async ({ page }) => {

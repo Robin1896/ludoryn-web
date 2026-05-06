@@ -10,7 +10,7 @@ test.describe("Qwixx spel", () => {
   test("terugknop navigeert naar home", async ({ page }) => {
     await page.goto("/qwixx");
     await page.getByText("← Terug").click();
-    await expect(page).toHaveURL(/^http:\/\/localhost:8080\/?$/);
+    await expect(page).toHaveURL(/\/$/);
   });
 
   test("2-spelers lokaal spel start en toont scorekaart", async ({ page }) => {

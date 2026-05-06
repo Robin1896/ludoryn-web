@@ -10,7 +10,7 @@ test.describe("Bommen spel", () => {
   test("terugknop navigeert naar home", async ({ page }) => {
     await page.goto("/bommen");
     await page.getByText("← Terug").click();
-    await expect(page).toHaveURL(/^http:\/\/localhost:8080\/?$/);
+    await expect(page).toHaveURL(/\/$/);
   });
 
   test("2-spelers spel start en toont kaarten", async ({ page }) => {

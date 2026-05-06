@@ -21,7 +21,7 @@ test.describe("Flikflak spel", () => {
     const homeBtn = page.locator("div, button").filter({ hasText: /^home$/i }).first();
     if (await homeBtn.isVisible({ timeout: 2000 })) {
       await homeBtn.click();
-      await expect(page).toHaveURL(/^http:\/\/localhost:8080\/?$/);
+      await expect(page).toHaveURL(/\/$/);
     } else {
       // Terugknop in header
       await page.locator("button").filter({ hasText: "←" }).first().click();

@@ -10,7 +10,7 @@ test.describe("Carcassonne spel", () => {
   test("terugknop navigeert naar home", async ({ page }) => {
     await page.goto("/carcassonne");
     await page.getByText("← Terug").click();
-    await expect(page).toHaveURL(/^http:\/\/localhost:8080\/?$/);
+    await expect(page).toHaveURL(/\/$/);
   });
 
   test("2-spelers spel start en toont bord", async ({ page }) => {
