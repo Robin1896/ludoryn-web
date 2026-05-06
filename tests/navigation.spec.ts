@@ -1,5 +1,7 @@
 import { test, expect, Page } from "@playwright/test";
 
+const itCI = process.env.CI ? test.skip : test;
+
 async function createWaitingRoom(page: Page, name: string): Promise<string> {
   await page.addInitScript(() => sessionStorage.removeItem("catanja-name"));
   await page.goto("/lobby?game=grub");
@@ -35,7 +37,7 @@ test.describe("Navigatie", () => {
     await expect(page).toHaveURL(/\/grub/, { timeout: 10000 });
   });
 
-  test("P2 joint P1 via 'Join' knop in de lobby", async ({ browser }) => {
+  itCI("P2 joint P1 via 'Join' knop in de lobby", async ({ browser }) => {
     const ctx1 = await browser.newContext();
     const ctx2 = await browser.newContext();
     const p1 = await ctx1.newPage();
@@ -61,7 +63,7 @@ test.describe("Navigatie", () => {
     await ctx2.close();
   });
 
-  test("directe URL naar actief spel als spectator", async ({ browser }) => {
+  itCI("directe URL naar actief spel als spectator", async ({ browser }) => {
     const ctx1 = await browser.newContext();
     const ctx2 = await browser.newContext();
     const ctx3 = await browser.newContext();

@@ -1,7 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
 
-// In CI: run against live HuggingFace space (no local server needed)
-// Locally: use the local dev server on port 8080
 const isCI = !!process.env.CI;
 const BASE_URL = process.env.BASE_URL || (isCI
   ? "https://robin1896-ludoryn-web.hf.space"
@@ -10,18 +8,17 @@ const BASE_URL = process.env.BASE_URL || (isCI
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: false,
-  retries: isCI ? 1 : 0,
+  retries: 0,
   workers: 1,
+  timeout: isCI ? 25000 : 10000,       // per test
   reporter: isCI
     ? [["list"], ["json", { outputFile: "report.json" }]]
     : "list",
   use: {
     baseURL: BASE_URL,
     trace: "on-first-retry",
-    video: "on-first-retry",
-    // Longer timeouts for live HF space (cold start)
-    actionTimeout: isCI ? 15000 : 5000,
-    navigationTimeout: isCI ? 30000 : 10000,
+    actionTimeout: isCI ? 12000 : 5000,
+    navigationTimeout: isCI ? 20000 : 10000,
   },
   projects: [
     {
@@ -29,7 +26,6 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
   ],
-  // Only start webserver when running locally
   ...(isCI ? {} : {
     webServer: {
       command: "node server.js",
