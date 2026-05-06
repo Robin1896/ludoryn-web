@@ -73,8 +73,20 @@ jobs:
           git config user.email "gureattenberrie@gmail.com"
           git config user.name "robin1896"
 
-          PASSED=$(jq '.stats.expected // 0' report.json 2>/dev/null || echo 0)
-          FAILED=$(jq '.stats.unexpected // 0' report.json 2>/dev/null || echo 0)
+          PASSED=$(node -e "
+            try {
+              const r = JSON.parse(require('fs').readFileSync('report.json','utf8'));
+              let p=0; function w(s){(s.specs||[]).forEach(sp=>{if(sp.ok)p++});(s.suites||[]).forEach(w)}
+              (r.suites||[]).forEach(w); console.log(p);
+            } catch(e){ console.log(0); }
+          " 2>/dev/null || echo 0)
+          FAILED=$(node -e "
+            try {
+              const r = JSON.parse(require('fs').readFileSync('report.json','utf8'));
+              let f=0; function w(s){(s.specs||[]).forEach(sp=>{if(!sp.ok)f++});(s.suites||[]).forEach(w)}
+              (r.suites||[]).forEach(w); console.log(f);
+            } catch(e){ console.log(0); }
+          " 2>/dev/null || echo 0)
           TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 
           # Schrijf meta.json
