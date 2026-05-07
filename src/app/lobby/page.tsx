@@ -11,6 +11,7 @@ import {
   BottomNav, PageHeader,
 } from "@/components/ui";
 import { useLang } from "@/lib/lang";
+import { useAuth } from "@/lib/auth-context";
 
 type Session = {
   room_id: string;
@@ -42,6 +43,9 @@ function LobbyContent() {
   const searchParams = useSearchParams();
   const theme       = getTheme(searchParams.get("game"));
   const { lang, t } = useLang();
+  const { user: authUser, showLogin, setShowLogin, login: authLogin, logout: authLogout } = useAuth();
+
+  const loggedIn = !!authUser;
 
   const [sessions, setSessions]       = useState<Session[]>([]);
   const [sessionsLoading, setSessionsLoading] = useState(true);
@@ -51,34 +55,22 @@ function LobbyContent() {
   const [searching, setSearching]   = useState(false);
   const [countdown, setCountdown]   = useState(5);
   const countdownRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const [showLogin, setShowLogin]   = useState(false);
-  const [loggedIn, setLoggedIn]     = useState(false);
   const [gameMode, setGameMode]     = useState<"fast" | "slow">("fast");
   const [showCodeJoin, setShowCodeJoin] = useState(false);
   const [codeInput, setCodeInput]   = useState("");
   const [showNewMenu, setShowNewMenu] = useState(false);
+  const quickMatchRoomRef = useRef<{ roomId: string; playerIndex: number } | null>(null);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   useEffect(() => {
-    // Probeer ingelogde user op te halen; anders val terug op sessionStorage
-    apiFetch("/api/auth/me")
-      .then((r) => r.json())
-      .then((data) => {
-        if (data?.username) {
-          setPlayerName(data.username);
-          setLoggedIn(true);
-          sessionStorage.setItem("ludoryn-name", data.username);
-        } else {
-          const saved = sessionStorage.getItem("ludoryn-name");
-          if (saved) setPlayerName(saved);
-        }
-      })
-      .catch(() => {
-        const saved = sessionStorage.getItem("ludoryn-name");
-        if (saved) setPlayerName(saved);
-      });
-  }, []);
+    if (authUser?.username) {
+      setPlayerName(authUser.username);
+    } else {
+      const saved = sessionStorage.getItem("ludoryn-name");
+      if (saved) setPlayerName(saved);
+    }
+  }, [authUser]);
 
   const gameId = searchParams.get("game") ?? "grub";
 
@@ -136,66 +128,66 @@ function LobbyContent() {
     // Direct zoekscherm tonen, niet wachten op socket callback
     setSearching(true);
     setCountdown(30);
+
+    const goAI = (roomId: string) => {
+      clearInterval(countdownRef.current!);
+      socket.off("room-update", onRoomUpdate);
+      setSearching(false);
+      const aiRoutes: Record<string, string> = {
+        grub: `/grub?room=${roomId}&ai=1`,
+        "ticket-to-ride": `/ticket-to-ride?room=${roomId}&ai=1`,
+        carcassonne: `/carcassonne?room=${roomId}&ai=1`,
+        qwixx: `/qwixx?room=${roomId}&ai=1`,
+        beverbende: `/beverbende?room=${roomId}&ai=1`,
+        bommen: `/bommen?room=${roomId}&ai=1`,
+      };
+      router.push(aiRoutes[gameId] ?? getGameRoute(roomId));
+    };
+
+    const onRoomUpdate = ({ ready, roomId: rid }: { players: string[]; ready: boolean; roomId: string }) => {
+      const qmRoom = quickMatchRoomRef.current;
+      if (ready && qmRoom && rid === qmRoom.roomId) {
+        clearInterval(countdownRef.current!);
+        socket.off("room-update", onRoomUpdate);
+        setSearching(false);
+        router.push(getGameRoute(qmRoom.roomId));
+      }
+    };
+
     countdownRef.current = setInterval(() => {
       setCountdown((c) => {
-        if (c <= 1) { clearInterval(countdownRef.current!); return 0; }
+        if (c <= 1) {
+          clearInterval(countdownRef.current!);
+          const qmRoom = quickMatchRoomRef.current;
+          if (qmRoom) goAI(qmRoom.roomId);
+          return 0;
+        }
         return c - 1;
       });
     }, 1000);
 
     socket.emit("quickmatch-join", { name, gameType: gameId, gameMode }, (res: { ok: boolean; roomId?: string; playerIndex?: number; matched?: boolean }) => {
       if (!res.ok || !res.roomId) { setSearching(false); clearInterval(countdownRef.current!); return; }
+      quickMatchRoomRef.current = { roomId: res.roomId, playerIndex: res.playerIndex ?? 0 };
       sessionStorage.setItem(`ludoryn-pidx-${res.roomId}`, String(res.playerIndex));
 
       if (res.matched) {
         clearInterval(countdownRef.current!);
+        socket.off("room-update", onRoomUpdate);
         setSearching(false);
         router.push(getGameRoute(res.roomId));
         return;
       }
 
-      // Luister op match of timeout
-      const onRoomUpdate = ({ ready, roomId: rid }: { players: string[]; ready: boolean; roomId: string }) => {
-        if (ready && rid === res.roomId) {
-          clearInterval(countdownRef.current!);
-          socket.off("room-update", onRoomUpdate);
-          socket.off("quickmatch-timeout", onTimeout);
-          setSearching(false);
-          router.push(getGameRoute(res.roomId!));
-        }
-      };
-
-      const onTimeout = () => {
-        clearInterval(countdownRef.current!);
-        socket.off("room-update", onRoomUpdate);
-        socket.off("quickmatch-timeout", onTimeout);
-        setSearching(false);
-        // AI fallback
-        if (gameId === "grub") {
-          router.push(`/grub?room=${res.roomId}&ai=1`);
-        } else if (gameId === "ticket-to-ride") {
-          router.push(`/ticket-to-ride?room=${res.roomId}&ai=1`);
-        } else if (gameId === "carcassonne") {
-          router.push(`/carcassonne?room=${res.roomId}&ai=1`);
-        } else if (gameId === "qwixx") {
-          router.push(`/qwixx?room=${res.roomId}&ai=1`);
-        } else if (gameId === "beverbende") {
-          router.push(`/beverbende?room=${res.roomId}&ai=1`);
-        } else if (gameId === "bommen") {
-          router.push(`/bommen?room=${res.roomId}&ai=1`);
-        } else {
-          router.push(getGameRoute(res.roomId!));
-        }
-      };
-
       socket.on("room-update", onRoomUpdate);
-      socket.on("quickmatch-timeout", onTimeout);
     });
   }
 
   function cancelQuickMatch() {
     clearInterval(countdownRef.current!);
-    getSocket().emit("quickmatch-cancel");
+    const name = playerName || sessionStorage.getItem("ludoryn-name") || "";
+    getSocket().emit("quickmatch-cancel", { name, gameType: gameId, gameMode });
+    quickMatchRoomRef.current = null;
     setSearching(false);
     setCountdown(5);
   }
@@ -257,12 +249,7 @@ function LobbyContent() {
             <div style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 700, color: "var(--text)" }}>{playerName || t.anonymous}</div>
             {loggedIn ? (
               <button
-                onClick={async () => {
-                  await apiFetch("/api/auth/logout", { method: "POST" });
-                  setLoggedIn(false);
-                  setPlayerName("");
-                  sessionStorage.removeItem("ludoryn-name");
-                }}
+                onClick={async () => { await authLogout(); setPlayerName(""); }}
                 style={{ fontSize: 10, color: "var(--text-faint)", background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "var(--font-body)" }}
               >
                 {t.logOut}
@@ -490,10 +477,8 @@ function LobbyContent() {
         <LoginModal
           accent={theme.primary}
           onSuccess={(username) => {
+            authLogin({ username });
             setPlayerName(username);
-            setLoggedIn(true);
-            sessionStorage.setItem("ludoryn-name", username);
-            setShowLogin(false);
           }}
           onCancel={() => setShowLogin(false)}
         />

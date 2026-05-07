@@ -5,11 +5,16 @@ import { getSocket } from "@/lib/socket";
 
 export type GameMode = "fast" | "slow";
 
-export function useTurnTimer(isMyTurn: boolean) {
+export function useTurnTimer(isMyTurn: boolean, roomId?: string, playerIndex?: number) {
   const [deadline, setDeadline]   = useState<Date | null>(null);
   const [gameMode, setGameMode]   = useState<GameMode>("fast");
   const [timeLeft, setTimeLeft]   = useState<number | null>(null); // ms
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const intervalRef  = useRef<ReturnType<typeof setInterval> | null>(null);
+  const expiredRef   = useRef(false);
+  const roomIdRef    = useRef(roomId);
+  const playerIdxRef = useRef(playerIndex);
+  roomIdRef.current    = roomId;
+  playerIdxRef.current = playerIndex;
 
   useEffect(() => {
     const socket = getSocket();
@@ -17,24 +22,36 @@ export function useTurnTimer(isMyTurn: boolean) {
     function onDeadline({ deadline: d, gameMode: gm }: { deadline: string; gameMode: GameMode }) {
       setDeadline(new Date(d));
       setGameMode(gm);
+      expiredRef.current = false;
     }
 
     socket.on("turn-deadline", onDeadline);
     return () => { socket.off("turn-deadline", onDeadline); };
   }, []);
 
-  // Countdown tick
+  // Countdown tick — trigger forfeit via API when fast-mode deadline passes
   useEffect(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     if (!deadline) { setTimeLeft(null); return; }
 
     function tick() {
-      setTimeLeft(Math.max(0, deadline!.getTime() - Date.now()));
+      const ms = deadline!.getTime() - Date.now();
+      setTimeLeft(Math.max(0, ms));
+
+      if (ms <= 0 && !expiredRef.current && gameMode === "fast" && !isMyTurn && roomIdRef.current) {
+        expiredRef.current = true;
+        // Non-active player triggers the server-side forfeit check
+        fetch("/api/socket", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ event: "turn-expired", roomId: roomIdRef.current, playerIndex: playerIdxRef.current }),
+        }).catch(() => {});
+      }
     }
     tick();
     intervalRef.current = setInterval(tick, 1000);
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
-  }, [deadline]);
+  }, [deadline, gameMode, isMyTurn]);
 
   return { timeLeft, gameMode, deadline, isMyTurn };
 }
