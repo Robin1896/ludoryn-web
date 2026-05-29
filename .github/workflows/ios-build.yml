@@ -1,0 +1,82 @@
+name: iOS Build & TestFlight
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build & Upload to TestFlight
+    runs-on: macos-latest
+    timeout-minutes: 90
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          XCODE_PATH=$(ls -d /Applications/Xcode*.app | sort -V | tail -1)
+          echo "Using Xcode: $XCODE_PATH"
+          sudo xcode-select -s "$XCODE_PATH/Contents/Developer"
+          echo "DEVELOPER_DIR=$XCODE_PATH/Contents/Developer" >> $GITHUB_ENV
+          xcodebuild -version
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: .
+        run: npm ci
+
+      - name: Add iOS platform
+        working-directory: .
+        run: npx cap add ios
+
+      - name: Capacitor sync
+        working-directory: .
+        run: npx cap sync ios
+
+      - name: Generate app icons
+        working-directory: .
+        run: npx @capacitor/assets generate --ios
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+          working-directory: .
+
+      - name: Write App Store Connect key
+        run: |
+          mkdir -p ~/.apple
+          printf '%s' "${{ secrets.ASC_KEY_CONTENT }}" > ~/.apple/AuthKey_N82P3R4ADL.p8
+
+      - name: Revoke old distribution certificates
+        continue-on-error: true
+        run: |
+          mkdir -p /tmp/revoke && cd /tmp/revoke
+          npm init -y > /dev/null
+          npm install jose > /dev/null 2>&1
+          cat > revoke.mjs << 'JSEOF'
+          import { SignJWT, importPKCS8 } from 'jose'
+          import { readFileSync } from 'fs'
+          const p8 = readFileSync(process.env.HOME+'/.apple/AuthKey_N82P3R4ADL.p8','utf8')
+          const key = await importPKCS8(p8,'ES256')
+          const jwt = await new SignJWT({}).setProtectedHeader({alg:'ES256',kid:'N82P3R4ADL',typ:'JWT'}).setIssuer('b01fda7d-8f20-43d7-bc8e-de43880f0036').setIssuedAt().setExpirationTime('20m').setAudience('appstoreconnect-v1').sign(key)
+          const h = {Authorization:'Bearer '+jwt}
+          const r = await fetch('https://api.appstoreconnect.apple.com/v1/certificates?filter[certificateType]=DISTRIBUTION&limit=10',{headers:h})
+          const d = await r.json()
+          const certs = d.data||[]
+          if(certs.length < 2){console.log('Only',certs.length,'cert(s) — no revoke needed');process.exit(0)}
+          for(const c of certs){const x=await fetch('https://api.appstoreconnect.apple.com/v1/certificates/'+c.id,{method:'DELETE',headers:h});console.log('Revoked',c.id,x.status)}
+          JSEOF
+          node revoke.mjs
+
+      - name: Build & Upload
+        working-directory: .
+        run: bundle exec fastlane ios build_and_upload
+        env:
+          ASC_KEY_FILEPATH: ~/.apple/AuthKey_N82P3R4ADL.p8
