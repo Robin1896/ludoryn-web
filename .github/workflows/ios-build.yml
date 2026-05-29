@@ -28,11 +28,11 @@ jobs:
 
       - name: Install dependencies
         working-directory: .
-        run: npm ci
+        run: npm install
 
       - name: Add iOS platform
         working-directory: .
-        run: npx cap add ios
+        run: if [ ! -d "ios" ]; then npx cap add ios; fi
 
       - name: Capacitor sync
         working-directory: .
